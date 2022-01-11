@@ -439,17 +439,17 @@ msgstr "Begivenheder"
 #, fuzzy
 #| msgid "Create event"
 msgid "Your events"
-msgstr "Opret begivenhed"
+msgstr "Dine begivenheder"
 
 #: src/dukop/apps/calendar/templates/calendar/event/dashboard.html:16
 msgid ""
 "Below is the list of events that you have created or which a group you're in "
 "has created."
-msgstr ""
+msgstr "Nedenfor kan du finde en liste af de begivenheder, du har oprettet, eller som en gruppe, du er en del af, har oprettet"
 
 #: src/dukop/apps/calendar/templates/calendar/event/dashboard.html:23
 msgid "Name"
-msgstr ""
+msgstr "Eventnavn"
 
 #: src/dukop/apps/calendar/templates/calendar/event/dashboard.html:24
 msgid "Image"
@@ -457,15 +457,15 @@ msgstr "Billede"
 
 #: src/dukop/apps/calendar/templates/calendar/event/dashboard.html:25
 msgid "Dates"
-msgstr ""
+msgstr "Datoer"
 
 #: src/dukop/apps/calendar/templates/calendar/event/dashboard.html:26
 msgid "Venue"
-msgstr ""
+msgstr "Sted"
 
 #: src/dukop/apps/calendar/templates/calendar/event/dashboard.html:27
 msgid "Published"
-msgstr ""
+msgstr "Offentliggjort"
 
 #: src/dukop/apps/calendar/templates/calendar/event/dashboard.html:53
 #: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:54
@@ -630,7 +630,7 @@ msgstr "Del link"
 
 #: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:36
 msgid "Copy url to clipboard"
-msgstr ""
+msgstr "Kopiér URL"
 
 #: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:62
 #, fuzzy
@@ -1214,7 +1214,7 @@ msgstr "navn"
 msgid ""
 "This name is displayed at events that you host or to other members of groups "
 "that you are in."
-msgstr ""
+msgstr "Dette navn bliver vist på events du arrangerer og til andre medlemmer af de grupper, du er en del af."
 
 #: src/dukop/apps/users/models.py:59
 msgid "email"
@@ -1288,13 +1288,13 @@ msgstr "Log ind"
 #: src/dukop/apps/users/templates/users/login.html:9
 msgctxt "meant about an existing user, a user that already has an account"
 msgid "Returning user login"
-msgstr ""
+msgstr "Login for eksisterende brugere"
 
 #: src/dukop/apps/users/templates/users/login.html:11
 msgid ""
 "If you already registered an email (below), enter it here and we will send "
 "you a 1-time pass via email."
-msgstr ""
+msgstr "Hvis du allerede har registreret en e-mail, indtast den her og du vil modtage en engangs kode via e-mail"
 
 #: src/dukop/apps/users/templates/users/login.html:21
 msgid "Send a 1-time login"
@@ -1302,7 +1302,7 @@ msgstr "Send et engangs login"
 
 #: src/dukop/apps/users/templates/users/login.html:29
 msgid "New user registration"
-msgstr ""
+msgstr "Registrering af ny bruger"
 
 #: src/dukop/apps/users/templates/users/login.html:31
 msgid ""
@@ -1326,7 +1326,7 @@ msgstr "Log ind med kodeord"
 msgid ""
 "You can log in with a password if you have defined one. Otherwise, use the 1-"
 "time login above."
-msgstr ""
+msgstr "Du kan logge på med din password, hvis du har valgt en. Ellers kan du bruge engangskoden ovenover."
 
 #: src/dukop/apps/users/templates/users/login_password.html:7
 msgid "Login with a password"
@@ -1352,7 +1352,7 @@ msgstr "Få en en ny token"
 #: src/dukop/apps/users/templates/users/login_token_sent.html:9
 #: src/dukop/apps/users/views.py:219 src/dukop/apps/users/views.py:232
 msgid "Check your inbox"
-msgstr "Tjek din mail inbox"
+msgstr "Tjek din indbakke"
 
 #: src/dukop/apps/users/templates/users/login_token_sent.html:12
 #, python-format
@@ -1587,17 +1587,17 @@ msgstr "Opret begivenhed"
 
 #: src/dukop/apps/users/templates/users/update.html:9
 msgid "Your profile"
-msgstr ""
+msgstr "Din profil"
 
 #: src/dukop/apps/users/templates/users/update.html:11
 msgid ""
 "Currently, you cannot change your email address. This function will arrive "
 "soon, together with much much more."
-msgstr ""
+msgstr "I øjeblikket kan du ikke ændre din e-mail adresse. Denne funktion er på vej, sammen med en masse andre"
 
 #: src/dukop/apps/users/templates/users/update.html:21
 msgid "Update profile"
-msgstr ""
+msgstr "Opdatér profil"
 
 #: src/dukop/apps/users/views.py:59
 msgid "Please log in before proceeding"
@@ -1605,7 +1605,7 @@ msgstr "Vær venlig at logge ind før du fortsætter"
 
 #: src/dukop/apps/users/views.py:222
 msgid "If the email isn't there in 2 minutes, check your spam folder."
-msgstr ""
+msgstr "Hvis du ikke har modtaget mailen inden for 2 minutter, tjek i din spam mappe."
 
 #: src/dukop/settings/base.py:107
 msgid "English"
@@ -1662,7 +1662,7 @@ msgid ""
 "you are looking for demos, concerts, parties, meetings, community kitchens, "
 "garden days workshops, art, movie screenings and what not."
 msgstr ""
-"Duk Op er din guide til hvad der sker, uanse om du leder efter "
+"Duk Op er din guide til hvad der sker, uanset om du leder efter "
 "demonstrationer, koncerter, fester, møder, folkekøkken, havedage, workshops, "
 "kunst udstillinger, filmvisinger, debatter og meget mere."
 
@@ -1721,7 +1721,7 @@ msgid ""
 "You can subscribe to Duk Op in for instance Google, iCal, Thunderbird and "
 "more. Copy this URL into your calendar's Import function (iCAL/ICS format)"
 msgstr ""
-"Duk kan abonnere på Duk Op i f.eks. Google, iCal, Thunderbird or mere. "
+"Du kan abonnere på Duk Op i f.eks. Google, iCal, Thunderbird or mere. "
 "Kopiér følgende URL ind i din kalenders import-funktion (iCAL/ICS format)"
 
 #: src/dukop/templates/base.html:137

@@ -252,6 +252,8 @@ def test_recurrence_dst_backwards(single_event):  # noqa
     now = get_now()
     if now.month > 10 or (now.month == 10 and now.day >= 10):
         year = now.year + 1
+    else:
+        year = now.year
 
     # Put the beginning of the event just before DST change backwards
     first_time = single_event.times.first()

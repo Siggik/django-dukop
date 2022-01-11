@@ -301,7 +301,7 @@ class EventRecurrenceTimesForm(forms.ModelForm):
 
     class Meta:
         model = models.EventTime
-        fields = ["start", "end", "is_cancelled"]
+        fields = ["start", "end", "description", "is_cancelled"]
 
 
 EventTimeFormSet = inlineformset_factory(

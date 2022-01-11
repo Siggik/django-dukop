@@ -150,11 +150,17 @@
     {% endfor %}
     </div>
 
-    <h2>{% trans "Repeat event" %} {% with recurrences.get_queryset.count as repetitions %}{% if repetitions > 0 %}<span class="badge-counter">{{ repetitions }} {{ repetitions|pluralize:_("rule,rules") }}</span>{% endif %}{% endwith %}</h2>
-    <p>
-      {% trans "If you want your event to recur automatically with an interval, you can set it here instead of adding individual timeslots manually." %}
-    </p>
+    {% with recurrences.get_queryset.count as repetitions %}
 
+      <h2>{% trans "Repeat event" %} {% if repetitions > 0 %}<span class="badge-counter">{{ repetitions }} {{ repetitions|pluralize:_("rule,rules") }}</span>{% endif %}</h2>
+      <p>
+        {% trans "If you want your event to recur automatically with an interval, you can set it here instead of adding individual timeslots manually." %}
+        {% if repetitions > 0 %}
+        <p>{% trans "Existing recurrence rules can be changed below." %}</p>
+        {% endif %}
+      </p>
+
+    {% endwith %}
     <div>
     <div class="collapsible-bar collapsible-bar-show-input">
       <input type="radio" value="false" name="{{ form.recurrence_choice.html_name }}" id="id_{{ form.recurrence_choice.html_name }}_0"{% if not form.recurrence_choice.value %} checked="true"{% endif %}>
@@ -214,11 +220,20 @@
 
     </div>
 
-    {% if recurrences_times|length > 0 %}
-    <h2>{% trans "Repetitions" %} <span class="badge-counter">{{ recurrences_times|length }}</span></h2>
+    {% with recurrences_times|length as recurrences_cnt %}
+    {% if recurrences_cnt > 0 %}
+    <h2>{% trans "Repetitions" %} <span class="badge-counter">{{ recurrences_cnt }}</span></h2>
     <p>
       {% trans "You can change individual repetitions. This will remove them from the automatically-handled series." %}
     </p>
+
+    {% if recurrences_cnt > 0 %}
+    <p>
+      {% trans "Click each automatically created repetition below to make an individual adjustment." %}
+    </p>
+    {% endif %}
+    {% endwith %}
+
     {{ recurrences_times.management_form }}
 
     {% if recurrences_times.non_form_errors %}

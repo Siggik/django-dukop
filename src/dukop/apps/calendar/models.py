@@ -412,6 +412,15 @@ class EventTime(models.Model):
 
     objects = EventTimeManager()
 
+    #: An exception to the event's general description in case there are several EventTime instances for the same Event
+    description = models.TextField(
+        blank=True,
+        verbose_name=_("description"),
+        help_text=_(
+            "Leave blank to use the general event's description. If filled in, will be displayed together when a user navigates to this specific occurrence of the event."
+        ),
+    )
+
     class Meta:
         verbose_name = _("Event time")
         ordering = ("start", "end")

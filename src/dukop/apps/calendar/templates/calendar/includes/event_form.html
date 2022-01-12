@@ -227,13 +227,6 @@
       {% trans "You can change individual repetitions. This will remove them from the automatically-handled series." %}
     </p>
 
-    {% if recurrences_cnt > 0 %}
-    <p>
-      {% trans "Click each automatically created repetition below to make an individual adjustment." %}
-    </p>
-    {% endif %}
-    {% endwith %}
-
     {{ recurrences_times.management_form }}
 
     {% if recurrences_times.non_form_errors %}
@@ -263,6 +256,7 @@
 
     {% endfor %}
     {% endif %}
+    {% endwith %}
 
     <h2>{% trans "Images" %}</h2>
     <p>

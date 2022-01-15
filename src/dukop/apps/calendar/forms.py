@@ -43,9 +43,9 @@ class EventForm(forms.ModelForm):
     )
 
     location = forms.ModelChoiceField(
-        queryset=Group.objects.filter(deactivated=False, is_restricted=False)
-        .filter(events__published=True)
-        .distinct(),
+        queryset=Location.objects.filter(
+            deactivated=False, is_restricted=False
+        ).distinct(),
         required=False,
         label=_("Location"),
         help_text=_("Choose an existing location or create a new one"),
@@ -298,6 +298,18 @@ class EventRecurrenceTimesForm(forms.ModelForm):
 
     start = forms.SplitDateTimeField(widget=widgets.SplitDateTimeWidget())
     end = forms.SplitDateTimeField(widget=widgets.SplitDateTimeWidget(), required=False)
+    description = forms.CharField(
+        required=False,
+        label=_("Unique description"),
+        widget=forms.Textarea(
+            attrs={
+                "placeholder": _(
+                    "Enter a unique description to be displayed in place of the general event description..."
+                ),
+                "class": "event-recurrence-times-description",
+            },
+        ),
+    )
 
     class Meta:
         model = models.EventTime

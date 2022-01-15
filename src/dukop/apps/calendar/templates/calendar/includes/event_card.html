@@ -74,18 +74,21 @@
         <h1 class="card__title">{{ event.name }}</h1>
 
         {% if not event_truncate %}
-            {% if event.description %}
-                {{ event.description|linebreaks }}
-            {% else %}
-                {{ event.short_description|default:_("The event has no description")|linebreaks }}
-            {% endif %}
+
+            {% with selected_time.description|default:event.description as description %}
+              {% if description %}
+                  {{ description|linebreaks }}
+              {% else %}
+                  {{ event.short_description|default:_("The event has no description")|linebreaks }}
+              {% endif %}
+            {% endwith %}
 
             <h2>{% trans "Upcoming dates" %}</h2>
 
             <ul>
             {% for time in event.times.future|slice:10 %}
                 {% if time.start %}
-                <li>{{ time.start|dukop_interval:time.end }}</li>
+                <li><a href="{% url "calendar:event_detail" pk=event.pk time_pk=time.pk %}">{{ time.start|dukop_interval:time.end }}</a></li>
                 {% endif %}
             {% empty %}
                 <li><em>{% trans "No upcoming times" %}</em>

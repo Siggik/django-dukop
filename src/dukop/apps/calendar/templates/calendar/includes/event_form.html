@@ -249,6 +249,7 @@
     <table>
       {% include "calendar/includes/event_form_render_field_tr.html" with field=event_time.start special_tr_field_class="event_form_datetime" %}
       {% include "calendar/includes/event_form_render_field_tr.html" with field=event_time.end special_tr_field_class="event_form_datetime" %}
+      {% include "calendar/includes/event_form_render_field_tr.html" with field=event_time.description %}
       {% include "calendar/includes/event_form_render_field_tr.html" with field=event_time.is_cancelled %}
     </table>
     </div>

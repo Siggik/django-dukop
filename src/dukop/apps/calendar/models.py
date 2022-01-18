@@ -637,7 +637,7 @@ class EventRecurrence(models.Model):
         # The end of the recurrence, either as given by an explicit user-defined
         # end datetime or as a number of days relative to the start of the
         # recurrence.
-        system_wide_maximum = timedelta_fixed_time(start, days=maximum).date()
+        system_wide_maximum = timedelta_fixed_time(start, days=maximum)
         end = self.end or system_wide_maximum
         end = timezone.make_aware(
             datetime.combine(min(end, system_wide_maximum), datetime.min.time())

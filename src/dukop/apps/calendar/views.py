@@ -57,6 +57,12 @@ class EventDetailView(DetailView):
                 qs = qs.filter(published=True)
         return qs
 
+    def get_context_data(self, **kwargs):
+        c = super().get_context_data(**kwargs)
+        if self.kwargs.get("time_pk", None):
+            c["selected_time"] = models.EventTime.objects.get(pk=self.kwargs["time_pk"])
+        return c
+
 
 class EventCreateSuccess(EventDetailView):
     """
@@ -128,7 +134,9 @@ class EventProcessFormMixin:
             and self.times_form.is_valid()
             and self.links_form.is_valid()
             and self.recurrences_form.is_valid()
-            # and (not self.object or self.recurrences_times_form.is_valid())
+            and (
+                (not self.object) or self.recurrences_times_form.is_valid()
+            )  # Something wrong here? It has been disabled
         ):
             return self.form_valid(form)
         else:
@@ -187,7 +195,7 @@ class EventProcessFormMixin:
 
         for recurrence_time_form in self.recurrences_times_form:
             if recurrence_time_form.has_changed() and recurrence_time_form.is_valid():
-                times = form.save(commit=False)
+                times = recurrence_time_form.save(commit=False)
                 times.recurrence_auto = False
                 times.save()
 

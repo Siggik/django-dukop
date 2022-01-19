@@ -7,6 +7,7 @@ from dukop.apps.calendar.utils import get_now
 from dukop.apps.calendar.utils import timedelta_fixed_time
 
 from .fixtures_calendar import single_event  # noqa
+from .fixtures_calendar import single_event_3_weeks_past  # noqa
 
 
 # Number of days that an event recurs when no end date is given
@@ -23,7 +24,7 @@ def test_create_weekly_recurrence(single_event):  # noqa
     """
     Create and test weekly recurrence
     """
-    original_weekday = single_event.times.first().start.weekday()
+    original_weekday = localtime(single_event.times.first().start).weekday()
     recurrence = models.EventRecurrence.objects.create(
         event=single_event,
         event_time_anchor=single_event.times.first(),
@@ -35,7 +36,7 @@ def test_create_weekly_recurrence(single_event):  # noqa
     assert recurrence.times.all().count() == expected_count
 
     for event_time in recurrence.times.all():
-        assert event_time.start.weekday() == original_weekday
+        assert localtime(event_time.start).weekday() == original_weekday
 
     recurrence.sync()
     assert recurrence.times.all().count() == expected_count
@@ -271,3 +272,33 @@ def test_recurrence_dst_backwards(single_event):  # noqa
 
     for time in recurrence.times.all():
         assert localtime(time.end).hour == localtime(first_time.end).hour
+
+
+@pytest.mark.django_db()
+def test_create_weekly_recurrence_past(single_event_3_weeks_past):  # noqa
+    """
+    Create and test weekly recurrence
+    """
+    original_weekday = localtime(
+        single_event_3_weeks_past.times.first().start
+    ).weekday()
+    original_hour = localtime(single_event_3_weeks_past.times.first().start).hour
+    recurrence = models.EventRecurrence.objects.create(
+        event=single_event_3_weeks_past,
+        event_time_anchor=single_event_3_weeks_past.times.first(),
+        every_week=True,
+    )
+    recurrence.sync(create_old_times=False)
+    single_event_3_weeks_past.recurrence = recurrence
+    single_event_3_weeks_past.save()
+
+    # The -1 is because the anchor event in the past is allowed
+    expected_count = default_length_days // 7 + 1 - 1
+    assert recurrence.times.all().count() == expected_count
+
+    for event_time in recurrence.times.all():
+        assert localtime(event_time.start).weekday() == original_weekday
+        assert localtime(event_time.start).hour == original_hour
+
+    recurrence.sync()
+    assert recurrence.times.all().count() == expected_count

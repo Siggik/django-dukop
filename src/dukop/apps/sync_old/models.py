@@ -96,6 +96,11 @@ class EventSeries(models.Model):
     def long_description(self):
         return None
 
+    def __str__(self):
+        return "EventSeries object {}: {}-{}".format(
+            self.title, self.start_time, self.end_time
+        )
+
 
 class Events(models.Model):
     title = models.CharField(max_length=255, blank=True, null=True)
@@ -126,6 +131,11 @@ class Events(models.Model):
     class Meta:
         managed = False
         db_table = "events"
+
+    def __str__(self):
+        return "Event object {}: {}-{}".format(
+            self.title, self.start_time, self.end_time
+        )
 
 
 class Categories(models.Model):

@@ -52,6 +52,9 @@ weekday_numbers = {
 # Map between old EventSeries and new recurrence
 event_series_map = {}
 
+# Maps a single NEW event to its new recurrence
+event_recurrence_map = {}
+
 
 def df(value):
     """
@@ -59,12 +62,10 @@ def df(value):
     This is because the old system somehow didn't put timezone information
     in datetime fields.
     """
-    return (
-        timezone.localtime(
-            value.replace(tzinfo=pytz.UTC), pytz.timezone(settings.TIME_ZONE)
-        )
-        if value
-        else None
+    if not value:
+        return None
+    return timezone.localtime(
+        value.replace(tzinfo=pytz.UTC), pytz.timezone(settings.TIME_ZONE)
     )
 
 
@@ -74,31 +75,40 @@ def create_recurrence(event_series, new_event, anchor_time):
     """
     if event_series:
         days = event_series.days.split(",")
-        if len(days) > 1:
-            print("WARNING: Several weekdays in an EventSeries")
 
-        recurrence = new_event.recurrences.all().first() or EventRecurrence(
-            event=new_event
-        )
-        recurrence.event_time_anchor = anchor_time
-        recurrence.weekday = Weekday.objects.get(number=weekday_numbers[days[0]])
-        recurrence.every_week = bool(event_series.rule == "weekly")
-        recurrence.biweekly_even = bool(event_series.rule == "biweekly_even")
-        recurrence.biweekly_odd = bool(event_series.rule == "biweekly_odd")
-        recurrence.first_week_of_month = bool(event_series.rule == "first")
-        recurrence.second_week_of_month = bool(event_series.rule == "second")
-        recurrence.third_week_of_month = bool(event_series.rule == "third")
-        recurrence.last_week_of_month = bool(event_series.rule == "last")
-        recurrence.start = df(
-            datetime.combine(event_series.start_date, event_series.start_time)
-        )
-        recurrence.end = df(
-            datetime.combine(event_series.expiry, event_series.end_time)
-        )
+        for day in days:
+            if event_series.rule not in (
+                "weekly",
+                "biweekly_even",
+                "biweekly_odd",
+                "first",
+                "second",
+                "third",
+                "last",
+            ):
+                raise Exception(event_series.rule)
+            recurrence = new_event.recurrences.all().first() or EventRecurrence(
+                event=new_event
+            )
+            recurrence.event_time_anchor = anchor_time
+            recurrence.weekday = Weekday.objects.get(number=weekday_numbers[day])
+            recurrence.every_week = bool(event_series.rule == "weekly")
+            recurrence.biweekly_even = bool(event_series.rule == "biweekly_even")
+            recurrence.biweekly_odd = bool(event_series.rule == "biweekly_odd")
+            recurrence.first_week_of_month = bool(event_series.rule == "first")
+            recurrence.second_week_of_month = bool(event_series.rule == "second")
+            recurrence.third_week_of_month = bool(event_series.rule == "third")
+            recurrence.last_week_of_month = bool(event_series.rule == "last")
+            recurrence.start = df(
+                datetime.combine(event_series.start_date, event_series.start_time)
+            )
+            recurrence.end = df(
+                datetime.combine(event_series.expiry, event_series.end_time)
+            )
 
-        recurrence.save()
-        recurrence.sync(create_old_times=True)
-        return recurrence
+            recurrence.save()
+            recurrence.sync(create_old_times=True)
+            event_recurrence_map[new_event] = recurrence
 
 
 def ensure_location_exists(old_event):
@@ -150,7 +160,10 @@ def create_event(old_event, location, from_event_series=False):
 
     event.name = old_event.title
     event.short_description = old_event.short_description or ""
-    event.description = old_event.long_description or old_event.short_description or ""
+    if not event.description:
+        event.description = (
+            old_event.long_description or old_event.short_description or ""
+        )
     event.is_cancelled = bool(old_event.cancelled)
     event.created = df(old_event.created_at)
     event.published = bool(old_event.published)
@@ -158,7 +171,7 @@ def create_event(old_event, location, from_event_series=False):
     if not from_event_series:
         event.featured = bool(old_event.featured)
 
-    event.host = location.location
+    event.host = location
     event.location = location
 
     if old_event.location:
@@ -186,14 +199,18 @@ def create_event_time(old_event, attach_to_event):
     # Don't allow this type of event
     if (old_event.end_time - old_event.start_time).days > 100:
         old_event.end_time = old_event.start_time
-    return EventTime.objects.create(
+    et = EventTime.objects.get_or_create(
         event=attach_to_event,
         start=df(old_event.start_time) or df(old_event.end_time),
         end=df(old_event.end_time) or df(old_event.start_time),
-        created=df(old_event.created_at),
-        modified=df(old_event.updated_at),
-        is_cancelled=bool(old_event.cancelled),
-    )
+        recurrence=event_recurrence_map.get(attach_to_event, None),
+    )[0]
+    et.is_cancelled = bool(old_event.cancelled)
+    et.description = old_event.long_description or old_event.short_description or ""
+    et.created = df(old_event.created_at)
+    et.modified = df(old_event.updated_at)
+    et.save()
+    return et
 
 
 def create_event_anchor_time(old_event_series, attach_to_event):
@@ -201,12 +218,15 @@ def create_event_anchor_time(old_event_series, attach_to_event):
     TODO: Check if it's already created?
     """
     assert old_event_series.start_time and old_event_series.end_time
+    # The separate date and time are not timezone aware :/
     start = datetime.combine(old_event_series.start_date, old_event_series.start_time)
     end = datetime.combine(old_event_series.start_date, old_event_series.end_time)
+    tz = timezone.get_current_timezone()
     return EventTime.objects.create(
         event=attach_to_event,
-        start=df(start),
-        end=df(end),
+        recurrence=event_recurrence_map.get(attach_to_event, None),
+        start=tz.localize(start),
+        end=tz.localize(end),
         created=df(old_event_series.created_at),
         modified=df(old_event_series.updated_at),
         is_cancelled=bool(old_event_series.cancelled),
@@ -318,7 +338,7 @@ def import_event(  # noqa: max-complexity=12
         new_event = None
 
     # EventTime
-    if created and not from_event_series and event.start_time:
+    if attach_to_event and not from_event_series and event.start_time:
         create_event_time(event, attach_to_event)
 
     if created:
@@ -326,7 +346,7 @@ def import_event(  # noqa: max-complexity=12
     elif new_event:
         print("Updated existing event: {}".format(attach_to_event))
     else:
-        print("Did not create an event for old event id {}".format(event.id))
+        print("Did not create a new event for old event id {}".format(event.id))
 
     return new_event
 

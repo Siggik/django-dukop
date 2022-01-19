@@ -412,6 +412,15 @@ class EventTime(models.Model):
 
     objects = EventTimeManager()
 
+    #: An exception to the event's general description in case there are several EventTime instances for the same Event
+    description = models.TextField(
+        blank=True,
+        verbose_name=_("description"),
+        help_text=_(
+            "Leave blank to use the general event's description. If filled in, will be displayed together when a user navigates to this specific occurrence of the event."
+        ),
+    )
+
     class Meta:
         verbose_name = _("Event time")
         ordering = ("start", "end")
@@ -594,7 +603,16 @@ class EventRecurrence(models.Model):
         if create_old_times:
             start = self.event_time_anchor.start
         else:
-            start = max(utils.get_now(), self.event_time_anchor.start)
+            tz = timezone.get_current_timezone()
+            start = max(
+                tz.localize(
+                    datetime.combine(
+                        utils.get_now().date(),
+                        timezone.localtime(self.event_time_anchor.start).time(),
+                    )
+                ),
+                self.event_time_anchor.start,
+            )
 
         existing_times = {
             et.start.date(): et
@@ -630,6 +648,7 @@ class EventRecurrence(models.Model):
         # recurrence.
         system_wide_maximum = timedelta_fixed_time(start, days=maximum).date()
         end = self.end or system_wide_maximum
+
         end = timezone.make_aware(
             datetime.combine(min(end, system_wide_maximum), datetime.min.time())
         )

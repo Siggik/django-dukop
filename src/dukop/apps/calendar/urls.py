@@ -33,6 +33,11 @@ urlpatterns = [
     path("events/dashboard/", views.EventDashboard.as_view(), name="event_dashboard"),
     path("event/<int:pk>/", views.EventDetailView.as_view(), name="event_detail"),
     path(
+        "event/<int:pk>/<int:time_pk>/",
+        views.EventDetailView.as_view(),
+        name="event_detail",
+    ),
+    path(
         "event/update/<int:pk>/", views.EventUpdateView.as_view(), name="event_update"
     ),
     path("event/create", views.EventCreateView.as_view(), name="event_create"),
@@ -43,6 +48,16 @@ urlpatterns = [
     ),
     path(
         "event/<slug:slug>/<int:pk>/",
+        views.EventDetailView.as_view(),
+        name="event_detail",
+    ),
+    path(
+        "event/<slug:slug>/<int:pk>/",
+        views.EventDetailView.as_view(),
+        name="event_detail",
+    ),
+    path(
+        "event/<slug:slug>/<int:pk>/<int:time_pk>/",
         views.EventDetailView.as_view(),
         name="event_detail",
     ),

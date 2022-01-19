@@ -104,7 +104,7 @@ def create_recurrence(event_series, new_event, anchor_time):
             )
             recurrence.end = df(
                 datetime.combine(event_series.expiry, event_series.end_time)
-            )
+            ).date()
 
             recurrence.save()
             recurrence.sync(create_old_times=True)

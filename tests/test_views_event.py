@@ -96,10 +96,7 @@ def test_create_recurring_event(client, single_user):  # noqa
     first_recurrences_form = response.context["recurrences"].forms[0]
     end_datetime = timezone.now() + timedelta(days=100)
 
-    data["%s-%s_0" % (first_recurrences_form.prefix, "end")] = end_datetime.date()
-    data["%s-%s_1" % (first_recurrences_form.prefix, "end")] = end_datetime.strftime(
-        "%H:%M"
-    )
+    data["%s-%s" % (first_recurrences_form.prefix, "end")] = end_datetime.date()
     data[
         "%s-%s" % (first_recurrences_form.prefix, "interval_type")
     ] = models.EventRecurrence.RECURRENCE_TYPES[0][0]

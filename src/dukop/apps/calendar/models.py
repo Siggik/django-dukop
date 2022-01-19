@@ -603,7 +603,16 @@ class EventRecurrence(models.Model):
         if create_old_times:
             start = self.event_time_anchor.start
         else:
-            start = max(utils.get_now(), self.event_time_anchor.start)
+            tz = timezone.get_current_timezone()
+            start = max(
+                tz.localize(
+                    datetime.combine(
+                        utils.get_now().date(),
+                        timezone.localtime(self.event_time_anchor.start).time(),
+                    )
+                ),
+                self.event_time_anchor.start,
+            )
 
         existing_times = {
             et.start.date(): et
@@ -637,8 +646,9 @@ class EventRecurrence(models.Model):
         # The end of the recurrence, either as given by an explicit user-defined
         # end datetime or as a number of days relative to the start of the
         # recurrence.
-        system_wide_maximum = timedelta_fixed_time(start, days=maximum)
+        system_wide_maximum = timedelta_fixed_time(start, days=maximum).date()
         end = self.end or system_wide_maximum
+
         end = timezone.make_aware(
             datetime.combine(min(end, system_wide_maximum), datetime.min.time())
         )

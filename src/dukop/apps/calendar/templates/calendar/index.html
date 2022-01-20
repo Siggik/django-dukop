@@ -68,9 +68,23 @@
 </div>
 
 
-{% get_event_times days=31 sphere=SPHERE as event_times %}
+<div class="page-container">
+  <h1 class="title title--space">{% trans "Active locations" %}</h1>
+
+  <ul class="tag-list">
+    {% for location in locations %}
+    <li class="{% if location.event_count > 5 %}tag-large{% elif event_count > 1 %}tag-medium{% else %}tag-small{% endif %}"><a href="{% url "calendar:location_detail" pk=location.pk %}">{{ location.name }}</a></li>
+    {% endfor %}
+  </ul>
+
+</div>
+
+{% get_event_times days=30 sphere=SPHERE as event_times %}
 
 <div class="page-container">
+
+  <h1 class="title title--space">{% trans "All events next 30 days" %}</h1>
+
   <div class="table">
 
   {% for event_time in event_times %}
@@ -98,9 +112,9 @@
 
   </div>
 
-  <p style="text-align: center; margin-top: 20px;">
+  <div style="text-align: center; width: 100%; max-width: none; margin-top: 30px; font-size: 150%;">
     <a href="{% url "calendar:event_list" sphere_id=SPHERE.pk %}">{% trans "Browse more events..." %}</a>
-  </p>
+  </div>
 
 </div>
 

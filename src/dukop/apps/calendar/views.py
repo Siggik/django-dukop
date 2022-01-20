@@ -3,10 +3,11 @@ from datetime import timedelta
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
+from django.db.models import Count
+from django.db.models import Max
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
-from django.shortcuts import render
 from django.urls.base import reverse
 from django.utils import timezone
 from django.utils.decorators import method_decorator
@@ -16,6 +17,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
 from django.views.generic.edit import UpdateView
 from django.views.generic.list import ListView
+from dukop.apps.calendar.utils import get_now
 from dukop.apps.users.models import Group
 from dukop.apps.users.models import Location
 from ratelimit.decorators import ratelimit
@@ -24,8 +26,28 @@ from . import forms
 from . import models
 
 
-def index(request):
-    return render(request, "calendar/index.html")
+class IndexView(TemplateView):
+
+    template_name = "calendar/index.html"
+
+    def get_context_data(self, **kwargs):
+        c = super().get_context_data(**kwargs)
+        c["locations"] = (
+            Location.objects.filter(
+                deactivated=False,
+                events_here__times__start__gte=get_now(),
+                events_here__published=True,
+            )
+            .values(
+                "name",
+                "pk",
+                latest=Max("events_here__modified"),
+                event_count=Count("events_here"),
+            )
+            .order_by("latest")
+            .distinct()[:30]
+        )
+        return c
 
 
 class FeedInstructionView(TemplateView):

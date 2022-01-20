@@ -24,7 +24,7 @@ register_converter(DateConverter, "date")
 app_name = "calendar"
 
 urlpatterns = [
-    path("", views.index, name="index"),
+    path("", views.IndexView.as_view(), name="index"),
     path("group/<int:pk>/", views.GroupDetailView.as_view(), name="group_detail"),
     path(
         "location/<int:pk>/", views.LocationDetailView.as_view(), name="location_detail"

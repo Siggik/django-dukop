@@ -35,7 +35,7 @@ class IndexView(TemplateView):
         c["locations"] = (
             Location.objects.filter(
                 deactivated=False,
-                events_here__times__start__gte=get_now(),
+                events_here__times__start__gte=get_now() - timedelta(days=1),
                 events_here__published=True,
             )
             .values(
@@ -44,7 +44,7 @@ class IndexView(TemplateView):
                 latest=Max("events_here__modified"),
                 event_count=Count("events_here"),
             )
-            .order_by("latest")
+            .order_by("-latest")
             .distinct()[:30]
         )
         return c

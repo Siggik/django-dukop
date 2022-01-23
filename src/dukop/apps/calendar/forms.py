@@ -38,8 +38,10 @@ class EventForm(forms.ModelForm):
     spheres = forms.ModelMultipleChoiceField(
         widget=forms.CheckboxSelectMultiple,
         queryset=models.Sphere.objects.all(),
-        label=_("Relevance"),
-        help_text=_("Select which versions of the calendar this is relevant for."),
+        label=_("Calendars"),
+        help_text=_(
+            "Select which versions of calendar spheres this is relevant for. Mostly, this means choosing where your event is physically taking place."
+        ),
     )
 
     location = forms.ModelChoiceField(

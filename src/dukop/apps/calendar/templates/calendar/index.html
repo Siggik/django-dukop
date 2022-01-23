@@ -112,9 +112,9 @@
 
   </div>
 
-  <div style="text-align: center; width: 100%; max-width: none; margin-top: 30px; font-size: 150%;">
-    <a href="{% url "calendar:event_list" sphere_id=SPHERE.pk %}">{% trans "Browse more events..." %}</a>
-  </div>
+  <ul class="pagination">
+    <li><a href="{% url "calendar:event_list" sphere_id=SPHERE.pk %}">{% trans "Browse more events..." %}</a></li>
+  </ul>
 
 </div>
 

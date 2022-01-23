@@ -16,14 +16,7 @@
     <strong>{{ pivot_date_end }}</strong>
   </h1>
 
-  <p>
-    <a href="{% url "calendar:event_list" sphere_id=sphere.id pivot_date=pivot_date_previous %}">
-      « {% trans "Previous week" %}
-    </a>
-    <a href="{% url "calendar:event_list" sphere_id=sphere.id pivot_date=pivot_date_next %}">
-      {% trans "Next week" %} »
-    </a>
-  </p>
+  {% include "calendar/includes/list_pagination.html" %}
 
   <div class="table">
 
@@ -48,6 +41,7 @@
         </div>
       </a>
     </div>
+
   {% empty %}
 
   <p><em>{% trans "Nothing to see in this period." %}</em></p>
@@ -56,6 +50,8 @@
 
 
   </div>
+
+  {% include "calendar/includes/list_pagination.html" %}
 
 </div>
 

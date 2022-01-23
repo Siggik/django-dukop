@@ -1,0 +1,17 @@
+{% load i18n %}
+{% if event_times %}
+
+<ul class="pagination">
+  <li>
+    <a href="{% url "calendar:event_list" sphere_id=sphere.id pivot_date=pivot_date_previous %}">
+      « {% trans "Previous week" %}
+    </a>
+  </li>
+  <li>
+    <a href="{% url "calendar:event_list" sphere_id=sphere.id pivot_date=pivot_date_next %}">
+      {% trans "Next week" %} »
+    </a>
+  </li>
+</ul>
+
+{% endif %}

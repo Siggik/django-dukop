@@ -42,6 +42,7 @@ class EventForm(forms.ModelForm):
         help_text=_(
             "Select which versions of calendar spheres this is relevant for. Mostly, this means choosing where your event is physically taking place."
         ),
+        required=True,
     )
 
     location = forms.ModelChoiceField(

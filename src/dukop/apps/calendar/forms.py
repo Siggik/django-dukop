@@ -82,6 +82,7 @@ class EventForm(forms.ModelForm):
         fields = (
             "name",
             "description",
+            "is_cancelled",
             "online",
             "location",
             "venue_name",
@@ -218,6 +219,12 @@ class CreateEventForm(EventForm):
             instance.save()
 
         return instance
+
+
+class EventCancelForm(forms.ModelForm):
+    class Meta:
+        model = models.Event
+        fields = ("is_cancelled",)
 
 
 class EventTimeForm(forms.ModelForm):

@@ -140,3 +140,9 @@
     color: inherit
 }
 .card__link a:hover { text-decoration: underline; }
+
+.card__cancelled {
+    .card__date {
+        text-decoration: line-through;
+    }
+}

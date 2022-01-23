@@ -2,7 +2,7 @@
 {% load calendar_tags sorl_thumbnail %}
 {% load l10n %}
 
-  <div class="card__layout {% if not event_truncate %} card__layout--full {% endif %}">
+  <div class="card__layout {% if not event_truncate %} card__layout--full {% endif %} {% if event.is_cancelled %}card__cancelled{% endif %}">
     <div class="card__media">
         {% if event_truncate %}
         {% with event.images.first as feature_image %}
@@ -71,7 +71,12 @@
           </div>
         </div>
 
-        <h1 class="card__title">{{ event.name }}</h1>
+        <h1 class="card__title">
+          {{ event.name }}
+          {% if event.is_cancelled %}
+            <span class="badge-error">{% trans "cancelled" %}</span>
+          {% endif %}
+        </h1>
 
         {% if not event_truncate %}
 

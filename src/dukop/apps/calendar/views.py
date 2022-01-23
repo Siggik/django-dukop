@@ -297,6 +297,34 @@ class EventUpdateView(EventProcessFormMixin, UpdateView):
         return forms.EventTimeUpdateFormSet
 
 
+class EventCancelView(UpdateView):
+
+    template_name = "calendar/event/cancel.html"
+    model = models.Event
+    form_class = forms.EventCancelForm
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        self.object = self.get_object()
+        return super().dispatch(*args, **kwargs)
+
+    def get_success_url(self):
+        messages.success(
+            self.request,
+            _("Event '{event_name}' was cancelled").format(event_name=self.object.name),
+        )
+        return reverse("calendar:event_dashboard")
+
+    def get_queryset(self):
+        qs = DetailView.get_queryset(self)
+        if not self.request.user.is_superuser:
+            qs = qs.filter(
+                Q(owner_user=self.request.user)
+                | Q(owner_group__members=self.request.user)
+            ).distinct()
+        return qs
+
+
 class EventListView(ListView):
     """
     This lists all Event objects -- BUT! Notice that the listing is happening

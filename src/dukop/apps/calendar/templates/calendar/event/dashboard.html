@@ -64,7 +64,7 @@
         </td>
         <td class="right nowrap">
             <a href="{% url "calendar:event_update" pk=event.pk %}" title="Edit" class="button">{% trans "Update" %} <div class="icon icon__tool"></div></a><br>
-            <a href="" title="Cancel" class="button">{% trans "Cancel" %} <div class="icon icon__cancel"></div></a><br>
+            <a href="{% url "calendar:event_cancel" pk=event.pk %}" title="Cancel" class="button">{% trans "Cancel" %} <div class="icon icon__cancel"></div></a><br>
             <a href="" title="Delete" class="button">{% trans "Delete" %} <div class="icon icon__delete"></div></a>
         </td>
       </tr>

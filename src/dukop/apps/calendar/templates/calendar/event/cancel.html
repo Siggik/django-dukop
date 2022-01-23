@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load i18n sekizai_tags static %}
+
+{% block dukop_title %}{% trans "Cancel event" %} - {{ event.name }}{% endblock %}
+
+{% block content %}
+
+<div class="create-event">
+
+  <h1 class="card__title">{% trans "Cancel:" %} {{ event.name }}</h1>
+
+  <p>
+    {% trans "When you cancel an event, it will still be visible. People may need to know that then event has been cancelled. If you want to completely remove the event, you can also delete and unpublish it." %}
+  </p>
+
+  <form method="POST" action="">
+    {% csrf_token %}
+    <table>
+      {% include "calendar/includes/event_form_render_field_tr.html" with field=form.is_cancelled %}
+    </table>
+    <hr>
+    <table>
+      <tr>
+        <th><br></th>
+        <td>
+            <button type="submit" class="button-big">{% trans "Save changes" %}</button>
+        </td>
+      </tr>
+    </table>
+
+  </form>
+
+</div>
+
+{% endblock %}

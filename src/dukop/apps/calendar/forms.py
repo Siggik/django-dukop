@@ -42,6 +42,7 @@ class EventForm(forms.ModelForm):
         help_text=_(
             "Select which versions of calendar spheres this is relevant for. Mostly, this means choosing where your event is physically taking place."
         ),
+        required=True,
     )
 
     location = forms.ModelChoiceField(
@@ -82,6 +83,7 @@ class EventForm(forms.ModelForm):
         fields = (
             "name",
             "description",
+            "is_cancelled",
             "online",
             "location",
             "venue_name",
@@ -218,6 +220,12 @@ class CreateEventForm(EventForm):
             instance.save()
 
         return instance
+
+
+class EventCancelForm(forms.ModelForm):
+    class Meta:
+        model = models.Event
+        fields = ("is_cancelled",)
 
 
 class EventTimeForm(forms.ModelForm):

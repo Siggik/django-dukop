@@ -22,7 +22,7 @@
 
   {% for event_time in event_times %}
 
-    <div class="table__day">
+    <div class="table__day {% if event_time.is_cancelled or event_time.event.is_cancelled %}table__day__cancelled{% endif %}">
       {% ifchanged event_time.start.date %}
       <div class="table__header">
         {{ event_time.start.date|dukop_date }}

@@ -48,6 +48,13 @@
   border-left: 1px solid #ddd;
 }
 
+.table__day__cancelled {
+    .table__title,
+    .table__place,
+    .table__time {
+        text-decoration: line-through;
+    }
+}
 
 .article-table {
     border: 0;

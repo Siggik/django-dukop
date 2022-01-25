@@ -23,6 +23,26 @@
 {% block dukop_title %}{{ event.name }} - {{ event.venue_name }}{% endblock %}
 
 {% block content_wrapper %}
+
+{% if event|event_can_edit:request.user and not event.published %}
+
+<div class="card card--static">
+
+  <h1 class="no-margin-top">{% trans "Finalize your event" %}</h1>
+
+  <p>{% trans "View your event below as it appears to everyone else. Once you think it's ready, you should publish it and share it with your audience." %}</p>
+
+  <ul>
+    {% if not event.images.all %}
+    <li>{% trans "<strong>Your event doesn't have any images.</strong> You can skip this, but we really recommend adding an illustration to improve appearance on Dup Op and other sites where it's shared." %} <a href="{% url "calendar:event_update" pk=event.pk %}#images">{% trans "Add images" %} »</a></li>
+    {% endif %}
+    <li>{% trans "<strong>Your event isn't published.</strong> As long as it isn't published, other users cannot see it." %} <a href="{% url "calendar:event_publish" pk=event.pk %}">{% trans "Publish event" %} »</a></li>
+  </ul>
+
+</div>
+
+{% endif %}
+
 <div class="card card--static">
     {% include "calendar/includes/event_card.html" with show_user_panel=True %}
 </div>

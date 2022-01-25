@@ -48,12 +48,7 @@ urlpatterns = [
         views.EventPublishView.as_view(),
         name="event_publish",
     ),
-    path("event/create", views.EventCreateView.as_view(), name="event_create"),
-    path(
-        "event/create/<int:pk>/",
-        views.EventCreateSuccess.as_view(),
-        name="event_create_success",
-    ),
+    path("event/create/", views.EventCreateView.as_view(), name="event_create"),
     path(
         "event/<slug:slug>/<int:pk>/",
         views.EventDetailView.as_view(),

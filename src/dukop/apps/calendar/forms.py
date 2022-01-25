@@ -209,6 +209,10 @@ class CreateEventForm(EventForm):
     def save(self, commit=True):
 
         instance = super().save(commit=False)
+
+        # We have default published=False for new instances
+        instance.published = False
+
         host_choice = self.cleaned_data["host_choice"]
 
         if host_choice == self.HOST_NEW:

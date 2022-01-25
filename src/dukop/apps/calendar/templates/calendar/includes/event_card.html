@@ -7,7 +7,7 @@
         {% if event_truncate %}
         {% with event.images.first as feature_image %}
             {% if feature_image.image %}
-                {% thumbnail feature_image.image "400x300" crop="center" as event_thumbnail %}
+                {% thumbnail feature_image.image "400x250" crop="center" as event_thumbnail %}
                     <img src="{{ event_thumbnail.url }}" alt="{{ event.name }}">
                 {% endthumbnail %}
             {% endif %}
@@ -33,7 +33,7 @@
                 {% trans "Share link" %}
             </a><br>
             <input type="text" value="{{ event.share_link }}" class="share-text-input">
-            <button class="js-copy">{% trans "Copy url to clipboard" %}</button>
+            <button class="js-copy" title="{% trans "Copy url to clipboard" %}"><div class="icon icon__copy"></div></button>
             </p>
         </div>
 
@@ -88,10 +88,13 @@
               {% endif %}
             {% endwith %}
 
+
+            {% with event.times.future as future_times %}
+            {% if event.recurrences.all or future_times.count != 1 %}
             <h2>{% trans "Upcoming dates" %}</h2>
 
             <ul>
-            {% for time in event.times.future|slice:10 %}
+            {% for time in future_times|slice:10 %}
                 {% if time.start %}
                 <li><a href="{% url "calendar:event_detail" pk=event.pk time_pk=time.pk %}">{{ time.start|dukop_interval:time.end }}</a></li>
                 {% endif %}
@@ -100,7 +103,14 @@
             {% endfor %}
             </ul>
 
+            {% endif %}
+            {% endwith %}
+
             <h2>{% trans "Location" %}</h2>
+
+            {% if event.online %}
+            <p><span class="icon icon__monitor"></span> {% trans "This event is happening online." %}</p>
+            {% endif %}
 
             {% if event.location %}
               <a href="{% url "calendar:location_detail" pk=event.location.pk %}">
@@ -142,11 +152,8 @@
 
 
         {% if show_user_panel and event|event_can_edit:request.user %}
-            <ul class="button-menu">
-                <li><a href="{% url "calendar:event_update" pk=event.pk %}" title="Edit" class="button">{% trans "Update" %} <div class="icon icon__tool"></div></a></li>
-                <li><a href="" title="Cancel" class="button">{% trans "Cancel" %} <div class="icon icon__cancel"></div></a></li>
-                <li><a href="" title="Delete" class="button">{% trans "Delete" %} <div class="icon icon__delete"></div></a></li>
-            </ul>
+          <h2>{% trans "Event actions" %}</h2>
+          {% include "calendar/includes/event_owner_buttons.html" %}
         {% endif %}
 
     </div>

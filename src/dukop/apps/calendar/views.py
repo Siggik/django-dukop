@@ -112,14 +112,6 @@ class EventDetailView(DetailView):
         return c
 
 
-class EventCreateSuccess(EventDetailView):
-    """
-    Same as viewing an event - but with a different template
-    """
-
-    template_name = "calendar/event/create_success.html"
-
-
 class EventProcessFormMixin:
     def get(self, request, *args, **kwargs):
         """Handle GET requests: instantiate a blank version of the form."""
@@ -183,7 +175,9 @@ class EventProcessFormMixin:
             and self.links_form.is_valid()
             and self.recurrences_form.is_valid()
             and (
-                (not self.object) or self.recurrences_times_form.is_valid()
+                (not self.object)
+                or len(self.recurrences_times_form) == 0
+                or self.recurrences_times_form.is_valid()
             )  # Something wrong here? It has been disabled
         ):
             return self.form_valid(form)
@@ -284,7 +278,11 @@ class EventCreateView(EventProcessFormMixin, CreateView):
     form_class = forms.CreateEventForm
 
     def get_success_url(self):
-        return redirect("calendar:event_create_success", pk=self.object.pk)
+        messages.success(
+            self.request,
+            _("Event '{event_name}' was created").format(event_name=self.object.name),
+        )
+        return redirect("calendar:event_detail", pk=self.object.pk)
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):

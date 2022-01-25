@@ -1,0 +1,13 @@
+{% load i18n %}
+<ul class="button-menu">
+  <li><a href="{% url "calendar:event_update" pk=event.pk %}" title="Edit" class="button">{% trans "Update" %}<br><div class="icon icon__tool"></div></a></li>
+  <li><a href="{% url "calendar:event_cancel" pk=event.pk %}" title="Cancel" class="button">{% trans "Cancel" %}<br><div class="icon icon__cancel"></div></a></li>
+  <li><a href="" title="Delete" class="button">{% trans "Delete" %}<br><div class="icon icon__delete"></div></a></li>
+  <li><a href="{% url "calendar:event_publish" pk=event.pk %}" title="Cancel" class="button">
+  {% if event.published %}
+      {% trans "Unpublish" %}<br><div class="icon icon__eye-off"></div>
+  {% else %}
+      {% trans "Publish" %}<br><div class="icon icon__eye"></div>
+  {% endif %}
+  </a></li>
+</ul>

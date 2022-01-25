@@ -40,11 +40,7 @@
 <div class="page-container">
   {% url 'calendar:index' as url_calendar_index %}
   <h1 class="title" id="recurring">
-    {% trans "<strong>Recurring</strong> events in" %}
-    {% for sphere in SPHERES %}
-    <a href="{% url "calendar:sphere_change" pk=sphere.pk %}?next={{ url_calendar_index|urlencode }}{{ "#recurring"|urlencode }}" class="sphere-link{% if sphere.pk == SPHERE.id %} sphere-link-chosen{% endif %}">{{ sphere.name }}</a>
-    {% endfor %}
-
+    {% trans "<strong>Recurring</strong> events" %}
   </h1>
 </div>
 

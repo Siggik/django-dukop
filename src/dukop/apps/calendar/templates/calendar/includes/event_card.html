@@ -25,13 +25,10 @@
         {% if not event_hide_share %}
         <div class="card__sharing">
             <h5>{% trans "Sharing" %}</h5>
-            {% if not event_truncate %}
-            <a href="">Download til kalender (ICS)</a>
-          {% endif %}
+            <p><a href="">Download til kalender (ICS)</a></p>
             <p>
-            <a href="{{ event.share_link }}">
-                {% trans "Share link" %}
-            </a><br>
+              {% trans "Copy URL for sharing:" %}
+            <br>
             <input type="text" value="{{ event.share_link }}" class="share-text-input">
             <button class="js-copy" title="{% trans "Copy url to clipboard" %}"><div class="icon icon__copy"></div></button>
             </p>

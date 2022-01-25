@@ -64,14 +64,13 @@
 
       <a href="{% url "calendar:event_detail" pk=recurrence.event__pk %}" class="table__event">
         <div class="table__time">
-          {{ recurrence.next|time:"H:i" }}
+          {{ recurrence|recurrence_interval }}, {{ recurrence.next|date:"l" }} {{ recurrence.next|time:"H:i" }}
         </div>
         <div class="table__title">
           {% trans "Next:" %} {{ recurrence.next|date }}
         </div>
         <div class="table__place">
           {{ recurrence.event__venue_name }},
-          {{ recurrence|recurrence_interval }}
         </div>
       </a>
 

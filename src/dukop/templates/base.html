@@ -110,19 +110,19 @@
             <div class="footer">
                 <div class="footer__content">
                     <div class="footer__about">
-                        <h2 class="title title--footer">{% trans "About us" %}</h2>
-                        <p>{% trans "Duk Op is your guide to what happens in and around Copenhagen, whether you are looking for demonstrations, concerts, parties, meetings, soup kitchens, gardening days, workshops, art exhibitions, film screenings and much more." %}</p>
-                        <p>
-                            <a href="{% url "news:about" %}">{% trans "Read more" %}</a><br>
-                            <a href="{% url "news:about" %}#contact">{% trans "Contact us" %}</a>
-                        </p>
-                        <h2 class="title title--footer">{% trans "Activate sphere" %}</h2>
-                        <p>{% trans "Duk Op is available in the followin mixes or spheres. By changing the active sphere, you'll get a different view of the site:" %}</p>
-                        <p>
-                        {% for sphere in SPHERES %}
-                        <a href="{% url "calendar:sphere_change" pk=sphere.pk %}" class="{% if sphere.pk == SPHERE.id %} sphere-link-chosen{% endif %}">{{ sphere.name }}</a><br>
-                        {% endfor %}
-                        </p>
+                      <h2 class="title title--footer">{% trans "About us" %}</h2>
+                      <p>{% trans "Duk Op is your guide to what happens in and around Copenhagen, whether you are looking for demonstrations, concerts, parties, meetings, soup kitchens, gardening days, workshops, art exhibitions, film screenings and much more." %}</p>
+                      <p>
+                        <a href="{% url "news:about" %}">{% trans "Read more" %}</a><br>
+                        <a href="{% url "news:about" %}#contact">{% trans "Contact us" %}</a>
+                      </p>
+                      <h2 class="title title--footer">{% trans "Activate sphere" %}</h2>
+                      <p>{% trans "Events can take place in different spheres that may or may not overlap. Duk Op is available in the following spheres. By changing the active sphere, you'll get a different view of the site:" %}</p>
+                      <p>
+                      {% for sphere in SPHERES %}
+                      <a href="{% url "calendar:sphere_change" pk=sphere.pk %}" class="{% if sphere.pk == SPHERE.id %} sphere-link-chosen{% endif %}">{{ sphere.name }}</a><br>
+                      {% endfor %}
+                      </p>
 
                     </div>
                     <div class="footer__news">

@@ -334,12 +334,62 @@ class EventCancelView(UpdateView):
         self.object = self.get_object()
         return super().dispatch(*args, **kwargs)
 
-    def get_success_url(self):
-        messages.success(
-            self.request,
-            _("Event '{event_name}' was cancelled").format(event_name=self.object.name),
-        )
-        return reverse("calendar:event_dashboard")
+    def form_valid(self, form):
+        form.save()
+        if form.cleaned_data["is_cancelled"]:
+            messages.success(
+                self.request,
+                _("Event '{event_name}' was cancelled.").format(
+                    event_name=self.object.name
+                ),
+            )
+        else:
+            messages.success(
+                self.request,
+                _("Event '{event_name}' was un-cancelled.").format(
+                    event_name=self.object.name
+                ),
+            )
+        return redirect("calendar:event_dashboard")
+
+    def get_queryset(self):
+        qs = DetailView.get_queryset(self)
+        if not self.request.user.is_superuser:
+            qs = qs.filter(
+                Q(owner_user=self.request.user)
+                | Q(owner_group__members=self.request.user)
+            ).distinct()
+        return qs
+
+
+class EventPublishView(UpdateView):
+
+    template_name = "calendar/event/publish.html"
+    model = models.Event
+    form_class = forms.EventPublishForm
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        self.object = self.get_object()
+        return super().dispatch(*args, **kwargs)
+
+    def form_valid(self, form):
+        form.save()
+        if form.cleaned_data["published"]:
+            messages.success(
+                self.request,
+                _("Event '{event_name}' was published.").format(
+                    event_name=self.object.name
+                ),
+            )
+        else:
+            messages.success(
+                self.request,
+                _("Event '{event_name}' was unpublished.").format(
+                    event_name=self.object.name
+                ),
+            )
+        return redirect("calendar:event_dashboard")
 
     def get_queryset(self):
         qs = DetailView.get_queryset(self)

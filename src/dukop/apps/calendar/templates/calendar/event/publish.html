@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load i18n sekizai_tags static %}
+
+{% block dukop_title %}{% trans "Publish event" %} - {{ event.name }}{% endblock %}
+
+{% block content %}
+
+<div class="create-event">
+
+  <h1 class="card__title">{% trans "Publish:" %} {{ event.name }}</h1>
+
+  <p>
+    {% trans "You can publish and unpublish an event. You can keep the event unpublished while you work on its contents and then finally publish it." %}
+  </p>
+
+  <form method="POST" action="">
+    {% csrf_token %}
+    <table>
+      {% include "calendar/includes/event_form_render_field_tr.html" with field=form.published %}
+    </table>
+    <hr>
+    <table>
+      <tr>
+        <th><br></th>
+        <td>
+            <button type="submit" class="button-big">{% trans "Save changes" %}</button>
+        </td>
+      </tr>
+    </table>
+
+  </form>
+
+</div>
+
+{% endblock %}

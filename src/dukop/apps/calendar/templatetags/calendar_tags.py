@@ -51,6 +51,9 @@ def get_event_times(  # noqa: max-complexity=12
     if or_featured:
         if to_date:
             lookups.append(Q(start__lte=to_date) | Q(event__featured=True))
+    else:
+        if to_date:
+            lookups.append(Q(start__lte=to_date))
 
     if featured is not None:
         lookups.append(Q(event__featured=bool(featured)))

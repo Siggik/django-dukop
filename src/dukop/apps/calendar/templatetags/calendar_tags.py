@@ -26,6 +26,7 @@ def get_event_times(  # noqa: max-complexity=12
     sphere=None,
     host=None,
     location=None,
+    hide_recurring=False,
 ):
 
     lookups = [Q(event__published=published)]
@@ -57,6 +58,9 @@ def get_event_times(  # noqa: max-complexity=12
 
     if location is not None:
         lookups.append(Q(event__location=location))
+
+    if hide_recurring:
+        lookups.append(Q(recurrence=None))
 
     if has_image is not None:
         if has_image:
@@ -173,3 +177,8 @@ def event_description(event, truncate=100):
         truncated_description = truncatechars(event.short_description, truncate)
 
     return linebreaks(truncated_description)
+
+
+@register.filter
+def recurrence_interval(recurrence_like_obj):
+    return models.EventRecurrence.recurrence_name_static(recurrence_like_obj)

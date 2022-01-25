@@ -14,7 +14,7 @@
 {% get_event_times from_date=future max_count=20 has_image=True days=14 sphere=SPHERE hide_recurring=True as event_times %}
 
 <div class="page-container">
-  <h1 class="title">
+  <h1 class="title no-margin-top">
     {% trans "Events mixed for" %}
     {% for sphere in SPHERES %}
     <a href="{% url "calendar:sphere_change" pk=sphere.pk %}" class="sphere-link{% if sphere.pk == SPHERE.id %} sphere-link-chosen{% endif %}">{{ sphere.name }}</a>
@@ -41,7 +41,7 @@
 <div class="page-container">
   {% url 'calendar:index' as url_calendar_index %}
   <h1 class="title" id="recurring">
-    {% trans "Recurring events in" %}
+    {% trans "<strong>Recurring</strong> events in" %}
     {% for sphere in SPHERES %}
     <a href="{% url "calendar:sphere_change" pk=sphere.pk %}?next={{ url_calendar_index|urlencode }}{{ "#recurring"|urlencode }}" class="sphere-link{% if sphere.pk == SPHERE.id %} sphere-link-chosen{% endif %}">{{ sphere.name }}</a>
     {% endfor %}
@@ -89,7 +89,7 @@
 {% get_event_times from_date=today days=1 max_count=30 sphere=SPHERE as todays_events %}
 
 <div class="page-container">
-  <h1 class="title title--space">{% trans "Happening" %} <span class="title__bold">{% trans "today" %}</span></h1>
+  <h1 class="title title--space">{% trans "Happening" %} <strong>{% trans "today" %}</strong></h1>
   <div class="timeline">
 
   {% for event_time in todays_events %}

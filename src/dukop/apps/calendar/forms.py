@@ -228,6 +228,12 @@ class EventCancelForm(forms.ModelForm):
         fields = ("is_cancelled",)
 
 
+class EventPublishForm(forms.ModelForm):
+    class Meta:
+        model = models.Event
+        fields = ("published",)
+
+
 class EventTimeForm(forms.ModelForm):
 
     start = forms.SplitDateTimeField(widget=widgets.SplitDateTimeWidget())

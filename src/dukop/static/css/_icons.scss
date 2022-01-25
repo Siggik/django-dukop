@@ -28,6 +28,12 @@ $base-url: "/static/img/remixicons";
     &__delete{
         background-image: url($base-url + "/delete.svg");
     }
+    &__eye{
+        background-image: url($base-url + "/eye.svg");
+    }
+    &__eye-off{
+        background-image: url($base-url + "/eye-off.svg");
+    }
     &__tool{
         background-image: url($base-url + "/tool.svg");
     }

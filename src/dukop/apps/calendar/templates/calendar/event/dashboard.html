@@ -66,6 +66,11 @@
             <a href="{% url "calendar:event_update" pk=event.pk %}" title="Edit" class="button">{% trans "Update" %} <div class="icon icon__tool"></div></a><br>
             <a href="{% url "calendar:event_cancel" pk=event.pk %}" title="Cancel" class="button">{% trans "Cancel" %} <div class="icon icon__cancel"></div></a><br>
             <a href="" title="Delete" class="button">{% trans "Delete" %} <div class="icon icon__delete"></div></a>
+            {% if event.published %}
+                <a href="{% url "calendar:event_publish" pk=event.pk %}" title="Cancel" class="button">{% trans "Unpublish" %} <div class="icon icon__eye-off"></div></a>
+            {% else %}
+                <a href="{% url "calendar:event_publish" pk=event.pk %}" title="Cancel" class="button">{% trans "Publish" %} <div class="icon icon__eye"></div></a>
+            {% endif %}
         </td>
       </tr>
       {% empty %}

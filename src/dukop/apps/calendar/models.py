@@ -574,17 +574,37 @@ class EventRecurrence(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
+    @classmethod
+    def recurrence_type_static(cls, obj):
+        if isinstance(obj, dict):
+            # A dictionary
+            for type_id, __ in cls.RECURRENCE_TYPES:
+                if obj.get(type_id, False):
+                    return type_id
+        # A normal model instance w/ attributes
+        for type_id, __ in cls.RECURRENCE_TYPES:
+            if getattr(obj, type_id, False):
+                return type_id
+
+    @classmethod
+    def recurrence_name_static(cls, obj):
+        if isinstance(obj, dict):
+            # A dictionary
+            for type_id, name in cls.RECURRENCE_TYPES:
+                if obj.get(type_id, False):
+                    return name
+        # A normal model instance w/ attributes
+        for type_id, name in cls.RECURRENCE_TYPES:
+            if getattr(obj, type_id, False):
+                return name
+
     @property
     def recurrence_type(self):
-        for type_id, __ in self.RECURRENCE_TYPES:
-            if getattr(self, type_id, False):
-                return type_id
+        return self.recurrence_type_static(self)
 
     @property
     def recurrence_name(self):
-        for type_id, name in self.RECURRENCE_TYPES:
-            if getattr(self, type_id, False):
-                return name
+        return self.recurrence_name_static(self)
 
     @method_decorator(transaction.atomic)
     def sync(self, maximum=180, create_old_times=False):

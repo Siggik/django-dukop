@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.db.models import Count
 from django.db.models import Max
+from django.db.models import Min
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
@@ -32,6 +33,31 @@ class IndexView(TemplateView):
 
     def get_context_data(self, **kwargs):
         c = super().get_context_data(**kwargs)
+        c["event_recurrences"] = (
+            models.EventRecurrence.objects.filter(
+                event__published=True,
+                times__start__gte=get_now(),
+                times__start__lte=get_now() + timedelta(days=30),
+                end__gte=get_now(),
+            )
+            .values(
+                "event__name",
+                "event__pk",
+                "event__venue_name",
+                "pk",
+                "every_week",
+                "biweekly_even",
+                "biweekly_odd",
+                "first_week_of_month",
+                "second_week_of_month",
+                "third_week_of_month",
+                "last_week_of_month",
+                next=Min("times__start"),
+            )
+            .order_by("-next")
+            .distinct()
+        )
+
         c["locations"] = (
             Location.objects.filter(
                 deactivated=False,

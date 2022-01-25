@@ -43,15 +43,20 @@
         {% endwith %}
         </td>
         <td>
-            {% for time in event.times.all %}
-                {% if time.start %}
-                {{ time.start|dukop_interval:time.end }}
+          {% with event.times.all as event_times %}
+            {% if event_times %}
+                {% if event_times.0.start %}
+                  {{ event_times.0.start|dukop_interval:event_times.0.end }}
+                  {% if event_times.count > 1 %}
+                  + {{ event_times.count }} {% trans "more" %}
+                  {% endif %}
                 {% else %}
-                -
+                  -
                 {% endif %}
-            {% empty %}
+            {% else %}
                 {% trans "No scheduled times" %}
-            {% endfor %}
+            {% endif %}
+          {% endwith %}
         </td>
         <td>{{ event.venue }}</td>
         <td class="center">
@@ -63,14 +68,7 @@
 
         </td>
         <td class="right nowrap">
-            <a href="{% url "calendar:event_update" pk=event.pk %}" title="Edit" class="button">{% trans "Update" %} <div class="icon icon__tool"></div></a><br>
-            <a href="{% url "calendar:event_cancel" pk=event.pk %}" title="Cancel" class="button">{% trans "Cancel" %} <div class="icon icon__cancel"></div></a><br>
-            <a href="" title="Delete" class="button">{% trans "Delete" %} <div class="icon icon__delete"></div></a>
-            {% if event.published %}
-                <a href="{% url "calendar:event_publish" pk=event.pk %}" title="Cancel" class="button">{% trans "Unpublish" %} <div class="icon icon__eye-off"></div></a>
-            {% else %}
-                <a href="{% url "calendar:event_publish" pk=event.pk %}" title="Cancel" class="button">{% trans "Publish" %} <div class="icon icon__eye"></div></a>
-            {% endif %}
+            {% include "calendar/includes/event_owner_buttons.html" %}
         </td>
       </tr>
       {% empty %}

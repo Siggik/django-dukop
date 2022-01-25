@@ -20,6 +20,7 @@ def get_event_times(  # noqa: max-complexity=12
     to_date=None,
     days=None,
     max_count=100,
+    or_featured=False,
     featured=None,
     published=True,
     has_image=None,
@@ -47,8 +48,9 @@ def get_event_times(  # noqa: max-complexity=12
     if from_date:
         lookups.append((Q(start__gte=from_date) & Q(end=None)) | Q(end__gte=from_date))
 
-    if to_date:
-        lookups.append(Q(start__lte=to_date))
+    if or_featured:
+        if to_date:
+            lookups.append(Q(start__lte=to_date) | Q(event__featured=True))
 
     if featured is not None:
         lookups.append(Q(event__featured=bool(featured)))

@@ -11,11 +11,10 @@
 <script type="text/javascript" src="{% static 'calendar/js/calendar.js' %}"></script>
 {% endaddtoblock %}
 
-{% get_event_times from_date=future max_count=20 has_image=True days=14 sphere=SPHERE hide_recurring=True as event_times %}
+{% get_event_times from_date=future max_count=20 has_image=True days=14 sphere=SPHERE hide_recurring=True or_featured=True as event_times %}
 
 <div class="page-container">
-  <h1 class="title no-margin-top">
-    {% trans "Events mixed for" %}
+  <h1 class="title title-center no-margin-top">
     {% for sphere in SPHERES %}
     <a href="{% url "calendar:sphere_change" pk=sphere.pk %}" class="sphere-link{% if sphere.pk == SPHERE.id %} sphere-link-chosen{% endif %}">{{ sphere.name }}</a>
     {% endfor %}
@@ -64,13 +63,13 @@
 
       <a href="{% url "calendar:event_detail" pk=recurrence.event__pk %}" class="table__event">
         <div class="table__time">
-          {{ recurrence|recurrence_interval }}, {{ recurrence.next|date:"l" }} {{ recurrence.next|time:"H:i" }}
-        </div>
-        <div class="table__title">
           {% trans "Next:" %} {{ recurrence.next|date }}
         </div>
+        <div class="table__title">
+          {{ recurrence|recurrence_interval }}, {{ recurrence.next|date:"l" }} {{ recurrence.next|time:"H:i" }}
+        </div>
         <div class="table__place">
-          {{ recurrence.event__venue_name }},
+          {{ recurrence.event__venue_name }}
         </div>
       </a>
 

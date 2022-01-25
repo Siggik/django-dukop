@@ -23,15 +23,20 @@ h2,
 h3,
 h4,
 h5 {
-  margin: 1em 0 0.4em 0;
+  margin: 0.8em 0 0.4em 0;
   padding: 0;
   line-height: 130%;
   font-weight: bold;
 }
 
 h1 {
+  margin: 1.3em 0 0.4em 0;
   font-size: 2.2em;
 }
+h1.no-margin-top {
+    margin-top: 0em;
+}
+
 h2 {
   font-size: 1.8em;
 }
@@ -71,7 +76,7 @@ h5 {
 .title {
   font-style: italic;
   font-weight: 100;
-  font-size: 1.5em;
+  font-size: 1.7em;
   color: rgba(0, 0, 0, 0.7);
   margin-bottom: 10px;
   letter-spacing: -1px;
@@ -80,14 +85,14 @@ h5 {
     text-decoration: none;
     color: inherit;
   }
+  strong {
+    font-weight: 900;
+  }
+
 }
 
 .title--space {
   margin-top: 40px;
-}
-
-.title__bold {
-  font-weight: 900;
 }
 
 .news__link {
@@ -129,7 +134,7 @@ h5 {
 
 a.sphere-link {
   display: inline-block;
-  padding: 0 5px;
+  padding: 0 3px;
   text-decoration: underline;
 }
 a.sphere-link-chosen {
@@ -163,7 +168,7 @@ a.sphere-link-chosen {
 }
 
 .page-container {
-  padding: 0 20px;
+  padding: 0 40px;
   @include tablet {
     padding: 0 1.1vw;
   }

@@ -25,6 +25,9 @@ $base-url: "/static/img/remixicons";
     &__circle{
         background-image: url($base-url + "/circle.svg");
     }
+    &__copy{
+        background-image: url($base-url + "/copy.svg");
+    }
     &__delete{
         background-image: url($base-url + "/delete.svg");
     }
@@ -33,6 +36,9 @@ $base-url: "/static/img/remixicons";
     }
     &__eye-off{
         background-image: url($base-url + "/eye-off.svg");
+    }
+    &__monitor{
+        background-image: url($base-url + "/monitor.svg");
     }
     &__tool{
         background-image: url($base-url + "/tool.svg");

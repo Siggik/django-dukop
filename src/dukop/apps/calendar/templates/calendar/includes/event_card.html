@@ -33,7 +33,7 @@
                 {% trans "Share link" %}
             </a><br>
             <input type="text" value="{{ event.share_link }}" class="share-text-input">
-            <button class="js-copy">{% trans "Copy url to clipboard" %}</button>
+            <button class="js-copy" title="{% trans "Copy url to clipboard" %}"><div class="icon icon__copy"></div></button>
             </p>
         </div>
 
@@ -88,10 +88,13 @@
               {% endif %}
             {% endwith %}
 
+
+            {% with event.times.future as future_times %}
+            {% if event.recurrences.all or future_times.count != 1 %}
             <h2>{% trans "Upcoming dates" %}</h2>
 
             <ul>
-            {% for time in event.times.future|slice:10 %}
+            {% for time in future_times|slice:10 %}
                 {% if time.start %}
                 <li><a href="{% url "calendar:event_detail" pk=event.pk time_pk=time.pk %}">{{ time.start|dukop_interval:time.end }}</a></li>
                 {% endif %}
@@ -100,7 +103,14 @@
             {% endfor %}
             </ul>
 
+            {% endif %}
+            {% endwith %}
+
             <h2>{% trans "Location" %}</h2>
+
+            {% if event.online %}
+            <p><span class="icon icon__monitor"></span> {% trans "This event is happening online." %}</p>
+            {% endif %}
 
             {% if event.location %}
               <a href="{% url "calendar:location_detail" pk=event.location.pk %}">

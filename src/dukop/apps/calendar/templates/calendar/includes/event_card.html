@@ -7,7 +7,7 @@
         {% if event_truncate %}
         {% with event.images.first as feature_image %}
             {% if feature_image.image %}
-                {% thumbnail feature_image.image "400x250" crop="center" as event_thumbnail %}
+                {% thumbnail feature_image.image "400x300" crop="center" as event_thumbnail %}
                     <img src="{{ event_thumbnail.url }}" alt="{{ event.name }}">
                 {% endthumbnail %}
             {% endif %}
@@ -40,7 +40,7 @@
         {% endif %}
     </div>
 
-    <div class="card__text">
+    <div class="card__text{% if event_truncate %} card__text__truncate{% endif %}">
         <div class="card__header">
           <div class="card__date">
             {% with event_time|default:event.times.future.first as next_occurrence %}

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-24 20:19+0100\n"
+"POT-Creation-Date: 2022-02-02 00:05+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -66,7 +66,7 @@ msgstr ""
 
 #: src/dukop/apps/calendar/forms.py:53
 #: src/dukop/apps/calendar/templates/calendar/group/detail.html:31
-#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:103
+#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:106
 #: src/dukop/apps/calendar/templates/calendar/includes/event_form.html:53
 #: src/dukop/apps/calendar/templates/calendar/location/detail.html:31
 #: src/dukop/apps/users/models.py:182
@@ -128,21 +128,21 @@ msgstr ""
 "En gruppe kan \"eje\" et event og blive vist som forfattere af en event "
 "tekst.Du kan kun vælge en \"ejer\" hvis du er medlem af en gruppe"
 
-#: src/dukop/apps/calendar/forms.py:256
+#: src/dukop/apps/calendar/forms.py:266
 msgid "Cover image"
 msgstr "Forside billede"
 
-#: src/dukop/apps/calendar/forms.py:257
+#: src/dukop/apps/calendar/forms.py:267
 msgid "If you have several images, use this one as the cover"
 msgstr "Hvis du har flere billeder, vælg den her som forside billede"
 
-#: src/dukop/apps/calendar/forms.py:313
+#: src/dukop/apps/calendar/forms.py:323
 #, fuzzy
 #| msgid "description"
 msgid "Unique description"
 msgstr "beskrivelse"
 
-#: src/dukop/apps/calendar/forms.py:317
+#: src/dukop/apps/calendar/forms.py:327
 msgid ""
 "Enter a unique description to be displayed in place of the general event "
 "description..."
@@ -192,7 +192,7 @@ msgstr "Sfære"
 msgid "Spheres"
 msgstr "Sfærer"
 
-#: src/dukop/apps/calendar/models.py:198 src/dukop/apps/calendar/models.py:818
+#: src/dukop/apps/calendar/models.py:198 src/dukop/apps/calendar/models.py:838
 #: src/dukop/apps/users/models.py:115
 msgid "name"
 msgstr "navn"
@@ -416,6 +416,7 @@ msgid ""
 msgstr ""
 
 #: src/dukop/apps/calendar/templates/calendar/event/cancel.html:26
+#: src/dukop/apps/calendar/templates/calendar/event/publish.html:26
 #: src/dukop/apps/calendar/templates/calendar/includes/event_form.html:348
 msgid "Save changes"
 msgstr ""
@@ -451,29 +452,16 @@ msgid "Guidelines"
 msgstr "Retningslinjer"
 
 #: src/dukop/apps/calendar/templates/calendar/event/create.html:20
+#, fuzzy
+#| msgid ""
+#| "After creating the event, it's possible to edit it. You can also create "
+#| "an event and publish it later."
 msgid ""
-"After creating the event, it's possible to edit it. You can also create an "
-"event and publish it later."
+"After creating the event, it's possible to edit it further. You will have to "
+"finally publish the event when it's ready."
 msgstr ""
 "Det er muligt at redigere en begivenhed, efter du har oprettet det, du kan "
 "også oprette en begivenhed og offentlige gøre det senere"
-
-#: src/dukop/apps/calendar/templates/calendar/event/create_success.html:4
-#: src/dukop/apps/calendar/templates/calendar/event/create_success.html:10
-msgid "Event created"
-msgstr "begivenhed oprettet"
-
-#: src/dukop/apps/calendar/templates/calendar/event/create_success.html:12
-msgid "Your event has been created."
-msgstr "Din begivenhed er blevet oprettet"
-
-#: src/dukop/apps/calendar/templates/calendar/event/create_success.html:14
-msgid "Maybe you should "
-msgstr "Måske du skulle"
-
-#: src/dukop/apps/calendar/templates/calendar/event/create_success.html:14
-msgid "view and share it"
-msgstr "se og dele det"
 
 #: src/dukop/apps/calendar/templates/calendar/event/dashboard.html:6
 #: src/dukop/apps/calendar/templates/calendar/event/list.html:6
@@ -514,31 +502,60 @@ msgstr "Sted"
 msgid "Published"
 msgstr "Offentliggjort"
 
-#: src/dukop/apps/calendar/templates/calendar/event/dashboard.html:53
-#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:54
+#: src/dukop/apps/calendar/templates/calendar/event/dashboard.html:51
+#, fuzzy
+#| msgid "Read more"
+msgid "more"
+msgstr "Læs mere"
+
+#: src/dukop/apps/calendar/templates/calendar/event/dashboard.html:57
+#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:51
 msgid "No scheduled times"
 msgstr "Ikke planlagte tider"
 
-#: src/dukop/apps/calendar/templates/calendar/event/dashboard.html:66
-#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:146
-msgid "Update"
-msgstr ""
-
-#: src/dukop/apps/calendar/templates/calendar/event/dashboard.html:67
-#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:147
-msgid "Cancel"
-msgstr ""
-
-#: src/dukop/apps/calendar/templates/calendar/event/dashboard.html:68
-#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:148
-msgid "Delete"
-msgstr ""
-
-#: src/dukop/apps/calendar/templates/calendar/event/dashboard.html:74
+#: src/dukop/apps/calendar/templates/calendar/event/dashboard.html:77
 #, fuzzy
 #| msgid "All events from"
 msgid "No events found"
 msgstr "Alle begivenhder fra"
+
+#: src/dukop/apps/calendar/templates/calendar/event/detail.html:31
+#, fuzzy
+#| msgid "Create event"
+msgid "Finalize your event"
+msgstr "Dine begivenheder"
+
+#: src/dukop/apps/calendar/templates/calendar/event/detail.html:33
+msgid ""
+"View your event below as it appears to everyone else. Once you think it's "
+"ready, you should publish it and share it with your audience."
+msgstr ""
+
+#: src/dukop/apps/calendar/templates/calendar/event/detail.html:37
+msgid ""
+"<strong>Your event doesn't have any images.</strong> You can skip this, but "
+"we really recommend adding an illustration to improve appearance on Dup Op "
+"and other sites where it's shared."
+msgstr ""
+
+#: src/dukop/apps/calendar/templates/calendar/event/detail.html:37
+#, fuzzy
+#| msgid "image"
+msgid "Add images"
+msgstr "billede"
+
+#: src/dukop/apps/calendar/templates/calendar/event/detail.html:39
+msgid ""
+"<strong>Your event isn't published.</strong> As long as it isn't published, "
+"other users cannot see it."
+msgstr ""
+
+#: src/dukop/apps/calendar/templates/calendar/event/detail.html:39
+#: src/dukop/apps/calendar/templates/calendar/event/publish.html:4
+#, fuzzy
+#| msgid "Published"
+msgid "Publish event"
+msgstr "Offentliggjort"
 
 #: src/dukop/apps/calendar/templates/calendar/event/list.html:13
 msgid "All events from"
@@ -553,6 +570,18 @@ msgstr "til"
 #: src/dukop/apps/calendar/templates/calendar/location/detail.html:68
 msgid "Nothing to see in this period."
 msgstr "Intet at vise i denne periode"
+
+#: src/dukop/apps/calendar/templates/calendar/event/publish.html:10
+#, fuzzy
+#| msgid "Published"
+msgid "Publish:"
+msgstr "Offentliggjort"
+
+#: src/dukop/apps/calendar/templates/calendar/event/publish.html:13
+msgid ""
+"You can publish and unpublish an event. You can keep the event unpublished "
+"while you work on its contents and then finally publish it."
+msgstr ""
 
 #: src/dukop/apps/calendar/templates/calendar/event/update.html:4
 #, fuzzy
@@ -671,25 +700,25 @@ msgstr "Opret begivenhed"
 msgid "Sharing"
 msgstr "Deling"
 
-#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:33
-msgid "Share link"
-msgstr "Del link"
+#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:30
+msgid "Copy URL for sharing:"
+msgstr ""
 
-#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:36
+#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:33
 msgid "Copy url to clipboard"
 msgstr "Kopiér URL"
 
-#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:62
+#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:59
 #, fuzzy
 #| msgid "recurrence"
 msgid "Recurring"
 msgstr "gentagelse"
 
-#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:77
+#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:74
 msgid "cancelled"
 msgstr ""
 
-#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:87
+#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:84
 #, fuzzy
 #| msgid "short description"
 msgid "The event has no description"
@@ -703,28 +732,38 @@ msgstr ""
 msgid "No upcoming times"
 msgstr ""
 
-#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:110
+#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:109
+msgid "This event is happening online."
+msgstr ""
+
+#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:117
 msgid "Unknown address"
 msgstr ""
 
-#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:111
+#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:118
 msgid "City not specified"
 msgstr ""
 
-#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:115
+#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:122
 msgid "To Be Announced: The location's location will be announced later."
 msgstr ""
 
-#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:122
+#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:129
 msgid "Location not specified."
 msgstr ""
 
-#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:126
+#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:133
 msgid "This is an online event."
 msgstr ""
 
-#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:130
+#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:137
 msgid "Event links"
+msgstr "Begivenheden link"
+
+#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:152
+#, fuzzy
+#| msgid "Event links"
+msgid "Event actions"
 msgstr "Begivenheden link"
 
 #: src/dukop/apps/calendar/templates/calendar/includes/event_form.html:19
@@ -866,6 +905,30 @@ msgid ""
 "or a signup page."
 msgstr ""
 
+#: src/dukop/apps/calendar/templates/calendar/includes/event_owner_buttons.html:3
+msgid "Update"
+msgstr ""
+
+#: src/dukop/apps/calendar/templates/calendar/includes/event_owner_buttons.html:4
+msgid "Cancel"
+msgstr ""
+
+#: src/dukop/apps/calendar/templates/calendar/includes/event_owner_buttons.html:5
+msgid "Delete"
+msgstr ""
+
+#: src/dukop/apps/calendar/templates/calendar/includes/event_owner_buttons.html:8
+#, fuzzy
+#| msgid "Published"
+msgid "Unpublish"
+msgstr "Offentliggjort"
+
+#: src/dukop/apps/calendar/templates/calendar/includes/event_owner_buttons.html:10
+#, fuzzy
+#| msgid "Published"
+msgid "Publish"
+msgstr "Offentliggjort"
+
 #: src/dukop/apps/calendar/templates/calendar/includes/list_pagination.html:7
 msgid "Previous week"
 msgstr "Sidste uge"
@@ -890,39 +953,51 @@ msgstr "Næste"
 msgid "Start"
 msgstr "Start"
 
-#: src/dukop/apps/calendar/templates/calendar/index.html:18
-msgid "Events mixed for"
-msgstr "Begivenheder blandet fra"
-
-#: src/dukop/apps/calendar/templates/calendar/index.html:35
+#: src/dukop/apps/calendar/templates/calendar/index.html:34
 msgid "No events found in this period."
 msgstr ""
 
 #: src/dukop/apps/calendar/templates/calendar/index.html:43
+msgid "<strong>Recurring</strong> events"
+msgstr ""
+
+#: src/dukop/apps/calendar/templates/calendar/index.html:62
+#, fuzzy
+#| msgid "Next"
+msgid "Next:"
+msgstr "Næste"
+
+#: src/dukop/apps/calendar/templates/calendar/index.html:75
+#, fuzzy
+#| msgid "Nothing to see in this period."
+msgid "No recurring events found in this period."
+msgstr "Intet at vise i denne periode"
+
+#: src/dukop/apps/calendar/templates/calendar/index.html:86
 msgid "Happening"
 msgstr "Sker"
 
-#: src/dukop/apps/calendar/templates/calendar/index.html:43
+#: src/dukop/apps/calendar/templates/calendar/index.html:86
 msgid "today"
 msgstr "i dag"
 
-#: src/dukop/apps/calendar/templates/calendar/index.html:52
+#: src/dukop/apps/calendar/templates/calendar/index.html:95
 msgid ""
 "Nothing planned today, this is your chance to do something! Gather your "
 "people!"
 msgstr "Det sker ikke ikke en skid i dag"
 
-#: src/dukop/apps/calendar/templates/calendar/index.html:72
+#: src/dukop/apps/calendar/templates/calendar/index.html:115
 #, fuzzy
 #| msgid "Existing venue"
 msgid "Active locations"
 msgstr "Eksisterende lokation"
 
-#: src/dukop/apps/calendar/templates/calendar/index.html:86
+#: src/dukop/apps/calendar/templates/calendar/index.html:129
 msgid "All events next 30 days"
 msgstr ""
 
-#: src/dukop/apps/calendar/templates/calendar/index.html:116
+#: src/dukop/apps/calendar/templates/calendar/index.html:159
 msgid "Browse more events..."
 msgstr "Vis flere begivenheder..."
 
@@ -948,12 +1023,32 @@ msgstr "{start_date} kl. {start_time} - {end_date} kl. {end_time}"
 
 #: src/dukop/apps/calendar/views.py:283
 #, python-brace-format
+msgid "Event '{event_name}' was created"
+msgstr ""
+
+#: src/dukop/apps/calendar/views.py:307
+#, python-brace-format
 msgid "Event '{event_name}' was updated"
 msgstr ""
 
-#: src/dukop/apps/calendar/views.py:314
+#: src/dukop/apps/calendar/views.py:340
 #, python-brace-format
-msgid "Event '{event_name}' was cancelled"
+msgid "Event '{event_name}' was cancelled."
+msgstr ""
+
+#: src/dukop/apps/calendar/views.py:347
+#, python-brace-format
+msgid "Event '{event_name}' was un-cancelled."
+msgstr ""
+
+#: src/dukop/apps/calendar/views.py:379
+#, python-brace-format
+msgid "Event '{event_name}' was published."
+msgstr ""
+
+#: src/dukop/apps/calendar/views.py:386
+#, python-brace-format
+msgid "Event '{event_name}' was unpublished."
 msgstr ""
 
 #: src/dukop/apps/news/models.py:33
@@ -1851,9 +1946,14 @@ msgid "Activate sphere"
 msgstr "Aktivér sfærer"
 
 #: src/dukop/templates/base.html:120
+#, fuzzy
+#| msgid ""
+#| "Duk Op is available in the followin mixes or spheres. By changing the "
+#| "active sphere, you'll get a different view of the site:"
 msgid ""
-"Duk Op is available in the followin mixes or spheres. By changing the active "
-"sphere, you'll get a different view of the site:"
+"Events can take place in different spheres that may or may not overlap. Duk "
+"Op is available in the following spheres. By changing the active sphere, "
+"you'll get a different view of the site:"
 msgstr ""
 "Duk Op er tilgængeligt i følgende udgaver eller 'sfærer'. Ved at skifte og "
 "aktivere en anden sfærer, får du en anden udgave af sitet:"
@@ -1870,6 +1970,10 @@ msgstr ""
 "Du kan abonnere på Duk Op i f.eks. Google, iCal, Thunderbird or mere. Kopiér "
 "følgende URL ind i din kalenders import-funktion (iCAL/ICS format)"
 
+#: src/dukop/templates/base.html:135
+msgid "More feed subscription options"
+msgstr ""
+
 #: src/dukop/templates/base.html:137
 msgid "Latest news"
 msgstr "Seneste nyt"
@@ -1877,6 +1981,24 @@ msgstr "Seneste nyt"
 #: src/dukop/templates/base.html:152
 msgid "No news is good news?"
 msgstr "Ingen nyheder"
+
+#~ msgid "Event created"
+#~ msgstr "begivenhed oprettet"
+
+#~ msgid "Your event has been created."
+#~ msgstr "Din begivenhed er blevet oprettet"
+
+#~ msgid "Maybe you should "
+#~ msgstr "Måske du skulle"
+
+#~ msgid "view and share it"
+#~ msgstr "se og dele det"
+
+#~ msgid "Share link"
+#~ msgstr "Del link"
+
+#~ msgid "Events mixed for"
+#~ msgstr "Begivenheder blandet fra"
 
 #~ msgid "Relevance"
 #~ msgstr "Relevans"

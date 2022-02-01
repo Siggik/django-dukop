@@ -132,7 +132,7 @@
                         <input type="text" value="{% feed_link 'calendar:feed_ical' %}" class="share-text-input feed-link-input">
                         </p>
                         <p>
-                            <a href="{% url "calendar:feeds" %}">Read more about feed subscriptions</a>
+                            <a href="{% url "calendar:feeds" %}">{% trans "More feed subscription options" %}</a>
                         </p>
                         <h2 class="title title--footer">{% trans "Latest news" %}</h2>
                         {% get_short_news as latest_news %}

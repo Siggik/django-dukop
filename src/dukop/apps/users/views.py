@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.contrib import messages
+from django.contrib.auth import authenticate
 from django.contrib.auth import login
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.decorators import login_required
@@ -243,12 +244,9 @@ class SignupConfirmView(TemplateView):
 
 class SignupConfirmRedirectView(RedirectView):
     def get_redirect_url(self):
-
         uuid = self.kwargs["uuid"]
-
         if self.kwargs["token"] == forms.get_confirm_code(uuid):
             redirect("users:confirmed")  # TODO
-
         redirect("users:confirm_nope")  # TODO
 
 
@@ -269,3 +267,15 @@ class UserUpdate(UpdateView):
         kwargs = super().get_form_kwargs()
         kwargs["user"] = self.user
         return kwargs
+
+    def form_valid(self, form):
+        user = form.save()
+        new_password = form.cleaned_data.get("new_password1")
+        if new_password:
+            user = authenticate(username=user.get_username(), password=new_password)
+            login(self.request, user)
+        messages.success(
+            self.request,
+            _("Your profile updates were saved."),
+        )
+        return redirect("users:update")

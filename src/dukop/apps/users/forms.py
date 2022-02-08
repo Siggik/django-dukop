@@ -1,6 +1,7 @@
 import random
 
 from django import forms
+from django.contrib.auth import password_validation
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.forms import SetPasswordForm
 from django.contrib.auth.tokens import default_token_generator
@@ -100,10 +101,31 @@ class SignupForm(forms.Form):
 
 
 class UpdateForm(SetPasswordForm, forms.ModelForm):
+    def clean_new_password2(self):
+        password1 = self.cleaned_data.get("new_password1")
+        password2 = self.cleaned_data.get("new_password2")
+        if password1 and password2:
+            if password1 != password2:
+                raise forms.ValidationError(
+                    self.error_messages["password_mismatch"],
+                    code="password_mismatch",
+                )
+        if password2:
+            password_validation.validate_password(password2, self.user)
+        return password2
+
     def __init__(self, user, *args, **kwargs):
         super().__init__(user, *args, **kwargs)
         self.fields["new_password1"].required = False
         self.fields["new_password2"].required = False
+
+    def save(self, commit=True):
+        password = self.cleaned_data["new_password1"]
+        if password:
+            self.user.set_password(password)
+        if commit:
+            self.user.save()
+        return self.user
 
     class Meta:
         model = models.User

@@ -16,38 +16,6 @@ if (document.querySelector(".js-copy")) {
    document.querySelector(".js-copy").addEventListener("click", copy);
 }
 
-
-// Karl's trying to fix the positioning - but this approach didn't work, keeping it for one commit then removing
-
-// for (var i = document.getElementsByClassName("timeline__event").length - 1; i >= 0; i--) {
-//    if(document.getElementsByClassName("timeline__event")[i].style.marginLeft != "0%") {
-
-//       let element = document.getElementsByClassName("timeline__event")[i]
-//       let elementMarginLeft = element.style.marginLeft
-
-
-
-//       var percents = parseFloat(elementMarginLeft);
-//       console.log(percents)
-//       var parentWidth = element.parentElement.parentElement.getBoundingClientRect().width;
-//       console.log(parentWidth)
-
-//       var marginLeftPixels = (parentWidth*percents)/100;
-//       console.log('marginLeftPixels: '+marginLeftPixels)
-      
-//       let newMarginLeft =  marginLeftPixels / 100   // whaat to do, how to inverse? 
-
-//       let newMarginLeftPercentage = (newMarginLeft / parentWidth) * 100 + "%"
-
-//       console.log("marginLeft: "+elementMarginLeft)
-//       // console.log("newMarginLeft: "+newMarginLeft)
-//       console.log("newMarginLeftPercentage: "+newMarginLeftPercentage)
-
-//       // document.getElementsByClassName("timeline__event")[i].style.marginLeft = newMarginLeftPercentage
-//    }
-// }
-
-
 // Going through timeline events (with a mission to shorten the labels so it won't break the div's)
 // ... also, this commit also included a change that would put the data-text as the elements title, so a hover will show the full label
 for (var i = document.getElementsByClassName("timeline__event").length - 1; i >= 0; i--) {

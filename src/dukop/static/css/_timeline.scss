@@ -65,34 +65,31 @@
 .timeline__scale {
   border-top: 2px solid rgba(0, 0, 0, 0.7);
   margin: 20px 0 0px 0;
+  width: 100%;
 }
 
-.timeline__min {
-  float: left;
-  margin-right: 9px;
-  /*font-style: italic;*/
+.timeline-events {
+    width: 100%;
+    position: relative;
 }
 
 .timeline__max {
-  float: right;
-  /*font-style: italic;*/
+  width: 1% !important;
 }
 
 .timeline__hour {
-  /*font-style: italic;*/
+  text-align: left;
   font-size: 14px;
-}
-
-.timeline__hour-container > div  {
-  display: inline-block;
-  display: -moz-inline-box;
+  display: table-cell;
   *display: inline; /* For IE7 */
   zoom: 1; /* Trigger hasLayout */
-  width: 11.8%;
-  text-align: center;
-  margin-left: -.7rem;
+  width: 12.5%;
 }
 
+.timeline__hour-container {
+    width: 100%;
+    display: table;
+}
 
 .timeline__now {
   width: 20px;

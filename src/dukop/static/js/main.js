@@ -17,10 +17,7 @@ if (document.querySelector(".js-copy")) {
 }
 
 // Going through timeline events (with a mission to shorten the labels so it won't break the div's)
-// ... also, this commit also included a change that would put the data-text as the elements title, so a hover will show the full label
 for (var i = document.getElementsByClassName("timeline__event").length - 1; i >= 0; i--) {
-
-
 
    // Calculate the lenght of text and find the width of the surrounding box
    let lengthOfText = measureText(document.getElementsByClassName("timeline__event")[i].getAttribute('data-text'), 16, "italic").width
@@ -28,10 +25,9 @@ for (var i = document.getElementsByClassName("timeline__event").length - 1; i >=
 
    // If the length seems to be wider than the width
    if (lengthOfText / widthOfElement > .9) {
-      let counter = 0; // Counting how much it runs
-      
+      let counter = 0; // Counting how much it runs      
       let allowedNumber = 1 // Starting this check, to see how wide a 1 character label is
-      
+   
       // Check, if there's more space (if we shortened it too much with the 1 characters from above)
       let stillMoreSpace = measureText(document.getElementsByClassName("timeline__event")[i].getAttribute('data-text').substring(0, allowedNumber), 16, "italic").width < widthOfElement
       
@@ -42,8 +38,9 @@ for (var i = document.getElementsByClassName("timeline__event").length - 1; i >=
 
          // So if we're out of space, then let's settle on a good 'substring number' to shorten the label by
          if(!stillMoreSpace){
-            console.log("Settled on "+allowedNumber+" for now")
-            console.log("I ran "+counter+" times")
+            
+            // console.log("Settled on "+allowedNumber+" for now")
+            // console.log("I ran "+counter+" times")
 
             // Shortening and inserting the newDataText ...
             let newDataText = document.getElementsByClassName("timeline__event")[i].getAttribute('data-text').substring(0, allowedNumber) + '..'
@@ -54,7 +51,7 @@ for (var i = document.getElementsByClassName("timeline__event").length - 1; i >=
          }
 
          // Because this is a hacky solution, I check if it's running amok
-         if(counter > 50){
+         if(counter > 70){
             stillMoreSpace = false;
             console.log("Argh, cancelllll, I ran more than 50 times pr event!")
          }

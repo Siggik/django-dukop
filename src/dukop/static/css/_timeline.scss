@@ -69,13 +69,30 @@
 
 .timeline__min {
   float: left;
-  font-style: italic;
+  margin-right: 9px;
+  /*font-style: italic;*/
 }
 
 .timeline__max {
   float: right;
-  font-style: italic;
+  /*font-style: italic;*/
 }
+
+.timeline__hour {
+  /*font-style: italic;*/
+  font-size: 14px;
+}
+
+.timeline__hour-container > div  {
+  display: inline-block;
+  display: -moz-inline-box;
+  *display: inline; /* For IE7 */
+  zoom: 1; /* Trigger hasLayout */
+  width: 11.8%;
+  text-align: center;
+  margin-left: -.7rem;
+}
+
 
 .timeline__now {
   width: 20px;
@@ -96,4 +113,10 @@
   margin-left: 7px;
   content: '';
   border-left: 2px solid #666;
+}
+
+@media (max-width: 700px) {
+  .timeline__hour-container > div.timeline__hour {
+    display: none;
+  }
 }

@@ -88,9 +88,12 @@
 
   {% for event_time in todays_events %}
     {% event_timeline_properties event_time as timeline %}
-    <div class="timeline__event timeline__event--color{% cycle "1" "2" "3" %} timeline__event--right" data-text="{{ event_time.event.name }}" title="{{ event_time.event.name }}"
-      style="word-wrap: break-word; width: {{ timeline.width_pct|unlocalize }}%; margin-left: {{ timeline.x_start_pct|unlocalize }}%">
-    </div>
+        <a href="{% url "calendar:event_detail" pk=event_time.event.pk slug=event_time.event.slug %}">
+          <div class="timeline__event timeline__event--color{% cycle "1" "2" "3" %} timeline__event--right" data-text="{{ event_time.event.name }}" title="{{ event_time.event.name }}" 
+            style="word-wrap: break-word; width: {{ timeline.width_pct|unlocalize }}%; margin-left: {{ timeline.x_start_pct|unlocalize }}%">
+          
+          </div>
+        </a>
   {% empty %}
     <div class="timeline__event timeline__event--right" data-text="{% trans "Nothing planned today, this is your chance to do something! Gather your people!" %}">
     </div>

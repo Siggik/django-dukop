@@ -86,23 +86,59 @@
   <h1 class="title title--space">{% trans "Happening" %} <strong>{% trans "today" %}</strong></h1>
   <div class="timeline">
 
+  <div class="timeline-events">
   {% for event_time in todays_events %}
     {% event_timeline_properties event_time as timeline %}
-    <div class="timeline__event timeline__event--color{% cycle "1" "2" "3" %} timeline__event--right" data-text="{{ event_time.event.name }}"
-      style="width: {{ timeline.width_pct|unlocalize }}%; margin-left: {{ timeline.x_start_pct|unlocalize }}%">
-    </div>
+        <a href="{% url "calendar:event_detail" pk=event_time.event.pk slug=event_time.event.slug %}">
+          <div class="timeline__event timeline__event--color{% cycle "1" "2" "3" %} timeline__event--right" data-text="{{ event_time.event.name }}" title="{{ event_time.start|time:"H:i" }} {{ event_time.event.name }}"
+            style="word-wrap: break-word; width: {{ timeline.width_pct|unlocalize }}%; margin-left: {{ timeline.x_start_pct|unlocalize }}%">
+          </div>
+        </a>
   {% empty %}
     <div class="timeline__event timeline__event--right" data-text="{% trans "Nothing planned today, this is your chance to do something! Gather your people!" %}">
     </div>
   {% endfor %}
+  </div>
 
     <div class="timeline__scale">
-      <div class="timeline__min">
-        08:00
+
+      <div class="timeline__hour-container">
+        <div class="timeline__hour timeline__min">
+          08:00
+        </div>
+        <div class="timeline__hour">
+          10:00
+        </div>
+
+        <div class="timeline__hour">
+          12:00
+        </div>
+
+        <div class="timeline__hour">
+          14:00
+        </div>
+
+        <div class="timeline__hour">
+          16:00
+        </div>
+
+        <div class="timeline__hour">
+          18:00
+        </div>
+
+        <div class="timeline__hour">
+          20:00
+        </div>
+
+        <div class="timeline__hour">
+          22:00
+        </div>
+        <div class="timeline__hour timeline__max">
+          24:00
+        </div>
+
       </div>
-      <div class="timeline__max">
-        24:00
-      </div>
+
       <div class="timeline__now" id="timeline__now"></div>
     </div>
 

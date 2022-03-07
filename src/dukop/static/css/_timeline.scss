@@ -54,7 +54,7 @@
 
 .timeline__event--right::after {
   content: attr(data-text);
-  left: 35px;
+  /*left: 35px;*/
   position: absolute;
   display: block;
   width: 200px;
@@ -65,16 +65,30 @@
 .timeline__scale {
   border-top: 2px solid rgba(0, 0, 0, 0.7);
   margin: 20px 0 0px 0;
+  width: 100%;
 }
 
-.timeline__min {
-  float: left;
-  font-style: italic;
+.timeline-events {
+    width: 100%;
+    position: relative;
 }
 
 .timeline__max {
-  float: right;
-  font-style: italic;
+  width: 1% !important;
+}
+
+.timeline__hour {
+  text-align: left;
+  font-size: 14px;
+  display: table-cell;
+  *display: inline; /* For IE7 */
+  zoom: 1; /* Trigger hasLayout */
+  width: 12.5%;
+}
+
+.timeline__hour-container {
+    width: 100%;
+    display: table;
 }
 
 .timeline__now {
@@ -96,4 +110,10 @@
   margin-left: 7px;
   content: '';
   border-left: 2px solid #666;
+}
+
+@media (max-width: 700px) {
+  .timeline__hour-container > div.timeline__hour {
+    display: none;
+  }
 }

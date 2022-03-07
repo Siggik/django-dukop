@@ -7,6 +7,7 @@ from django.template.defaultfilters import truncatechars
 from django.urls.base import reverse
 from django.utils.html import linebreaks
 from django.utils.safestring import mark_safe
+from django.utils.timezone import localtime
 
 from .. import models
 from .. import utils
@@ -87,23 +88,26 @@ def event_timeline_properties(event_time, now=None):
     """
 
     if not now:
-        now = utils.get_now()
+        now = localtime(utils.get_now())
 
     hours_x_min = 8
     hours_x_max = 24
     hours_x = hours_x_max - hours_x_min
 
-    if event_time.start.date() < now.date() or event_time.start.hour < hours_x_min:
+    start = localtime(event_time.start)
+    end = localtime(event_time.end) if event_time.end else None
+
+    if start.date() < now.date() or start.hour < hours_x_min:
         x_start = hours_x_min
     else:
-        x_start = event_time.start.hour + (event_time.start.minute / 60.0)
+        x_start = start.hour + (start.minute / 60.0)
 
-    if not event_time.end:
+    if not end:
         x_end = x_start
-    elif event_time.end.date() > now.date() or event_time.end.hour >= hours_x_max:
+    elif end.date() > now.date() or end.hour >= hours_x_max:
         x_end = hours_x_max
     else:
-        x_end = event_time.end.hour + (event_time.end.minute / 60.0)
+        x_end = end.hour + (end.minute / 60.0)
 
     x_start_pct = 100.0 * float(x_start - hours_x_min) / hours_x
     x_end_pct = 100.0 * float(x_end - hours_x_min) / hours_x

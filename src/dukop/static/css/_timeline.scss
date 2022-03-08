@@ -1,7 +1,4 @@
 .timeline {  
-  
-  zoom: 0.7;
-
   margin: 20px auto 40px auto;
   max-width: 900px;
   position: relative;
@@ -119,4 +116,9 @@
   .timeline__hour-container > div.timeline__hour {
     /*display: none;*/
   }
+
+  .timeline {  
+    zoom: 0.7;
+  }
+
 }

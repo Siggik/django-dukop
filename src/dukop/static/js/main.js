@@ -18,9 +18,14 @@ if (document.querySelector(".js-copy")) {
 
 // Going through timeline events (with a mission to shorten the labels so it won't break the div's)
 for (var i = document.getElementsByClassName("timeline__event").length - 1; i >= 0; i--) {
-
+   let lengthOfText = null;
    // Calculate the lenght of text and find the width of the surrounding box
-   let lengthOfText = measureText(document.getElementsByClassName("timeline__event")[i].getAttribute('data-text'), 16, "italic").width
+   if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
+      lengthOfText = measureText(document.getElementsByClassName("timeline__event")[i].getAttribute('data-text'), 10, "italic").width
+   } else {
+      lengthOfText = measureText(document.getElementsByClassName("timeline__event")[i].getAttribute('data-text'), 16, "italic").width
+   }
+
    let widthOfElement = document.getElementsByClassName("timeline__event")[i].getBoundingClientRect().width
 
    // If the length seems to be wider than the width
@@ -28,13 +33,22 @@ for (var i = document.getElementsByClassName("timeline__event").length - 1; i >=
       let counter = 0; // Counting how much it runs      
       let allowedNumber = 1 // Starting this check, to see how wide a 1 character label is
    
+      let stillMoreSpace = null;
       // Check, if there's more space (if we shortened it too much with the 1 characters from above)
-      let stillMoreSpace = measureText(document.getElementsByClassName("timeline__event")[i].getAttribute('data-text').substring(0, allowedNumber), 16, "italic").width < widthOfElement
+      if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+         stillMoreSpace = measureText(document.getElementsByClassName("timeline__event")[i].getAttribute('data-text').substring(0, allowedNumber), 10, "italic").width < widthOfElement
+      } else {
+         stillMoreSpace = measureText(document.getElementsByClassName("timeline__event")[i].getAttribute('data-text').substring(0, allowedNumber), 16, "italic").width < widthOfElement
+      }
       
       while (stillMoreSpace) {
 
          // Checking again after last run updated the allowedNumber
-         stillMoreSpace = measureText(document.getElementsByClassName("timeline__event")[i].getAttribute('data-text').substring(0, allowedNumber), 16, "italic").width + 55 < widthOfElement
+         if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+            stillMoreSpace = measureText(document.getElementsByClassName("timeline__event")[i].getAttribute('data-text').substring(0, allowedNumber), 10, "italic").width + 55 < widthOfElement
+         } else {
+            stillMoreSpace = measureText(document.getElementsByClassName("timeline__event")[i].getAttribute('data-text').substring(0, allowedNumber), 16, "italic").width + 55 < widthOfElement
+         }
 
          // So if we're out of space, then let's settle on a good 'substring number' to shorten the label by
          if(!stillMoreSpace){

@@ -112,13 +112,25 @@
   border-left: 2px solid #666;
 }
 
+
 @media (max-width: 700px) {
-  .timeline__hour-container > div.timeline__hour {
-    /*display: none;*/
-  }
 
   .timeline {  
     zoom: 0.7;
+  }
+
+  @-moz-document url-prefix() {
+    .timeline__hour-container > div.timeline__hour {
+      /*display: none;*/
+      font-size: 8.1px;
+    }
+
+    .timeline-events {
+      font-size: 10px;
+    }
+
+
+
   }
 
 }

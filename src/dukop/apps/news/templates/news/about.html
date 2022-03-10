@@ -17,6 +17,7 @@
  <ul>
      <li><a href="#contact">Contact</a></li>
      <li><a href="#guidelines">Event Guidelines</a></li>
+     <li><a href="#copyrighttrolls">Copyright and copyright trolls</a></li>
      <li><a href="#policy">Our security policy</a></li>
      <li><a href="#users">Duk Op's different user types</a></li>
      <li><a href="#why">Why should I think about internet security?</a></li>
@@ -59,6 +60,20 @@ Key fingerprint = 5832 0CBF 30E8 8572 F8A4 1943 E74B 09BA 26CE 1DD7
     <li>Write the description in Danish first, but make it accessible for non-Danish speakers by adding an English translation at the bottom of the description.</li>
     <li>Do not create a new event for translations</li>
 </ul>
+
+{% endblocktrans %}
+
+{# Notice that if you change the English original, the Danish translation will not be matched #}
+{# You have to run makemessages and compilemessages #}
+{% blocktrans %}
+
+<h1 id="copyrighttrolls">Copyright and copyright trolls</h1>
+
+<p>The collective behind Duk Op does not create event content and disclaims responsibility for copyright matters. Users should use images that they have rights to use - so we don't have to bother with silly copyright trolls.</p>
+
+<p>Copyright trolls are companies that use legal extortion methods to demand arbitrary fees be paid for some random photo on a website. In our case, they don't care that we didn't choose the photo, have no way of verifying its copyright, that we don't profit on it nor that the photos are in low resolution and are often remixed. What they care about is getting as much money as possible.</p>
+
+<p>Because law-makers in Denmark have put us in a bad position, we have no other choice than to remove content if requested by the trolls. We cannot verify their claims. If someone wants to back us to fight them back, we will gladly receive any help.</p>
 
 {% endblocktrans %}
 

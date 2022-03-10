@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-02-02 00:05+0100\n"
+"POT-Creation-Date: 2022-03-10 21:04+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -417,7 +417,7 @@ msgstr ""
 
 #: src/dukop/apps/calendar/templates/calendar/event/cancel.html:26
 #: src/dukop/apps/calendar/templates/calendar/event/publish.html:26
-#: src/dukop/apps/calendar/templates/calendar/includes/event_form.html:348
+#: src/dukop/apps/calendar/templates/calendar/includes/event_form.html:350
 msgid "Save changes"
 msgstr ""
 
@@ -677,7 +677,7 @@ msgstr ""
 "overbelaste din enhed eller vores servere mere end dette."
 
 #: src/dukop/apps/calendar/templates/calendar/group/detail.html:15
-#: src/dukop/apps/calendar/templates/calendar/includes/event_form.html:304
+#: src/dukop/apps/calendar/templates/calendar/includes/event_form.html:306
 #: src/dukop/apps/calendar/templates/calendar/location/detail.html:15
 msgid "Links"
 msgstr "Links"
@@ -833,15 +833,15 @@ msgstr ""
 
 #: src/dukop/apps/calendar/templates/calendar/includes/event_form.html:138
 #: src/dukop/apps/calendar/templates/calendar/includes/event_form.html:205
-#: src/dukop/apps/calendar/templates/calendar/includes/event_form.html:289
-#: src/dukop/apps/calendar/templates/calendar/includes/event_form.html:329
+#: src/dukop/apps/calendar/templates/calendar/includes/event_form.html:291
+#: src/dukop/apps/calendar/templates/calendar/includes/event_form.html:331
 msgid "Add one more..."
 msgstr ""
 
 #: src/dukop/apps/calendar/templates/calendar/includes/event_form.html:143
 #: src/dukop/apps/calendar/templates/calendar/includes/event_form.html:210
-#: src/dukop/apps/calendar/templates/calendar/includes/event_form.html:294
-#: src/dukop/apps/calendar/templates/calendar/includes/event_form.html:334
+#: src/dukop/apps/calendar/templates/calendar/includes/event_form.html:296
+#: src/dukop/apps/calendar/templates/calendar/includes/event_form.html:336
 msgid "Have one less..."
 msgstr ""
 
@@ -899,7 +899,14 @@ msgstr ""
 "Tilføj meget gerne et billede - lad ikke din facebook event, se bedre ud end "
 "din Duk Op begivenhed!"
 
-#: src/dukop/apps/calendar/templates/calendar/includes/event_form.html:306
+#: src/dukop/apps/calendar/templates/calendar/includes/event_form.html:267
+msgid ""
+"The collective behind Duk Op does not create events itself, and disclaims "
+"responsibility for copyright matters. Use an image you have rights to use - "
+"so we don't have to bother with silly copyright trolls."
+msgstr ""
+
+#: src/dukop/apps/calendar/templates/calendar/includes/event_form.html:308
 msgid ""
 "You can add links (URLs) to other pages, if for instance you have a website "
 "or a signup page."
@@ -981,23 +988,23 @@ msgstr "Sker"
 msgid "today"
 msgstr "i dag"
 
-#: src/dukop/apps/calendar/templates/calendar/index.html:95
+#: src/dukop/apps/calendar/templates/calendar/index.html:98
 msgid ""
 "Nothing planned today, this is your chance to do something! Gather your "
 "people!"
 msgstr "Det sker ikke ikke en skid i dag"
 
-#: src/dukop/apps/calendar/templates/calendar/index.html:115
+#: src/dukop/apps/calendar/templates/calendar/index.html:151
 #, fuzzy
 #| msgid "Existing venue"
 msgid "Active locations"
 msgstr "Eksisterende lokation"
 
-#: src/dukop/apps/calendar/templates/calendar/index.html:129
+#: src/dukop/apps/calendar/templates/calendar/index.html:165
 msgid "All events next 30 days"
 msgstr ""
 
-#: src/dukop/apps/calendar/templates/calendar/index.html:159
+#: src/dukop/apps/calendar/templates/calendar/index.html:195
 msgid "Browse more events..."
 msgstr "Vis flere begivenheder..."
 
@@ -1065,6 +1072,76 @@ msgid "About Duk Op"
 msgstr "Om Duk Op"
 
 #: src/dukop/apps/news/templates/news/about.html:12
+#, fuzzy
+#| msgid ""
+#| "\n"
+#| "<p>Duk Op is your guide to what happens in and around Copenhagen, whether "
+#| "you are looking for demonstrations, concerts, parties, meetings, soup "
+#| "kitchens, gardening days, workshops, art exhibitions, film screenings and "
+#| "much more.</p>\n"
+#| "\n"
+#| "<p>Jump to:</p>\n"
+#| "\n"
+#| " <ul>\n"
+#| "     <li><a href=\"#contact\">Contact</a></li>\n"
+#| "     <li><a href=\"#guidelines\">Event Guidelines</a></li>\n"
+#| "     <li><a href=\"#policy\">Our security policy</a></li>\n"
+#| "     <li><a href=\"#users\">Duk Op's different user types</a></li>\n"
+#| "     <li><a href=\"#why\">Why should I think about internet security?</"
+#| "a></li>\n"
+#| "     <li><a href=\"#protect\">How should I protect myself when on Duk Op?"
+#| "</a></li>\n"
+#| "     <li><a href=\"#read\">Further readings about internet security</a></"
+#| "li>\n"
+#| " </ul>\n"
+#| "\n"
+#| "<p>The idea behind the calendar is that there is a need for a simple and "
+#| "accessible way to get involved and involve others in these cool "
+#| "activities. Money shouldn't be an issue, as you should not be dependent "
+#| "on having the \"right\" friends on Facebook or on checking ten different "
+#| "online calendars to get an overview of what's happening. Duk Op is a "
+#| "possibility to open up, gather and discover new and exciting projects.</"
+#| "p>\n"
+#| "\n"
+#| "<p>The crew behind the homepage does not upload events to the calendar, "
+#| "so Duk Op is entirely dependent on you and your group contributing with "
+#| "your events and activities!</p>\n"
+#| "\n"
+#| "<p>Duk Op is a political project. We dream of a different and better "
+#| "world. A world based on principles of freedom, equality and autonomy and "
+#| "without discrimination and oppression in all its forms. We get excited "
+#| "about activism, self-organisation and about initiatives and cultural "
+#| "projects that are more than something you can write on your CV or that "
+#| "you can earn money from. We wish to support places, groups and "
+#| "individuals who share these values. For this reason, events that for "
+#| "instance have a parlamentarian goal or that aim at commercial profit are "
+#| "not welcome on the calendar.</p>\n"
+#| "\n"
+#| "<p>Generally, Duk Op aims at hosting open events. However, we do see "
+#| "exceptions, for example in the case of separatistic events that focus on "
+#| "gender. On the other hand, closed member-meetings and the like do not "
+#| "belong on the calendar, but belong to the organisation or group's own "
+#| "communication channels (e.g. mailing-list).</p>\n"
+#| "\n"
+#| "<p>We hope that Duk Op can function as a mobilising platform, can make it "
+#| "easier to get involved and involve others and can inspire and motivate by "
+#| "showing all the great activities that are happening out there.</p>\n"
+#| "\n"
+#| "<h2 id=\"contact\">Contact Duk Op</h2>\n"
+#| "\n"
+#| "<p>If you have questions regarding what you have just read, or about "
+#| "anything else, write an email to <a href=\"mailto:dukop@riseup.net"
+#| "\">dukop@riseup.net</a></p>\n"
+#| "\n"
+#| "<p>To the security conscious: We have <a href=\"https://pgp.mit.edu/pks/"
+#| "lookup?op=get&search=0xE74B09BA26CE1DD7\">a PGP key</a>.</p>\n"
+#| "\n"
+#| "<p>The key ID is <code>0x26CE1DD7</code>. The full key fingerprint is:</"
+#| "p>\n"
+#| "\n"
+#| "<pre>\n"
+#| "Key fingerprint = 5832 0CBF 30E8 8572 F8A4 1943 E74B 09BA 26CE 1DD7\n"
+#| "</pre>\n"
 msgid ""
 "\n"
 "<p>Duk Op is your guide to what happens in and around Copenhagen, whether "
@@ -1077,6 +1154,8 @@ msgid ""
 " <ul>\n"
 "     <li><a href=\"#contact\">Contact</a></li>\n"
 "     <li><a href=\"#guidelines\">Event Guidelines</a></li>\n"
+"     <li><a href=\"#copyrighttrolls\">Copyright and copyright trolls</a></"
+"li>\n"
 "     <li><a href=\"#policy\">Our security policy</a></li>\n"
 "     <li><a href=\"#users\">Duk Op's different user types</a></li>\n"
 "     <li><a href=\"#why\">Why should I think about internet security?</a></"
@@ -1198,7 +1277,7 @@ msgstr ""
 "Key fingerprint = 5832 0CBF 30E8 8572 F8A4 1943 E74B 09BA 26CE 1DD7\n"
 "</pre>\n"
 
-#: src/dukop/apps/news/templates/news/about.html:52
+#: src/dukop/apps/news/templates/news/about.html:53
 msgid ""
 "\n"
 "<h1 id=\"guidelines\">Guidelines to making great events</h1>\n"
@@ -1217,6 +1296,30 @@ msgid ""
 msgstr ""
 
 #: src/dukop/apps/news/templates/news/about.html:68
+msgid ""
+"\n"
+"\n"
+"<h1 id=\"copyrighttrolls\">Copyright and copyright trolls</h1>\n"
+"\n"
+"<p>The collective behind Duk Op does not create event content and disclaims "
+"responsibility for copyright matters. Users should use images that they have "
+"rights to use - so we don't have to bother with silly copyright trolls.</p>\n"
+"\n"
+"<p>Copyright trolls are companies that use legal extortion methods to demand "
+"arbitrary fees be paid for some random photo on a website. In our case, they "
+"don't care that we didn't choose the photo, have no way of verifying its "
+"copyright, that we don't profit on it nor that the photos are in low "
+"resolution and are often remixed. What they care about is getting as much "
+"money as possible.</p>\n"
+"\n"
+"<p>Because law-makers in Denmark have put us in a bad position, we have no "
+"other choice than to remove content if requested by the trolls. We cannot "
+"verify their claims. If someone wants to back us to fight them back, we will "
+"gladly receive any help.</p>\n"
+"\n"
+msgstr ""
+
+#: src/dukop/apps/news/templates/news/about.html:83
 msgid ""
 "\n"
 "\n"
@@ -1400,41 +1503,41 @@ msgstr "Duk Op: Engangs-login"
 msgid "Duk Op: New event"
 msgstr "Duk Op: Ny begivenhed"
 
-#: src/dukop/apps/users/forms.py:19 src/dukop/apps/users/forms.py:73
+#: src/dukop/apps/users/forms.py:20 src/dukop/apps/users/forms.py:74
 msgid "Email"
 msgstr "Email"
 
-#: src/dukop/apps/users/forms.py:34
+#: src/dukop/apps/users/forms.py:35
 msgid "Token"
 msgstr "Token"
 
-#: src/dukop/apps/users/forms.py:50
+#: src/dukop/apps/users/forms.py:51
 msgid "Are you a 'bot' or a 'human'?"
 msgstr "Er du en robot eller menneske?"
 
-#: src/dukop/apps/users/forms.py:50
+#: src/dukop/apps/users/forms.py:51
 msgid "human"
 msgstr "Menneske"
 
-#: src/dukop/apps/users/forms.py:52
+#: src/dukop/apps/users/forms.py:53
 msgid "What do you do when you are not awake? Starts with S, ends with P."
 msgstr "Hvad laver du når du ikke er vågen? Starter med S og slutter med R"
 
-#: src/dukop/apps/users/forms.py:53
+#: src/dukop/apps/users/forms.py:54
 msgid "sleep"
 msgstr "sover"
 
-#: src/dukop/apps/users/forms.py:57
+#: src/dukop/apps/users/forms.py:58
 msgid ""
 "Toilets. We all use them. After which we... [fl*sh]. Just write that word "
 "here."
 msgstr "Vi bruger alle toiletter. Hvad gør vi bagefter? [sk*ller] ud."
 
-#: src/dukop/apps/users/forms.py:59
+#: src/dukop/apps/users/forms.py:60
 msgid "flush"
 msgstr "skyller"
 
-#: src/dukop/apps/users/forms.py:75
+#: src/dukop/apps/users/forms.py:76
 msgid "Are you a bot?"
 msgstr "Er du en robot?"
 
@@ -1588,7 +1691,7 @@ msgstr "Få en en ny token"
 
 #: src/dukop/apps/users/templates/users/login_token_sent.html:5
 #: src/dukop/apps/users/templates/users/login_token_sent.html:9
-#: src/dukop/apps/users/views.py:219 src/dukop/apps/users/views.py:232
+#: src/dukop/apps/users/views.py:220 src/dukop/apps/users/views.py:233
 msgid "Check your inbox"
 msgstr "Tjek din indbakke"
 
@@ -1839,14 +1942,18 @@ msgstr ""
 msgid "Update profile"
 msgstr "Opdatér profil"
 
-#: src/dukop/apps/users/views.py:59
+#: src/dukop/apps/users/views.py:60
 msgid "Please log in before proceeding"
 msgstr "Vær venlig at logge ind før du fortsætter"
 
-#: src/dukop/apps/users/views.py:222
+#: src/dukop/apps/users/views.py:223
 msgid "If the email isn't there in 2 minutes, check your spam folder."
 msgstr ""
 "Hvis du ikke har modtaget mailen inden for 2 minutter, tjek i din spam mappe."
+
+#: src/dukop/apps/users/views.py:279
+msgid "Your profile updates were saved."
+msgstr ""
 
 #: src/dukop/settings/base.py:107
 msgid "English"

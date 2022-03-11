@@ -34,6 +34,10 @@ class EventFeed(ICalFeed):
             return get_object_or_404(models.Sphere, pk=sphere_id)
         return None
 
+    def file_name(self, obj):
+        if obj:
+            return "{}.ics".format(obj.slug)
+
     def title(self, obj):
         if obj:
             return _("Duk Op calendar for {}".format(obj.name))
@@ -41,7 +45,7 @@ class EventFeed(ICalFeed):
             return _("Duk Op future events")
 
     def items(self, obj):
-        event_times = models.EventTime.objects.all()
+        event_times = models.EventTime.objects.filter(event__published=True)
         if obj:
             event_times = event_times.filter(event__spheres=obj)
         return event_times.future()
@@ -72,6 +76,25 @@ class EventFeed(ICalFeed):
         if item.event.zip_code:
             location += " " + item.event.zip_code
         return location
+
+
+class EventFeedDetail(EventFeed):
+    """
+    Fetches just 1 event by PK
+    """
+
+    def get_object(self, request, *args, **kwargs):
+        self.event_id = kwargs.get("event_id")
+        self.event = get_object_or_404(models.Event, id=self.event_id)
+        return super().get_object(request, *args, **kwargs)
+
+    def file_name(self, obj):
+        return "{}.ics".format(self.event.slug)
+
+    def items(self, obj):
+        event_times = super().items(obj)
+        event_times = event_times.filter(event=self.event)
+        return event_times
 
 
 class DukOpEventRssGenerator(feedgenerator.Rss201rev2Feed):

@@ -901,7 +901,7 @@ msgid ""
 "The collective behind Duk Op does not create events itself, and disclaims "
 "responsibility for copyright matters. Use an image you have rights to use - "
 "so we don't have to bother with silly copyright trolls."
-msgstr ""
+msgstr "Kollektivet bag Duk Op opretter ikke selv events og vi fraskriver os ansvar for copyright forhold. Du skal bruge billeder som har rettighederne til.  "
 
 #: src/dukop/apps/calendar/templates/calendar/includes/event_form.html:308
 msgid ""
@@ -911,27 +911,23 @@ msgstr ""
 
 #: src/dukop/apps/calendar/templates/calendar/includes/event_owner_buttons.html:3
 msgid "Update"
-msgstr ""
+msgstr "Opdatér"
 
 #: src/dukop/apps/calendar/templates/calendar/includes/event_owner_buttons.html:4
 msgid "Cancel"
-msgstr ""
+msgstr "Aflys"
 
 #: src/dukop/apps/calendar/templates/calendar/includes/event_owner_buttons.html:5
 msgid "Delete"
-msgstr ""
+msgstr "Slet"
 
 #: src/dukop/apps/calendar/templates/calendar/includes/event_owner_buttons.html:8
-#, fuzzy
-#| msgid "Published"
 msgid "Unpublish"
-msgstr "Offentliggjort"
+msgstr "Afpublicér"
 
 #: src/dukop/apps/calendar/templates/calendar/includes/event_owner_buttons.html:10
-#, fuzzy
-#| msgid "Published"
 msgid "Publish"
-msgstr "Offentliggjort"
+msgstr "Publicér"
 
 #: src/dukop/apps/calendar/templates/calendar/includes/list_pagination.html:7
 msgid "Previous week"
@@ -1581,16 +1577,11 @@ msgstr "Tillad ikke at andre kan tilføje begivenheder til denne gruppe"
 
 #: src/dukop/apps/users/models.py:126
 msgid "Do not show this group"
-msgstr ""
+msgstr "Vis ikke denne gruppe"
 
 #: src/dukop/apps/users/models.py:132
-#, fuzzy
-#| msgid ""
-#| "Enter details, which will be displayed on the group's own page. You can "
-#| "use Markdown."
 msgid "Enter details, which will be displayed on the group's own page."
-msgstr ""
-"Skriv detaljer som vil blive vist på gruppens egen side. Du kan bruge "
+msgstr ""Skriv detaljer som vil blive vist på gruppens egen side. Du kan bruge "
 "formatering. "
 
 #: src/dukop/apps/users/models.py:164
@@ -1625,10 +1616,9 @@ msgstr "Login for eksisterende brugere"
 
 #: src/dukop/apps/users/templates/users/login.html:14
 #: src/dukop/apps/users/templates/users/login_token.html:14
-msgid ""
-"Your account doesn't have access to this page. To proceed, please login with "
+msgid "Your account doesn't have access to this page. To proceed, please login with "
 "an account that has access."
-msgstr ""
+msgstr "Din bruger har ikke adgang til denne side. For at fortsætte skal du logge ind med en bruger, der har adgang."
 
 #: src/dukop/apps/users/templates/users/login.html:19
 #, fuzzy
@@ -1935,10 +1925,8 @@ msgstr ""
 "du bliver logget ind."
 
 #: src/dukop/apps/users/templates/users/update.html:5
-#, fuzzy
-#| msgid "Create event"
 msgid "Profile and events"
-msgstr "Opret begivenhed"
+msgstr "Profil og begivenheder"
 
 #: src/dukop/apps/users/templates/users/update.html:9
 msgid "Your profile"
@@ -1967,7 +1955,7 @@ msgstr ""
 
 #: src/dukop/apps/users/views.py:279
 msgid "Your profile updates were saved."
-msgstr ""
+msgstr "Din profil opdatering blev gemt."
 
 #: src/dukop/settings/base.py:107
 msgid "English"
@@ -2009,13 +1997,11 @@ msgstr ""
 
 #: src/dukop/templates/base.html:13
 msgid "Duk dig ikke"
-msgstr ""
+msgstr "Duk dig ikke"
 
 #: src/dukop/templates/base.html:13
-#, fuzzy
-#| msgid "About Duk Op"
 msgid "Duk Op!"
-msgstr "Om Duk Op"
+msgstr "Duk Op!"
 
 #: src/dukop/templates/base.html:14 src/dukop/templates/base.html:23
 #: src/dukop/templates/base.html:31
@@ -2030,11 +2016,11 @@ msgstr ""
 
 #: src/dukop/templates/base.html:61
 msgid "My events"
-msgstr ""
+msgstr "Mine begivenheder"
 
 #: src/dukop/templates/base.html:62
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
 #: src/dukop/templates/base.html:63
 msgid "Log out"
@@ -2067,17 +2053,10 @@ msgid "Activate sphere"
 msgstr "Aktivér sfære"
 
 #: src/dukop/templates/base.html:120
-#, fuzzy
-#| msgid ""
-#| "Events can take place in different spheres. Duk Op is available in the "
-#| "following spheres. By changing the active sphere, you'll get a different "
-#| "view of the site:"
-msgid ""
-"Events can take place in different spheres that may or may not overlap. Duk "
+msgid "Events can take place in different spheres that may or may not overlap. Duk "
 "Op is available in the following spheres. By changing the active sphere, "
 "you'll get a different view of the site:"
-msgstr ""
-"Duk Op er tilgængeligt i følgende udgaver eller 'sfærer'. Ved at skifte og "
+msgstr ""Duk Op er tilgængeligt i følgende udgaver eller 'sfærer'. Ved at skifte og "
 "aktivere en anden sfærer, får du en anden udgave af sitet:"
 
 #: src/dukop/templates/base.html:129
@@ -2161,12 +2140,10 @@ msgstr "Ingen nyheder"
 #~ msgid "If left blank, will be copied from host group"
 #~ msgstr "hvis tom, bliver den kopieret fra ejer-gruppen."
 
-#~ msgid ""
-#~ "Getting all the details right for you event can take some time. Spend "
+#~ msgid "Getting all the details right for you event can take some time. Spend "
 #~ "time to ensure that it looks nice. This form contains the following "
 #~ "sections:"
-#~ msgstr ""
-#~ "Det kan tage tid at oprette et event. Brug noget tid på at få det til at "
+#~ msgstr "Det kan tage tid at oprette et event. Brug noget tid på at få det til at "
 #~ "se godt ud. Udfyldningsformularen indeholder følgende:"
 
 #~ msgid "Basic details"
@@ -2184,15 +2161,11 @@ msgstr "Ingen nyheder"
 #~ msgid "Remove timeslot"
 #~ msgstr "Fjern tidsvindue"
 
-#, fuzzy
-#~| msgid "automatic recurrence"
 #~ msgid "Automatic recurrence"
 #~ msgstr "automatisk gentagelse"
 
-#, fuzzy
-#~| msgid "recurrence"
 #~ msgid "Remove recurrence"
-#~ msgstr "gentagelse"
+#~ msgstr "Fjern gentagelse"
 
 #~ msgid "Remove image"
 #~ msgstr "Fjern billede"
@@ -2206,15 +2179,8 @@ msgstr "Ingen nyheder"
 #~ msgid "Create"
 #~ msgstr "Opret"
 
-#, fuzzy
-#~| msgid ""
-#~| "You will only have a password if you choose to have one after signing "
-#~| "up. Don't have an account yet?"
-#~ msgid ""
-#~ "You will only have a password if you choose to have one after signing up."
-#~ msgstr ""
-#~ "Du vil kun have et kodeord, hvis du vælger det efter du har tilmeldt dig."
-#~ "Har du ikke en bruger endnu?"
+#~ msgid "You will only have a password if you choose to have one after signing up."
+#~ msgstr "Du vil kun have et kodeord, hvis du vælger det efter du har tilmeldt dig."
 
 #~ msgid "Don't have a login?"
 #~ msgstr "Har du ikke et login?"

@@ -57,7 +57,7 @@ class EventFeed(ICalFeed):
         return item.event.name
 
     def item_description(self, item):
-        return item.event.short_description + _("\n\nMore details: {}").format(
+        return item.event.short_description + _("\n\nRead more: {}").format(
             self.item_link(item)
         )
 

@@ -1,10 +1,10 @@
 {% extends "users/mail/base.txt" %}{% load i18n %}
 
-{% block content %}{% url 'users:login_token' token=user.token_uuid as login_url %}{% blocktrans with token_passphrase=user.token_passphrase expiry=user.token_expiry next=next %}Here is a token for confirming your account:
+{% block content %}{% url 'users:login_token' token=user.token_uuid as login_url %}{% blocktrans with token_passphrase=user.token_passphrase expiry=user.token_expiry next=next %}Here is a 1-time code for confirming your account:
 
 {{ token_passphrase }}
 
-Use this token code within 1 hour (before {{ expiry }}). You can login here:
+Use this code within 1 hour (before {{ expiry }}). You can login here:
 
 {{ protocol }}://{{ domain }}{{ login_url }}?next={{ next }}
 

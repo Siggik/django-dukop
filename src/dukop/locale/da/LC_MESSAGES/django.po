@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-12 13:04+0100\n"
+"POT-Creation-Date: 2022-03-12 13:09+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1502,45 +1502,45 @@ msgstr "Duk Op: Engangs-login"
 msgid "Duk Op: New event"
 msgstr "Duk Op: Ny begivenhed"
 
-#: src/dukop/apps/users/forms.py:20 src/dukop/apps/users/forms.py:74
+#: src/dukop/apps/users/forms.py:20 src/dukop/apps/users/forms.py:78
 msgid "Email"
 msgstr "Email"
 
-#: src/dukop/apps/users/forms.py:35
+#: src/dukop/apps/users/forms.py:36
 msgid "1-time code"
 msgstr "Engangs-kode"
 
-#: src/dukop/apps/users/forms.py:35
+#: src/dukop/apps/users/forms.py:37
 msgid "The code appears in the email you just received."
 msgstr "Koden fremgår af den email, du netop modtog."
 
-#: src/dukop/apps/users/forms.py:51
+#: src/dukop/apps/users/forms.py:55
 msgid "Are you a 'bot' or a 'human'?"
 msgstr "Er du en robot eller menneske?"
 
-#: src/dukop/apps/users/forms.py:51
+#: src/dukop/apps/users/forms.py:55
 msgid "human"
 msgstr "Menneske"
 
-#: src/dukop/apps/users/forms.py:53
+#: src/dukop/apps/users/forms.py:57
 msgid "What do you do when you are not awake? Starts with S, ends with P."
 msgstr "Hvad laver du når du ikke er vågen? Starter med S og slutter med R"
 
-#: src/dukop/apps/users/forms.py:54
+#: src/dukop/apps/users/forms.py:58
 msgid "sleep"
 msgstr "sover"
 
-#: src/dukop/apps/users/forms.py:58
+#: src/dukop/apps/users/forms.py:62
 msgid ""
 "Toilets. We all use them. After which we... [fl*sh]. Just write that word "
 "here."
 msgstr "Vi bruger alle toiletter. Hvad gør vi bagefter? [sk*ller] ud."
 
-#: src/dukop/apps/users/forms.py:60
+#: src/dukop/apps/users/forms.py:64
 msgid "flush"
 msgstr "skyller"
 
-#: src/dukop/apps/users/forms.py:76
+#: src/dukop/apps/users/forms.py:80
 msgid "Are you a bot?"
 msgstr "Er du en robot?"
 
@@ -1712,6 +1712,10 @@ msgstr ""
 "Hvis din email er registreret, har du modtaget en engangs-kode på din email "
 "nu. Klik på linket sendt til %(email_token)s on indtast koden, ved at "
 "anvende linket i emailen."
+
+#: src/dukop/apps/users/templates/users/login_token_sent.html:20
+msgid "Remember to check your spam folder 🗑️"
+msgstr "Husk at tjekke din spam-mappe 🗑️"
 
 #: src/dukop/apps/users/templates/users/mail/admin_event_created.txt:3
 #, python-format

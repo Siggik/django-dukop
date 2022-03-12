@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-12 13:09+0100\n"
+"POT-Creation-Date: 2022-03-12 13:13+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1619,7 +1619,7 @@ msgid "Log in again"
 msgstr "Log ind igen"
 
 #: src/dukop/apps/users/templates/users/login.html:5
-#: src/dukop/apps/users/templates/users/login.html:63
+#: src/dukop/apps/users/templates/users/login.html:65
 #: src/dukop/apps/users/templates/users/login_password.html:16
 #: src/dukop/apps/users/templates/users/login_token.html:25
 #: src/dukop/apps/users/templates/users/password_reset_complete.html:11
@@ -1647,15 +1647,22 @@ msgstr ""
 "Hvis du allerede har registreret en e-mail, indtast den her og du vil "
 "modtage en engangs-kode via e-mail"
 
-#: src/dukop/apps/users/templates/users/login.html:27
+#: src/dukop/apps/users/templates/users/login.html:19
+msgid ""
+"<strong>Spring 2022:</strong> If you were registered on the old Duk Op "
+"website, you need to register a new account further down ⬇️"
+msgstr "<strong>Forår 2022:</strong> Hvis du var registreret på det gamle "
+"Duk Op website, skal du oprette en ny konto længere nede ⬇️"
+
+#: src/dukop/apps/users/templates/users/login.html:29
 msgid "Send a 1-time login"
 msgstr "Send et engangs-login"
 
-#: src/dukop/apps/users/templates/users/login.html:35
+#: src/dukop/apps/users/templates/users/login.html:37
 msgid "New user registration"
 msgstr "Registrering af ny bruger"
 
-#: src/dukop/apps/users/templates/users/login.html:37
+#: src/dukop/apps/users/templates/users/login.html:39
 msgid ""
 "You need to register in order to login. You need access to the provided "
 "email address to verify and use 1-time logins afterwards."
@@ -1663,17 +1670,17 @@ msgstr ""
 "Du skal registere en email-adresse for at kunne logge ind. Du skal have "
 "adgang til email-kontoen, hver gang du logger ind."
 
-#: src/dukop/apps/users/templates/users/login.html:45
+#: src/dukop/apps/users/templates/users/login.html:47
 #: src/dukop/apps/users/templates/users/signup.html:5
 #: src/dukop/apps/users/templates/users/signup.html:9
 msgid "Sign up"
 msgstr "Tilmeld dig"
 
-#: src/dukop/apps/users/templates/users/login.html:53
+#: src/dukop/apps/users/templates/users/login.html:55
 msgid "Log in with password"
 msgstr "Login med kodeord"
 
-#: src/dukop/apps/users/templates/users/login.html:55
+#: src/dukop/apps/users/templates/users/login.html:57
 msgid ""
 "You can log in with a password if you have defined one. Otherwise, use the 1-"
 "time login above."

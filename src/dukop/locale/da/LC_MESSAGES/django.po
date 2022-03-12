@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-12 13:13+0100\n"
+"POT-Creation-Date: 2022-03-12 13:26+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1640,9 +1640,13 @@ msgid ""
 msgstr ""
 
 #: src/dukop/apps/users/templates/users/login.html:17
+#, fuzzy
+#| msgid ""
+#| "If you already registered an email below, enter it here and we will send "
+#| "you a 1-time pass via email."
 msgid ""
-"If you already registered an email below, enter it here and we will send "
-"you a 1-time pass via email."
+"If you already registered an email, enter it here and we will send you a 1-"
+"time pass via email."
 msgstr ""
 "Hvis du allerede har registreret en e-mail, indtast den her og du vil "
 "modtage en engangs-kode via e-mail"
@@ -1651,8 +1655,9 @@ msgstr ""
 msgid ""
 "<strong>Spring 2022:</strong> If you were registered on the old Duk Op "
 "website, you need to register a new account further down ⬇️"
-msgstr "<strong>Forår 2022:</strong> Hvis du var registreret på det gamle "
-"Duk Op website, skal du oprette en ny konto længere nede ⬇️"
+msgstr ""
+"<strong>Forår 2022:</strong> Hvis du var registreret på det gamle Duk Op "
+"website, skal du oprette en ny konto længere nede ⬇️"
 
 #: src/dukop/apps/users/templates/users/login.html:29
 msgid "Send a 1-time login"
@@ -1700,7 +1705,9 @@ msgid "Final login step"
 msgstr "Næsten logget ind..."
 
 #: src/dukop/apps/users/templates/users/login_token.html:32
-msgid "Get a new token"
+#, fuzzy
+#| msgid "Get a new token"
+msgid "Get a new 1-time code"
 msgstr "Få en en ny token"
 
 #: src/dukop/apps/users/templates/users/login_token_sent.html:5
@@ -1710,15 +1717,14 @@ msgid "Check your inbox"
 msgstr "Tjek din indbakke"
 
 #: src/dukop/apps/users/templates/users/login_token_sent.html:12
-#, python-format
 msgid ""
 "If your email is registered, you will have received a one-time login by "
 "email now. Click the link sent to %(email_token)s and enter the token, using "
 "the link that is found in the email."
 msgstr ""
-"Hvis din email er registreret, har du modtaget en engangs-kode på din email "
-"nu. Klik på linket sendt til %(email_token)s on indtast koden, ved at "
-"anvende linket i emailen."
+"Hvis din email er registreret, har du modtaget en engangs-kode inden for de "
+"næste minutter. Klik på linket sendt til %(email_token)s og indtast engangs-"
+"koden."
 
 #: src/dukop/apps/users/templates/users/login_token_sent.html:20
 msgid "Remember to check your spam folder 🗑️"
@@ -2066,16 +2072,12 @@ msgstr "Kontakt os"
 
 #: src/dukop/templates/base.html:119
 msgid "Activate sphere"
-msgstr "Aktivér sfærer"
+msgstr "Aktivér sfære"
 
 #: src/dukop/templates/base.html:120
-#, fuzzy
-#| msgid ""
-#| "Duk Op is available in the followin mixes or spheres. By changing the "
-#| "active sphere, you'll get a different view of the site:"
 msgid ""
-"Events can take place in different spheres that may or may not overlap. Duk "
-"Op is available in the following spheres. By changing the active sphere, "
+"Events can take place in different spheres. Duk Op is available in the "
+"following spheres. By changing the active sphere, "
 "you'll get a different view of the site:"
 msgstr ""
 "Duk Op er tilgængeligt i følgende udgaver eller 'sfærer'. Ved at skifte og "
@@ -2090,7 +2092,7 @@ msgid ""
 "You can subscribe to Duk Op in for instance Google, iCal, Thunderbird and "
 "more. Copy this URL into your calendar's Import function (iCAL/ICS format)"
 msgstr ""
-"Du kan abonnere på Duk Op i f.eks. Google, iCal, Thunderbird or mere. Kopiér "
+"Du kan abonnere på Duk Op i f.eks. Google, iCal, Thunderbird mm. Kopiér "
 "følgende URL ind i din kalenders import-funktion (iCAL/ICS format)"
 
 #: src/dukop/templates/base.html:135

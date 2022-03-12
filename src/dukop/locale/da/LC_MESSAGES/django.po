@@ -901,7 +901,7 @@ msgid ""
 "The collective behind Duk Op does not create events itself, and disclaims "
 "responsibility for copyright matters. Use an image you have rights to use - "
 "so we don't have to bother with silly copyright trolls."
-msgstr "Kollektivet bag Duk Op opretter ikke selv events og vi fraskriver os ansvar for copyright forhold. Du skal bruge billeder som har rettighederne til.  "
+msgstr "Kollektivet bag Duk Op opretter ikke selv events og vi fraskriver os ansvar for copyright forhold. Du skal bruge billeder, som du har rettighederne til."
 
 #: src/dukop/apps/calendar/templates/calendar/includes/event_form.html:308
 msgid ""
@@ -1581,7 +1581,7 @@ msgstr "Vis ikke denne gruppe"
 
 #: src/dukop/apps/users/models.py:132
 msgid "Enter details, which will be displayed on the group's own page."
-msgstr ""Skriv detaljer som vil blive vist på gruppens egen side. Du kan bruge "
+msgstr "Skriv detaljer som vil blive vist på gruppens egen side. Du kan bruge "
 "formatering. "
 
 #: src/dukop/apps/users/models.py:164

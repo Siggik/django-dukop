@@ -36,7 +36,9 @@
     {% if not event.images.all %}
     <li>{% trans "<strong>Your event doesn't have any images.</strong> You can skip this, but we really recommend adding an illustration to improve appearance on Dup Op and other sites where it's shared." %} <a href="{% url "calendar:event_update" pk=event.pk %}#images">{% trans "Add images" %} »</a></li>
     {% endif %}
-    <li>{% trans "<strong>Your event isn't published.</strong> As long as it isn't published, other users cannot see it." %} <a href="{% url "calendar:event_publish" pk=event.pk %}">{% trans "Publish event" %} »</a></li>
+    <li>{% trans "<strong>Your event isn't published.</strong> As long as it isn't published, other users cannot see it." %}<br><br><a href="{% url "calendar:event_publish" pk=event.pk %}" class="button">
+      {% trans "Publish" %}<br><div class="icon icon__eye"></div>
+    </a></li>
   </ul>
 
 </div>

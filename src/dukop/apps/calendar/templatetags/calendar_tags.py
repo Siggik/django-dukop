@@ -165,7 +165,8 @@ def url_alias(url):
     try:
         __, domain_path = url.split("://")
         domain = domain_path.split("/")[0]
-        domain = domain.strip("www.")
+        if domain.startswith("www."):
+            domain = domain[4:]
         if domain == "facebook.com":
             domain = "facebook.com (which tracks you)"
         return domain

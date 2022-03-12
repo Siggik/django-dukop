@@ -2,18 +2,15 @@
 {% load i18n %}
 {% load dukop_utils %}
 
-{% block dukop_title %}{% trans "Token check" %}{% endblock %}
+{% block dukop_title %}{% trans "Final login step" %}{% endblock %}
 
 {% block content %}
 
-<h1>{% trans "Login" %}</h1>
+<h1>{% trans "Final login step" %}</h1>
 
 {% if next %}
     {% if user.is_authenticated %}
-    <p>Your account doesn't have access to this page. To proceed,
-    please login with an account that has access.</p>
-    {% else %}
-    <p>Please login to see this page.</p>
+      <p>{% trans "Your account doesn't have access to this page. To proceed, please login with an account that has access." %}</p>
     {% endif %}
 {% endif %}
 
@@ -25,7 +22,7 @@
   <div class="row">
       <div class="col-md-4"></div>
       <div class="col-md-8">
-          <input type="submit" value="{% trans "Validate token and login" %}">
+          <input type="submit" value="{% trans "Log in" %}">
       </div>
   </div>
 

@@ -8,6 +8,12 @@
 
 <h1>{% trans "Returning user login" context "meant about an existing user, a user that already has an account" %}</h1>
 
+{% if next %}
+    {% if user.is_authenticated %}
+      <p>{% trans "Your account doesn't have access to this page. To proceed, please login with an account that has access." %}</p>
+    {% endif %}
+{% endif %}
+
 <p>{% trans "If you already registered an email (below), enter it here and we will send you a 1-time pass via email." %}</p>
 
 <form method="post" action="{% url 'users:login' %}">

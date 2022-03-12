@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-12 12:03+0100\n"
+"POT-Creation-Date: 2022-03-12 13:04+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,11 +38,11 @@ msgstr "Fremtidige begivenheder på Duk Op"
 msgid ""
 "\n"
 "\n"
-"More details: {}"
+"Read more: {}"
 msgstr ""
 "\n"
 "\n"
-"Flere detaljer: {}"
+"Læs mere: {}"
 
 #: src/dukop/apps/calendar/feeds.py:159
 msgid "Duk Op's next 30 events"
@@ -53,10 +53,8 @@ msgid "RSS feed of the latest events on Duk Op"
 msgstr "RSS feed for de seneste begivenhder på Duk Op"
 
 #: src/dukop/apps/calendar/forms.py:41
-#, fuzzy
-#| msgid "Calendar subscription"
 msgid "Calendars"
-msgstr "Kalender abonnement"
+msgstr "Kalendere"
 
 #: src/dukop/apps/calendar/forms.py:43
 msgid ""
@@ -74,16 +72,12 @@ msgid "Location"
 msgstr ""
 
 #: src/dukop/apps/calendar/forms.py:54
-#, fuzzy
-#| msgid ""
-#| "Choose venues from an existing list, otherwise create a new one below"
 msgid "Choose an existing location or create a new one"
-msgstr ""
-"Vælg en lokation fra eksisterende liste, ellers så opret et nyt sted nedenfor"
+msgstr "Vælg en eksisterende lokation eller opret en ny"
 
 #: src/dukop/apps/calendar/forms.py:70
 msgid "Save location"
-msgstr ""
+msgstr "Gem lokation"
 
 #: src/dukop/apps/calendar/forms.py:71
 msgid "Make the location available for other events later"
@@ -96,19 +90,13 @@ msgid "Host group"
 msgstr "ejer (gruppe)"
 
 #: src/dukop/apps/calendar/forms.py:176
-#, fuzzy
-#| msgid ""
-#| "Choose venues from an existing list, otherwise create a new one below"
 msgid "Choose one of your existing groups or create a new one"
-msgstr ""
-"Vælg en lokation fra eksisterende liste, ellers så opret et nyt sted nedenfor"
+msgstr "Vælg en af dine eksisterende grupper eller opret en ny"
 
 #: src/dukop/apps/calendar/forms.py:180
 #: src/dukop/apps/calendar/templates/calendar/includes/event_form.html:40
-#, fuzzy
-#| msgid "owner (group)"
 msgid "New group"
-msgstr "ejer (gruppe)"
+msgstr "Ny gruppe"
 
 #: src/dukop/apps/calendar/forms.py:182
 msgid "Name of the new group, for instance 'Marxist Book Reading Circle'"
@@ -982,10 +970,8 @@ msgid "<strong>Recurring</strong> events"
 msgstr ""
 
 #: src/dukop/apps/calendar/templates/calendar/index.html:62
-#, fuzzy
-#| msgid "Next"
 msgid "Next:"
-msgstr "Næste"
+msgstr "Næste:"
 
 #: src/dukop/apps/calendar/templates/calendar/index.html:75
 #, fuzzy
@@ -1521,8 +1507,12 @@ msgid "Email"
 msgstr "Email"
 
 #: src/dukop/apps/users/forms.py:35
-msgid "Token"
-msgstr "Token"
+msgid "1-time code"
+msgstr "Engangs-kode"
+
+#: src/dukop/apps/users/forms.py:35
+msgid "The code appears in the email you just received."
+msgstr "Koden fremgår af den email, du netop modtog."
 
 #: src/dukop/apps/users/forms.py:51
 msgid "Are you a 'bot' or a 'human'?"
@@ -1629,8 +1619,9 @@ msgid "Log in again"
 msgstr "Log ind igen"
 
 #: src/dukop/apps/users/templates/users/login.html:5
-#: src/dukop/apps/users/templates/users/login.html:57
+#: src/dukop/apps/users/templates/users/login.html:63
 #: src/dukop/apps/users/templates/users/login_password.html:16
+#: src/dukop/apps/users/templates/users/login_token.html:25
 #: src/dukop/apps/users/templates/users/password_reset_complete.html:11
 #: src/dukop/templates/base.html:66
 msgid "Log in"
@@ -1641,7 +1632,14 @@ msgctxt "meant about an existing user, a user that already has an account"
 msgid "Returning user login"
 msgstr "Login for eksisterende brugere"
 
-#: src/dukop/apps/users/templates/users/login.html:11
+#: src/dukop/apps/users/templates/users/login.html:13
+#: src/dukop/apps/users/templates/users/login_token.html:13
+msgid ""
+"Your account doesn't have access to this page. To proceed, please login with "
+"an account that has access."
+msgstr ""
+
+#: src/dukop/apps/users/templates/users/login.html:17
 msgid ""
 "If you already registered an email (below), enter it here and we will send "
 "you a 1-time pass via email."
@@ -1649,15 +1647,15 @@ msgstr ""
 "Hvis du allerede har registreret en e-mail, indtast den her og du vil "
 "modtage en engangs-kode via e-mail"
 
-#: src/dukop/apps/users/templates/users/login.html:21
+#: src/dukop/apps/users/templates/users/login.html:27
 msgid "Send a 1-time login"
 msgstr "Send et engangs-login"
 
-#: src/dukop/apps/users/templates/users/login.html:29
+#: src/dukop/apps/users/templates/users/login.html:35
 msgid "New user registration"
 msgstr "Registrering af ny bruger"
 
-#: src/dukop/apps/users/templates/users/login.html:31
+#: src/dukop/apps/users/templates/users/login.html:37
 msgid ""
 "You need to register in order to login. You need access to the provided "
 "email address to verify and use 1-time logins afterwards."
@@ -1665,17 +1663,17 @@ msgstr ""
 "Du skal registere en email-adresse for at kunne logge ind. Du skal have "
 "adgang til email-kontoen, hver gang du logger ind."
 
-#: src/dukop/apps/users/templates/users/login.html:39
+#: src/dukop/apps/users/templates/users/login.html:45
 #: src/dukop/apps/users/templates/users/signup.html:5
 #: src/dukop/apps/users/templates/users/signup.html:9
 msgid "Sign up"
 msgstr "Tilmeld dig"
 
-#: src/dukop/apps/users/templates/users/login.html:47
+#: src/dukop/apps/users/templates/users/login.html:53
 msgid "Log in with password"
 msgstr "Login med kodeord"
 
-#: src/dukop/apps/users/templates/users/login.html:49
+#: src/dukop/apps/users/templates/users/login.html:55
 msgid ""
 "You can log in with a password if you have defined one. Otherwise, use the 1-"
 "time login above."
@@ -1683,19 +1681,18 @@ msgstr ""
 "Du kan logge på med din password, hvis du har valgt en. Ellers kan du bruge "
 "engangskoden ovenover."
 
+#: src/dukop/apps/users/templates/users/login_password.html:7
+#, fuzzy
+#| msgid "Log in with password"
+msgid "Login with password"
+msgstr "Login med kodeord"
+
 #: src/dukop/apps/users/templates/users/login_token.html:5
-msgid "Token check"
-msgstr "Tjek af token"
-
 #: src/dukop/apps/users/templates/users/login_token.html:9
-msgid "Login"
-msgstr "Log ind"
+msgid "Final login step"
+msgstr "Næsten logget ind..."
 
-#: src/dukop/apps/users/templates/users/login_token.html:28
-msgid "Validate token and login"
-msgstr "Valdiderer token med log ind"
-
-#: src/dukop/apps/users/templates/users/login_token.html:35
+#: src/dukop/apps/users/templates/users/login_token.html:32
 msgid "Get a new token"
 msgstr "Få en en ny token"
 
@@ -1745,22 +1742,21 @@ msgstr "Kære %(recipient_name)s,"
 #: src/dukop/apps/users/templates/users/mail/new_account_token_login.txt:3
 #, python-format
 msgid ""
-"Here is a token for confirming your account:\n"
+"Here is a 1-time code for confirming your account:\n"
 "\n"
 "%(token_passphrase)s\n"
 "\n"
-"Use this token code within 1 hour (before %(expiry)s). You can login here:\n"
+"Use this code within 1 hour (before %(expiry)s). You can login here:\n"
 "\n"
 "%(protocol)s://%(domain)s%(login_url)s?next=%(next)s\n"
 "\n"
 "If you did not request this account, get in touch with us."
 msgstr ""
-"Her er en token for at bekræfte din konto:\n"
+"Her er en engangskode for at bekræfte din konto:\n"
 "\n"
 "%(token_passphrase)s\n"
 "\n"
-"Brug denne token kode indenfor 1 time (before %(expiry)s). Du kan logge ind "
-"her:\n"
+"Brug denne kode indenfor 1 time (before %(expiry)s). Du kan logge ind her:\n"
 "\n"
 "%(protocol)s://%(domain)s%(login_url)s?next=%(next)s\n"
 "\n"
@@ -1769,22 +1765,21 @@ msgstr ""
 #: src/dukop/apps/users/templates/users/mail/token_login.txt:3
 #, python-format
 msgid ""
-"Here is a token for logging in:\n"
+"Here is a 1-time code for logging in:\n"
 "\n"
 "%(token_passphrase)s\n"
 "\n"
-"Use this token code within 1 hour (before %(expiry)s). You can login here:\n"
+"Use this code within 1 hour (before %(expiry)s). You can log in here:\n"
 "\n"
 "%(protocol)s://%(domain)s%(login_url)s?next=%(next)s\n"
 "\n"
 "If you did not request this login, get in touch with us."
 msgstr ""
-"Her er en token, du skal bruge for at logge ind:\n"
+"Her er en engangskode, du skal bruge for at logge ind:\n"
 "\n"
 "%(token_passphrase)s\n"
 "\n"
-"Brug denne token kode indenfor 1 time (before %(expiry)s). Du kan logge ind "
-"her:\n"
+"Brug denne kode indenfor 1 time (before %(expiry)s). Du kan logge ind her:\n"
 "\n"
 "%(protocol)s://%(domain)s%(login_url)s?next=%(next)s\n"
 "\n"
@@ -2098,6 +2093,27 @@ msgstr "Seneste nyt"
 #: src/dukop/templates/base.html:152
 msgid "No news is good news?"
 msgstr "Ingen nyheder"
+
+#~ msgid "Token"
+#~ msgstr "Token"
+
+#~ msgid "Validate token and login"
+#~ msgstr "Valdiderer token med log ind"
+
+#~ msgid ""
+#~ "\n"
+#~ "\n"
+#~ "More details: {}"
+#~ msgstr ""
+#~ "\n"
+#~ "\n"
+#~ "Flere detaljer: {}"
+
+#~ msgid "Token check"
+#~ msgstr "Tjek af token"
+
+#~ msgid "Login"
+#~ msgstr "Log ind"
 
 #~ msgid "Sharing"
 #~ msgstr "Deling"

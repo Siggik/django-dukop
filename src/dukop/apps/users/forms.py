@@ -32,7 +32,11 @@ class TokenLogin(forms.Form):
         self.token_uuid = kwargs.pop("token_uuid")
         super().__init__(*args, **kwargs)
 
-    token_passphrase = forms.CharField(label=_("Token"), required=True)
+    token_passphrase = forms.CharField(
+        label=_("1-time code"),
+        help_text=_("The code appears in the email you just received."),
+        required=True,
+    )
 
     def clean_token_passphrase(self):
         token_passphrase = self.cleaned_data.get("token_passphrase")

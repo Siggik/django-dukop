@@ -37,7 +37,7 @@ class EventForm(forms.ModelForm):
 
     spheres = forms.ModelMultipleChoiceField(
         widget=forms.CheckboxSelectMultiple,
-        queryset=models.Sphere.objects.all(),
+        queryset=models.Sphere.objects.filter(sub_spheres=None),
         label=_("Calendars"),
         help_text=_(
             "Select which versions of calendar spheres this event is relevant for."

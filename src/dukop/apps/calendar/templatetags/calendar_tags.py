@@ -34,7 +34,9 @@ def get_event_times(  # noqa: max-complexity=12
     lookups = [Q(event__published=published)]
 
     if sphere:
-        lookups.append(Q(event__spheres=sphere))
+        lookups.append(
+            Q(Q(event__spheres=sphere) | Q(event__spheres__sub_spheres=sphere))
+        )
 
     if from_date == "today":
         from_date = utils.get_now().replace(minute=0, hour=0, second=0)

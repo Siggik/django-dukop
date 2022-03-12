@@ -2056,7 +2056,7 @@ msgstr "Aktivér sfære"
 msgid "Events can take place in different spheres that may or may not overlap. Duk "
 "Op is available in the following spheres. By changing the active sphere, "
 "you'll get a different view of the site:"
-msgstr ""Duk Op er tilgængeligt i følgende udgaver eller 'sfærer'. Ved at skifte og "
+msgstr "Duk Op er tilgængeligt i følgende udgaver eller 'sfærer'. Ved at skifte og "
 "aktivere en anden sfærer, får du en anden udgave af sitet:"
 
 #: src/dukop/templates/base.html:129

@@ -102,7 +102,6 @@ class Sphere(models.Model):
         "self",
         verbose_name=_("Related spheres"),
         blank=True,
-        null=True,
         help_text=_(
             "Other spheres intersecting or contained within this sphere. This can only have one level of 'nested' spheres - you can only choose spheres that aren't also containing other spheres."
         ),

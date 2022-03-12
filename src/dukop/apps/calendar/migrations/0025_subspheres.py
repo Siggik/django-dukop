@@ -25,7 +25,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='sphere',
             name='sub_spheres',
-            field=models.ManyToManyField(blank=True, help_text="Other spheres intersecting or contained within this sphere. This can only have one level of 'nested' spheres - you can only choose spheres that aren't also containing other spheres.", limit_choices_to={'sub_spheres': None}, null=True, related_name='_calendar_sphere_sub_spheres_+', to='calendar.Sphere', verbose_name='Related spheres'),
+            field=models.ManyToManyField(blank=True, help_text="Other spheres intersecting or contained within this sphere. This can only have one level of 'nested' spheres - you can only choose spheres that aren't also containing other spheres.", limit_choices_to={'sub_spheres': None}, related_name='_calendar_sphere_sub_spheres_+', to='calendar.Sphere', verbose_name='Related spheres'),
         ),
         migrations.AlterField(
             model_name='eventlink',

@@ -503,7 +503,12 @@ class EventLink(models.Model):
     """
 
     event = models.ForeignKey(Event, related_name="links", on_delete=models.CASCADE)
-    link = models.URLField(blank=True, null=True, max_length=2048)
+    link = models.URLField(
+        blank=True,
+        null=True,
+        max_length=2048,
+        help_text=_("Must begin with 'https://' or 'http://'"),
+    )
     priority = models.PositiveSmallIntegerField(
         default=0, help_text=_("0=first, 1=second etc.")
     )

@@ -40,7 +40,7 @@ class EventForm(forms.ModelForm):
         queryset=models.Sphere.objects.all(),
         label=_("Calendars"),
         help_text=_(
-            "Select which versions of calendar spheres this is relevant for. Mostly, this means choosing where your event is physically taking place."
+            "Select which versions of calendar spheres this event is relevant for."
         ),
         required=True,
     )

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-12 13:26+0100\n"
+"POT-Creation-Date: 2022-03-12 13:47+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,10 +57,8 @@ msgid "Calendars"
 msgstr "Kalendere"
 
 #: src/dukop/apps/calendar/forms.py:43
-msgid ""
-"Select which versions of calendar spheres this is relevant for. Mostly, this "
-"means choosing where your event is physically taking place."
-msgstr ""
+msgid "Select which versions of calendar spheres this event is relevant for."
+msgstr "Vælg hvilken version af kalenders-sfærer er eventet relevent for."
 
 #: src/dukop/apps/calendar/forms.py:53
 #: src/dukop/apps/calendar/templates/calendar/group/detail.html:31
@@ -432,24 +430,22 @@ msgid "Creating your first event?"
 msgstr "Opret din første begivenhed"
 
 #: src/dukop/apps/calendar/templates/calendar/event/create.html:17
-msgid "Please read our"
-msgstr "venligt læs vores"
+msgid "Read about using the site, creating events and more in "
+msgstr ""
 
 #: src/dukop/apps/calendar/templates/calendar/event/create.html:17
-msgid "Guidelines"
-msgstr "Retningslinjer"
+#: src/dukop/apps/news/templates/news/about.html:4
+#: src/dukop/apps/news/templates/news/about.html:8
+msgid "About Duk Op"
+msgstr "Om Duk Op"
 
 #: src/dukop/apps/calendar/templates/calendar/event/create.html:20
-#, fuzzy
-#| msgid ""
-#| "After creating the event, it's possible to edit it. You can also create "
-#| "an event and publish it later."
 msgid ""
 "After creating the event, it's possible to edit it further. You will have to "
 "finally publish the event when it's ready."
 msgstr ""
-"Det er muligt at redigere en begivenhed, efter du har oprettet det, du kan "
-"også oprette en begivenhed og offentlige gøre det senere"
+"Det er muligt at redigere din begivenhed, efter du har oprettet det. Når "
+"begivenheden er klar, markerer du den 'publiceret'."
 
 #: src/dukop/apps/calendar/templates/calendar/event/dashboard.html:6
 #: src/dukop/apps/calendar/templates/calendar/event/list.html:6
@@ -1065,11 +1061,6 @@ msgstr "Nyhede"
 msgid "News stories"
 msgstr "Nyheder"
 
-#: src/dukop/apps/news/templates/news/about.html:4
-#: src/dukop/apps/news/templates/news/about.html:8
-msgid "About Duk Op"
-msgstr "Om Duk Op"
-
 #: src/dukop/apps/news/templates/news/about.html:12
 #, fuzzy
 #| msgid ""
@@ -1619,9 +1610,9 @@ msgid "Log in again"
 msgstr "Log ind igen"
 
 #: src/dukop/apps/users/templates/users/login.html:5
-#: src/dukop/apps/users/templates/users/login.html:65
+#: src/dukop/apps/users/templates/users/login.html:67
 #: src/dukop/apps/users/templates/users/login_password.html:16
-#: src/dukop/apps/users/templates/users/login_token.html:25
+#: src/dukop/apps/users/templates/users/login_token.html:27
 #: src/dukop/apps/users/templates/users/password_reset_complete.html:11
 #: src/dukop/templates/base.html:66
 msgid "Log in"
@@ -1632,14 +1623,14 @@ msgctxt "meant about an existing user, a user that already has an account"
 msgid "Returning user login"
 msgstr "Login for eksisterende brugere"
 
-#: src/dukop/apps/users/templates/users/login.html:13
-#: src/dukop/apps/users/templates/users/login_token.html:13
+#: src/dukop/apps/users/templates/users/login.html:14
+#: src/dukop/apps/users/templates/users/login_token.html:14
 msgid ""
 "Your account doesn't have access to this page. To proceed, please login with "
 "an account that has access."
 msgstr ""
 
-#: src/dukop/apps/users/templates/users/login.html:17
+#: src/dukop/apps/users/templates/users/login.html:19
 #, fuzzy
 #| msgid ""
 #| "If you already registered an email below, enter it here and we will send "
@@ -1651,7 +1642,7 @@ msgstr ""
 "Hvis du allerede har registreret en e-mail, indtast den her og du vil "
 "modtage en engangs-kode via e-mail"
 
-#: src/dukop/apps/users/templates/users/login.html:19
+#: src/dukop/apps/users/templates/users/login.html:21
 msgid ""
 "<strong>Spring 2022:</strong> If you were registered on the old Duk Op "
 "website, you need to register a new account further down ⬇️"
@@ -1659,15 +1650,15 @@ msgstr ""
 "<strong>Forår 2022:</strong> Hvis du var registreret på det gamle Duk Op "
 "website, skal du oprette en ny konto længere nede ⬇️"
 
-#: src/dukop/apps/users/templates/users/login.html:29
+#: src/dukop/apps/users/templates/users/login.html:31
 msgid "Send a 1-time login"
 msgstr "Send et engangs-login"
 
-#: src/dukop/apps/users/templates/users/login.html:37
+#: src/dukop/apps/users/templates/users/login.html:39
 msgid "New user registration"
 msgstr "Registrering af ny bruger"
 
-#: src/dukop/apps/users/templates/users/login.html:39
+#: src/dukop/apps/users/templates/users/login.html:41
 msgid ""
 "You need to register in order to login. You need access to the provided "
 "email address to verify and use 1-time logins afterwards."
@@ -1675,17 +1666,17 @@ msgstr ""
 "Du skal registere en email-adresse for at kunne logge ind. Du skal have "
 "adgang til email-kontoen, hver gang du logger ind."
 
-#: src/dukop/apps/users/templates/users/login.html:47
+#: src/dukop/apps/users/templates/users/login.html:49
 #: src/dukop/apps/users/templates/users/signup.html:5
 #: src/dukop/apps/users/templates/users/signup.html:9
 msgid "Sign up"
 msgstr "Tilmeld dig"
 
-#: src/dukop/apps/users/templates/users/login.html:55
+#: src/dukop/apps/users/templates/users/login.html:57
 msgid "Log in with password"
 msgstr "Login med kodeord"
 
-#: src/dukop/apps/users/templates/users/login.html:57
+#: src/dukop/apps/users/templates/users/login.html:59
 msgid ""
 "You can log in with a password if you have defined one. Otherwise, use the 1-"
 "time login above."
@@ -1704,7 +1695,7 @@ msgstr "Login med kodeord"
 msgid "Final login step"
 msgstr "Næsten logget ind..."
 
-#: src/dukop/apps/users/templates/users/login_token.html:32
+#: src/dukop/apps/users/templates/users/login_token.html:34
 #, fuzzy
 #| msgid "Get a new token"
 msgid "Get a new 1-time code"
@@ -1717,6 +1708,7 @@ msgid "Check your inbox"
 msgstr "Tjek din indbakke"
 
 #: src/dukop/apps/users/templates/users/login_token_sent.html:12
+#, python-format
 msgid ""
 "If your email is registered, you will have received a one-time login by "
 "email now. Click the link sent to %(email_token)s and enter the token, using "
@@ -2075,9 +2067,14 @@ msgid "Activate sphere"
 msgstr "Aktivér sfære"
 
 #: src/dukop/templates/base.html:120
+#, fuzzy
+#| msgid ""
+#| "Events can take place in different spheres. Duk Op is available in the "
+#| "following spheres. By changing the active sphere, you'll get a different "
+#| "view of the site:"
 msgid ""
-"Events can take place in different spheres. Duk Op is available in the "
-"following spheres. By changing the active sphere, "
+"Events can take place in different spheres that may or may not overlap. Duk "
+"Op is available in the following spheres. By changing the active sphere, "
 "you'll get a different view of the site:"
 msgstr ""
 "Duk Op er tilgængeligt i følgende udgaver eller 'sfærer'. Ved at skifte og "
@@ -2106,6 +2103,12 @@ msgstr "Seneste nyt"
 #: src/dukop/templates/base.html:152
 msgid "No news is good news?"
 msgstr "Ingen nyheder"
+
+#~ msgid "Please read our"
+#~ msgstr "Læs vores"
+
+#~ msgid "Guidelines"
+#~ msgstr "Retningslinjer"
 
 #~ msgid "Token"
 #~ msgstr "Token"
@@ -2154,9 +2157,6 @@ msgstr "Ingen nyheder"
 
 #~ msgid "Relevance"
 #~ msgstr "Relevans"
-
-#~ msgid "Select which versions of the calendar this is relevant for."
-#~ msgstr "Vælg hvilken version af kalederen dette er relevent for"
 
 #~ msgid "If left blank, will be copied from host group"
 #~ msgstr "hvis tom, bliver den kopieret fra ejer-gruppen."

@@ -1641,7 +1641,7 @@ msgstr ""
 
 #: src/dukop/apps/users/templates/users/login.html:17
 msgid ""
-"If you already registered an email (below), enter it here and we will send "
+"If you already registered an email below, enter it here and we will send "
 "you a 1-time pass via email."
 msgstr ""
 "Hvis du allerede har registreret en e-mail, indtast den her og du vil "

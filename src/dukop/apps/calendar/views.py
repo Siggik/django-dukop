@@ -92,7 +92,7 @@ class EventDetailView(DetailView):
     context_object_name = "event"
 
     def get_queryset(self):
-        qs = DetailView.get_queryset(self)
+        qs = super().get_queryset()
 
         if not self.request.user or not self.request.user.is_staff:
             if self.request.user.is_authenticated:
@@ -115,9 +115,6 @@ class EventDetailView(DetailView):
 class EventProcessFormMixin:
     def get(self, request, *args, **kwargs):
         """Handle GET requests: instantiate a blank version of the form."""
-        self.images_form = forms.EventImageFormSet(
-            prefix="images", instance=self.object
-        )
         self.times_form = self.get_times_form_class()(
             instance=self.object,
             queryset=models.EventTime.objects.filter(
@@ -136,11 +133,6 @@ class EventProcessFormMixin:
         return self.render_to_response(self.get_context_data())
 
     def _create_formset_instances(self, request):
-        self.images_form = forms.EventImageFormSet(
-            data=request.POST,
-            files=request.FILES,
-            instance=self.object,
-        )
         self.times_form = self.get_times_form_class()(
             data=request.POST, instance=self.object
         )
@@ -170,7 +162,6 @@ class EventProcessFormMixin:
         self._create_formset_instances(request)
         if (
             form.is_valid()
-            and self.images_form.is_valid()
             and self.times_form.is_valid()
             and self.links_form.is_valid()
             and self.recurrences_form.is_valid()
@@ -197,16 +188,6 @@ class EventProcessFormMixin:
         # We need to call this again to re-instantiate the formsets once more
         # with the generated event object.
         self._create_formset_instances(self.request)
-
-        for image_form in self.images_form:
-            if (
-                image_form.has_changed()
-                and image_form.is_valid()
-                and image_form.cleaned_data.get("image")
-            ):
-                image_form.save()
-                for obj in getattr(image_form, "deleted_objects", []):
-                    obj.delete()
 
         for time_form in self.times_form:
             if time_form.has_changed() and time_form.is_valid():
@@ -255,7 +236,6 @@ class EventProcessFormMixin:
     def get_context_data(self, **kwargs):
         c = super().get_context_data(**kwargs)
         c["times"] = self.times_form
-        c["images"] = self.images_form
         c["links"] = self.links_form
         c["recurrences"] = self.recurrences_form
         c["recurrences_times"] = self.recurrences_times_form
@@ -321,6 +301,69 @@ class EventUpdateView(EventProcessFormMixin, UpdateView):
         return forms.EventTimeUpdateFormSet
 
 
+class EventImagesUpdateView(UpdateView):
+    form_class = forms.EventFormEmpty
+    template_name = "calendar/event/update_images.html"
+    model = models.Event
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        self.object = self.get_object()
+        return super().dispatch(*args, **kwargs)
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        if not self.request.user.is_superuser:
+            qs = qs.filter(
+                Q(owner_user=self.request.user)
+                | Q(owner_group__members=self.request.user)
+            ).distinct()
+        return qs
+
+    def _create_formset_instances(self, request):
+        self.images_form = self.get_images_form_class()(
+            data=request.POST, instance=self.object
+        )
+
+    def get(self, request, *args, **kwargs):
+        """Handle GET requests: instantiate a blank version of the form."""
+        self.images_form = forms.EventImageFormSet(
+            prefix="images", instance=self.object
+        )
+        return self.render_to_response(self.get_context_data())
+
+    @method_decorator(ratelimit(key="ip", rate="10/d", method="POST"))
+    @method_decorator(ratelimit(key="ip", rate="5/h", method="POST"))
+    def post(self, request, *args, **kwargs):
+        """
+        Handle POST requests: instantiate a form instance with the passed
+        POST variables and then check if it's valid.
+        """
+        form = self.get_form()
+        self._create_formset_instances(request)
+        if form.is_valid() and self.images_form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def form_valid(self, form):
+        for image_form in self.images_form:
+            if (
+                image_form.has_changed()
+                and image_form.is_valid()
+                and image_form.cleaned_data.get("image")
+            ):
+                image_form.save()
+                for obj in getattr(image_form, "deleted_objects", []):
+                    obj.delete()
+
+    def get_context_data(self, **kwargs):
+        c = super().get_context_data(**kwargs)
+        c["images"] = self.images_form
+        c["forms_had_errors"] = getattr(self, "forms_had_errors", False)
+        return c
+
+
 class EventCancelView(UpdateView):
 
     template_name = "calendar/event/cancel.html"
@@ -351,7 +394,7 @@ class EventCancelView(UpdateView):
         return redirect("calendar:event_dashboard")
 
     def get_queryset(self):
-        qs = DetailView.get_queryset(self)
+        qs = super().get_queryset()
         if not self.request.user.is_superuser:
             qs = qs.filter(
                 Q(owner_user=self.request.user)
@@ -390,7 +433,7 @@ class EventPublishView(UpdateView):
         return redirect("calendar:event_dashboard")
 
     def get_queryset(self):
-        qs = DetailView.get_queryset(self)
+        qs = super().get_queryset()
         if not self.request.user.is_superuser:
             qs = qs.filter(
                 Q(owner_user=self.request.user)
@@ -427,7 +470,7 @@ class EventListView(ListView):
         return super().dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
-        qs = DetailView.get_queryset(self)
+        qs = super().get_queryset()
 
         if not self.request.user or not self.request.user.is_staff:
             q_visible_to_all = Q(event__published=True) & Q(
@@ -476,7 +519,7 @@ class EventDashboard(ListView):
         return super().dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
-        qs = DetailView.get_queryset(self)
+        qs = super().get_queryset(self)
         qs = qs.filter(
             Q(owner_user=self.request.user) | Q(owner_group__members=self.request.user)
         ).distinct()

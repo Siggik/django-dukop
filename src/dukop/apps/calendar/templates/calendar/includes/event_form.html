@@ -266,50 +266,6 @@
     {% endif %}
     {% endwith %}
 
-    <h2 id="images">{% trans "Images" %}</h2>
-    <p>
-      {% trans "We really recommend that you add an illustration. Don't let your Facebook event look better than your Duk Op event!" %}
-    </p>
-
-    <p>{% trans "The collective behind Duk Op does not create events itself, and disclaims responsibility for copyright matters. Use an image you have rights to use - so we don't have to bother with silly copyright trolls." %}</p>
-
-    {{ images.management_form }}
-
-    {% if images.non_form_errors %}
-      {{ images.non_form_errors }}
-    {% endif %}
-
-    <div>
-    {% for image in images %}
-    <div class="formset--element {% if not image.errors and not forloop.first %}hide{% endif %}">
-    {{ image.id }}
-    <table>
-      {% include "calendar/includes/event_form_render_field_tr.html" with field=image.image %}
-      {% include "calendar/includes/event_form_render_field_tr.html" with field=image.is_cover %}
-      {% if image.instance.pk %}
-        {% include "calendar/includes/event_form_render_field_tr.html" with field=image.DELETE %}
-      {% endif %}
-
-    </table>
-
-    <div class="formset-add-remove-buttons">
-        {% if not forloop.last %}
-        <button type="button" class="formset-add-link">
-          {% trans "Add one more..." %}
-        </button>
-        {% endif %}
-        {% if not forloop.first %}
-        <button type="button" class="formset-remove-link">
-          {% trans "Have one less..." %}
-        </button>
-        {% endif %}
-    </div>
-
-    </div>
-    {% endfor %}
-    </div>
-
-
     <h2>{% trans "Links" %}</h2>
     <p>
       {% trans "You can add links (URLs) to other pages, if for instance you have a website or a signup page." %}

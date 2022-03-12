@@ -265,6 +265,12 @@ class EventTimeUpdateForm(EventTimeForm):
         fields = EventTimeForm.Meta.fields + ["is_cancelled"]
 
 
+class EventFormEmpty(forms.ModelForm):
+    class Meta:
+        model = models.Event
+        fields = ()
+
+
 class EventImageForm(forms.ModelForm):
 
     is_cover = forms.BooleanField(

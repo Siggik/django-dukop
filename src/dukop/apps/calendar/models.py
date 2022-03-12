@@ -98,6 +98,18 @@ class Sphere(models.Model):
         limit_choices_to={"is_staff": True},
     )
 
+    sub_spheres = models.ManyToManyField(
+        "self",
+        verbose_name=_("Related spheres"),
+        blank=True,
+        null=True,
+        help_text=_(
+            "Other spheres intersecting or contained within this sphere. This can only have one level of 'nested' spheres - you can only choose spheres that aren't also containing other spheres."
+        ),
+        limit_choices_to={"sub_spheres": None},
+        related_name="metasphere",
+    )
+
     class Meta:
         ordering = ("-default", "name")
         verbose_name = _("Sphere")

@@ -181,7 +181,7 @@ def create_event(old_event, location, from_event_series=False):
         event.city = old_event.location.town
     event.save()
     event.spheres.add(Sphere.objects.get(slug="cph"))
-    event.spheres.add(Sphere.objects.get(default=True))
+    # event.spheres.add(Sphere.objects.get(default=True))
     OldEventSync.objects.get_or_create(
         is_series=from_event_series,
         old_fk=old_event.id,

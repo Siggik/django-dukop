@@ -18,12 +18,18 @@
 {% endif %}
 
 <form method="post" autocomplete="off">
-{% csrf_token %}
+  {% csrf_token %}
 
-{% dukop_form form %}
+  {% dukop_form form %}
 
-<input type="submit" value="{% trans "Validate token and login" %}">
-<input type="hidden" name="next" value="{{ next }}">
+  <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-8">
+          <input type="submit" value="{% trans "Validate token and login" %}">
+      </div>
+  </div>
+
+  <input type="hidden" name="next" value="{{ next }}">
 </form>
 
 <p><a href="{% url 'users:login' %}">{% trans "Get a new token" %}</a></p>

@@ -24,14 +24,20 @@
 
         {% if not event_hide_share %}
         <div class="card__sharing">
-            <h5>{% trans "Sharing" %}</h5>
-            <p><a href="{% url "calendar:feed_event_ical" event_id=event.id %}">Download til kalender (ICS)</a></p>
+            <h5>{% trans "Share this event" %}</h5>
+            <p><a href="{% url "calendar:feed_event_ical" event_id=event.id %}" title="{% trans "Download the .ICS file and open it in a calendar. Alternatively, attach it to an email and people will automatically see the event when they receive the email and be able to add it to their calendar." %}">{% trans "Import to calendar (download .ics file)" %}</a></p>
             <p>
-              {% trans "Copy URL for sharing:" %}
-            <br>
-            <input type="text" value="{{ event.share_link }}" class="share-text-input">
-            <button class="js-copy" title="{% trans "Copy url to clipboard" %}"><div class="icon icon__copy"></div></button>
+              {% trans "Copy sharing direct URL" %}
+              <br>
+              <input type="text" value="{{ event.share_link }}" class="share-text-input">
+              <button class="js-copy" title="{% trans "Copy url to clipboard" %}"><div class="icon icon__copy"></div></button>
             </p>
+            <h5>{% trans "More information" %}</h5>
+            {% if event.links.all %}
+                {% for link in event.links.all %}
+                <p><a href="{{ link.link }}" target="_blank">{{ link.link|url_alias }}</a></p>
+                {% endfor %}
+            {% endif %}
         </div>
 
         {% endif %}
@@ -131,13 +137,6 @@
 
             {% if event.online %}
               <p>{% trans "This is an online event." %}</p>
-            {% endif %}
-
-            {% if event.links.all %}
-                <h2>{% trans "Event links" %}</h2>
-                {% for link in event.links.all %}
-                <p><a href="{{ link.link }}" target="_blank">{{ link.link|url_alias }}</a></p>
-                {% endfor %}
             {% endif %}
 
         {% else %}

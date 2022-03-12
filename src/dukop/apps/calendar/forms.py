@@ -148,7 +148,7 @@ class EventForm(forms.ModelForm):
 
 class CreateEventForm(EventForm):
 
-    HOST_EXISTING, HOST_NEW = range(2)
+    HOST_EXISTING, HOST_NEW, HOST_NONE = range(3)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -163,10 +163,14 @@ class CreateEventForm(EventForm):
                 )
 
     host_choice = forms.TypedChoiceField(
-        choices=[(HOST_EXISTING, "existing"), (HOST_NEW, "new")],
+        choices=[
+            (HOST_EXISTING, "existing"),
+            (HOST_NEW, "new"),
+            (HOST_NONE, "unspecified"),
+        ],
         coerce=lambda val: int(val),
         widget=forms.RadioSelect(),
-        required=True,
+        required=False,
     )
 
     host = forms.ModelChoiceField(
@@ -219,6 +223,8 @@ class CreateEventForm(EventForm):
             host = Group.objects.create(name=self.cleaned_data["new_host"])
             host.members.add(self.user)
             self.host = host
+        elif host_choice == self.HOST_NONE:
+            self.host = None
 
         if commit:
             instance.save()

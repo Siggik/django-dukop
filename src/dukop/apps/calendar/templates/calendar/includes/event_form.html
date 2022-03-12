@@ -46,6 +46,13 @@
       </div>
     </div>
 
+    <div class="collapsible-bar collapsible-bar-show-input">
+      <input type="radio" value="{{ form.host_choice.field.choices.2.0 }}" name="{{ form.host_choice.html_name }}" id="id_{{ form.host_choice.html_name }}_2"{% if form.host_choice.value == form.host_choice.field.choices.2.0 %} checked="true"{% endif %}>
+      <label class="collapsible-title" for="id_{{ form.host_choice.html_name }}_2">
+          {% trans "Unspecified" %}
+      </label>
+    </div>
+
     </div>
 
     {% endif %}

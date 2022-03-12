@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-10 21:04+0100\n"
+"POT-Creation-Date: 2022-03-12 12:03+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,15 +26,15 @@ msgstr "kort beskrivelse"
 msgid "time(s)"
 msgstr "gang(e)"
 
-#: src/dukop/apps/calendar/feeds.py:39
+#: src/dukop/apps/calendar/feeds.py:43
 msgid "Duk Op calendar for {}"
 msgstr "Duk Op kalender for {}"
 
-#: src/dukop/apps/calendar/feeds.py:41
+#: src/dukop/apps/calendar/feeds.py:45
 msgid "Duk Op future events"
 msgstr "Fremtidige begivenheder på Duk Op"
 
-#: src/dukop/apps/calendar/feeds.py:56
+#: src/dukop/apps/calendar/feeds.py:60
 msgid ""
 "\n"
 "\n"
@@ -44,11 +44,11 @@ msgstr ""
 "\n"
 "Flere detaljer: {}"
 
-#: src/dukop/apps/calendar/feeds.py:136
+#: src/dukop/apps/calendar/feeds.py:159
 msgid "Duk Op's next 30 events"
 msgstr "Duk Op næste 30 begivenheder"
 
-#: src/dukop/apps/calendar/feeds.py:142
+#: src/dukop/apps/calendar/feeds.py:165
 msgid "RSS feed of the latest events on Duk Op"
 msgstr "RSS feed for de seneste begivenhder på Duk Op"
 
@@ -66,7 +66,7 @@ msgstr ""
 
 #: src/dukop/apps/calendar/forms.py:53
 #: src/dukop/apps/calendar/templates/calendar/group/detail.html:31
-#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:106
+#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:112
 #: src/dukop/apps/calendar/templates/calendar/includes/event_form.html:53
 #: src/dukop/apps/calendar/templates/calendar/location/detail.html:31
 #: src/dukop/apps/users/models.py:182
@@ -509,7 +509,7 @@ msgid "more"
 msgstr "Læs mere"
 
 #: src/dukop/apps/calendar/templates/calendar/event/dashboard.html:57
-#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:51
+#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:57
 msgid "No scheduled times"
 msgstr "Ikke planlagte tider"
 
@@ -697,70 +697,83 @@ msgid "Upcoming events"
 msgstr "Opret begivenhed"
 
 #: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:27
-msgid "Sharing"
-msgstr "Deling"
+#, fuzzy
+#| msgid "Create event"
+msgid "Share this event"
+msgstr "Opret begivenhed"
+
+#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:28
+msgid ""
+"Download the .ICS file and open it in a calendar. Alternatively, attach it "
+"to an email and people will automatically see the event when they receive "
+"the email and be able to add it to their calendar."
+msgstr ""
+
+#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:28
+msgid "Import to calendar (download .ics file)"
+msgstr "Importér til kalender (download .ics-fil)"
 
 #: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:30
-msgid "Copy URL for sharing:"
+msgid "Copy sharing direct URL"
 msgstr ""
 
 #: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:33
 msgid "Copy url to clipboard"
 msgstr "Kopiér URL"
 
-#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:59
+#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:35
+msgid "More information"
+msgstr ""
+
+#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:65
 #, fuzzy
 #| msgid "recurrence"
 msgid "Recurring"
 msgstr "gentagelse"
 
-#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:74
+#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:80
 msgid "cancelled"
 msgstr ""
 
-#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:84
+#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:90
 #, fuzzy
 #| msgid "short description"
 msgid "The event has no description"
 msgstr "kort beskrivelse"
 
-#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:91
+#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:97
 msgid "Upcoming dates"
 msgstr ""
 
-#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:99
+#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:105
 msgid "No upcoming times"
 msgstr ""
 
-#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:109
+#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:115
 msgid "This event is happening online."
 msgstr ""
 
-#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:117
+#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:123
 msgid "Unknown address"
 msgstr ""
 
-#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:118
+#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:124
 msgid "City not specified"
 msgstr ""
 
-#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:122
+#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:128
 msgid "To Be Announced: The location's location will be announced later."
 msgstr ""
 
-#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:129
+#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:135
 msgid "Location not specified."
 msgstr ""
 
-#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:133
+#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:139
 msgid "This is an online event."
 msgstr ""
 
-#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:137
-msgid "Event links"
-msgstr "Begivenheden link"
-
-#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:152
+#: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:151
 #, fuzzy
 #| msgid "Event links"
 msgid "Event actions"
@@ -1617,6 +1630,7 @@ msgstr "Log ind igen"
 
 #: src/dukop/apps/users/templates/users/login.html:5
 #: src/dukop/apps/users/templates/users/login.html:57
+#: src/dukop/apps/users/templates/users/login_password.html:16
 #: src/dukop/apps/users/templates/users/password_reset_complete.html:11
 #: src/dukop/templates/base.html:66
 msgid "Log in"
@@ -1633,11 +1647,11 @@ msgid ""
 "you a 1-time pass via email."
 msgstr ""
 "Hvis du allerede har registreret en e-mail, indtast den her og du vil "
-"modtage en engangs kode via e-mail"
+"modtage en engangs-kode via e-mail"
 
 #: src/dukop/apps/users/templates/users/login.html:21
 msgid "Send a 1-time login"
-msgstr "Send et engangs login"
+msgstr "Send et engangs-login"
 
 #: src/dukop/apps/users/templates/users/login.html:29
 msgid "New user registration"
@@ -1648,8 +1662,8 @@ msgid ""
 "You need to register in order to login. You need access to the provided "
 "email address to verify and use 1-time logins afterwards."
 msgstr ""
-"Du skal registere for at kunne logge in. Du skal bruge en email, som du har "
-"adgang til for senere at kunne verficere og bruge et 1-gangs loing bagefter."
+"Du skal registere en email-adresse for at kunne logge ind. Du skal have "
+"adgang til email-kontoen, hver gang du logger ind."
 
 #: src/dukop/apps/users/templates/users/login.html:39
 #: src/dukop/apps/users/templates/users/signup.html:5
@@ -1659,7 +1673,7 @@ msgstr "Tilmeld dig"
 
 #: src/dukop/apps/users/templates/users/login.html:47
 msgid "Log in with password"
-msgstr "Log ind med kodeord"
+msgstr "Login med kodeord"
 
 #: src/dukop/apps/users/templates/users/login.html:49
 msgid ""
@@ -1669,10 +1683,6 @@ msgstr ""
 "Du kan logge på med din password, hvis du har valgt en. Ellers kan du bruge "
 "engangskoden ovenover."
 
-#: src/dukop/apps/users/templates/users/login_password.html:7
-msgid "Login with a password"
-msgstr "Log ind med kodeord"
-
 #: src/dukop/apps/users/templates/users/login_token.html:5
 msgid "Token check"
 msgstr "Tjek af token"
@@ -1681,11 +1691,11 @@ msgstr "Tjek af token"
 msgid "Login"
 msgstr "Log ind"
 
-#: src/dukop/apps/users/templates/users/login_token.html:25
+#: src/dukop/apps/users/templates/users/login_token.html:28
 msgid "Validate token and login"
 msgstr "Valdiderer token med log ind"
 
-#: src/dukop/apps/users/templates/users/login_token.html:29
+#: src/dukop/apps/users/templates/users/login_token.html:35
 msgid "Get a new token"
 msgstr "Få en en ny token"
 
@@ -2088,6 +2098,12 @@ msgstr "Seneste nyt"
 #: src/dukop/templates/base.html:152
 msgid "No news is good news?"
 msgstr "Ingen nyheder"
+
+#~ msgid "Sharing"
+#~ msgstr "Deling"
+
+#~ msgid "Event links"
+#~ msgstr "Begivenheden link"
 
 #~ msgid "Event created"
 #~ msgstr "begivenhed oprettet"

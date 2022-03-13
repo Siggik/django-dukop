@@ -302,7 +302,7 @@ class EventUpdateView(EventProcessFormMixin, UpdateView):
 
 
 class EventImagesUpdateView(UpdateView):
-    form_class = forms.EventFormEmpty
+    form_class = forms.EventUpdateImageForm
     template_name = "calendar/event/update_images.html"
     model = models.Event
 

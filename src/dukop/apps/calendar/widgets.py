@@ -3,11 +3,13 @@ import re
 
 from django.conf import settings
 from django.forms.utils import to_current_timezone
+from django.forms.widgets import ClearableFileInput
 from django.forms.widgets import DateInput
 from django.forms.widgets import MultiWidget
 from django.forms.widgets import Select
 from django.forms.widgets import Widget
 from django.utils.formats import get_format
+from django.utils.translation import gettext_lazy as _
 
 
 class DateWidget(DateInput):
@@ -172,3 +174,9 @@ class SplitDateTimeWidget(MultiWidget):
             value = to_current_timezone(value)
             return [value.date(), value.time()]
         return [None, None]
+
+
+class ImageInput(ClearableFileInput):
+    template_name = "calendar/forms/widgets/image.html"
+    input_text = _("Replace image")
+    initial_text = ""

@@ -3,6 +3,7 @@ from django.forms.models import inlineformset_factory
 from django.utils.translation import gettext_lazy as _
 from dukop.apps.calendar import widgets
 from dukop.apps.calendar.utils import get_now
+from dukop.apps.calendar.widgets import ImageInput
 from dukop.apps.users.models import Group
 from dukop.apps.users.models import Location
 
@@ -265,7 +266,14 @@ class EventTimeUpdateForm(EventTimeForm):
         fields = EventTimeForm.Meta.fields + ["is_cancelled"]
 
 
-class EventFormEmpty(forms.ModelForm):
+class EventUpdateImageForm(forms.ModelForm):
+    cover_image = forms.BooleanField(
+        widget=forms.CheckboxInput(), required=False, initial=True
+    )
+    extra_images = forms.BooleanField(
+        widget=forms.CheckboxInput(), required=False, initial=False
+    )
+
     class Meta:
         model = models.Event
         fields = ()
@@ -273,10 +281,12 @@ class EventFormEmpty(forms.ModelForm):
 
 class EventImageForm(forms.ModelForm):
 
-    is_cover = forms.BooleanField(
-        required=False,
-        label=_("Cover image"),
-        help_text=_("If you have several images, use this one as the cover"),
+    image = forms.ImageField(
+        widget=ImageInput,
+        label=_("Image file"),
+        help_text=_(
+            "Allowed formats: JPEG, PNG, GIF. Please upload high resolution (>1000 pixels wide). "
+        ),
     )
 
     def save(self, commit=True):
@@ -292,7 +302,7 @@ class EventImageForm(forms.ModelForm):
 
     class Meta:
         model = models.EventImage
-        fields = ("image", "is_cover")
+        fields = ("image",)
 
 
 class EventLinkForm(forms.ModelForm):

@@ -7,6 +7,7 @@ from django.utils import timezone
 from dukop.apps.calendar import forms
 from dukop.apps.calendar import models
 
+from .fixtures_calendar import single_event  # noqa
 from .fixtures_users import single_user  # noqa
 from .fixtures_users import SINGLE_USER_PASSWORD
 
@@ -121,3 +122,40 @@ def test_create_recurring_event(client, single_user):  # noqa
 
     assert models.Event.objects.all().latest("id").name == event_name
     assert models.Event.objects.all().latest("id").times.all().count() >= 100 // 7
+
+
+@pytest.mark.django_db(transaction=True)
+def test_update_event(client, single_user, single_event):  # noqa
+    """
+    Test basic event creation
+    """
+    single_event.owner_user = single_user
+    single_event.save()
+    client.login(username=single_user.email, password=SINGLE_USER_PASSWORD)
+    response = client.get(
+        reverse("calendar:event_update", kwargs={"pk": single_event.id})
+    )
+    assert response.status_code == 200
+
+    data = create_form_data(response)
+
+    first_times_form = response.context["times"].forms[0]
+    start_datetime = timezone.now() + timedelta(days=1)
+    data["%s-%s_0" % (first_times_form.prefix, "start")] = start_datetime.date()
+    data["%s-%s_1" % (first_times_form.prefix, "start")] = start_datetime.strftime(
+        "%H:%M"
+    )
+
+    event_name = f"Updating event {random.randint(10000, 99999)}"
+
+    data["name"] = event_name
+    data["location_choice"] = forms.EventForm.LOCATION_NEW
+
+    data["new_host"] = "Test group {random.randint(10000, 99999)}"
+
+    response = client.post(
+        reverse("calendar:event_update", kwargs={"pk": single_event.id}), data=data
+    )
+    assert response.status_code == 302
+
+    assert models.Event.objects.get(id=single_event.id).name == event_name

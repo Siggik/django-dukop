@@ -140,7 +140,7 @@ class Sphere(models.Model):
         This can be cached in-memory insofar that we don't do any more funky
         stuff with the Spheres, like related querysets etc.
         """
-        if hasattr(Sphere, "_cached_default"):
+        if getattr(Sphere, "_cached_default", None):
             return Sphere._cached_default
         else:
             Sphere._cached_default = Sphere.get_default()

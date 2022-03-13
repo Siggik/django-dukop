@@ -289,17 +289,6 @@ class EventImageForm(forms.ModelForm):
         ),
     )
 
-    def save(self, commit=True):
-        # A very naive implementation of priority, just sets '0' on the
-        # cover image
-        image = forms.ModelForm.save(self, commit=False)
-        if self.cleaned_data.get("is_cover", False):
-            image.priority = 0
-        else:
-            image.priority = 1
-        image.save()
-        return image
-
     class Meta:
         model = models.EventImage
         fields = ("image",)

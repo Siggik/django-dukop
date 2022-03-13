@@ -37,6 +37,9 @@ $base-url: "/static/img/remixicons";
     &__eye-off{
         background-image: url($base-url + "/eye-off.svg");
     }
+    &__image{
+        background-image: url($base-url + "/image.svg");
+    }
     &__monitor{
         background-image: url($base-url + "/monitor.svg");
     }

@@ -16,6 +16,8 @@
     {% trans "We really recommend that you add an illustration. Don't let your Facebook event look better than your Duk Op event!" %}
   </p>
 
+  <form action="" method="POST" class="event__form" enctype="multipart/form-data">
+
   {{ images.management_form }}
 
   {% if images.non_form_errors %}
@@ -104,6 +106,8 @@
       </td>
     </tr>
   </table>
+
+  </form>
 
 
 </div>

@@ -262,7 +262,7 @@ class EventCreateView(EventProcessFormMixin, CreateView):
             self.request,
             _("Event '{event_name}' was created").format(event_name=self.object.name),
         )
-        return redirect("calendar:event_detail", pk=self.object.pk)
+        return redirect("calendar:event_images_update", pk=self.object.pk)
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -321,7 +321,7 @@ class EventImagesUpdateView(UpdateView):
         return qs
 
     def _create_formset_instances(self, request):
-        self.images_form = self.get_images_form_class()(
+        self.images_form = forms.EventImageFormSet(
             data=request.POST, instance=self.object
         )
 
@@ -347,15 +347,37 @@ class EventImagesUpdateView(UpdateView):
             return self.form_invalid(form)
 
     def form_valid(self, form):
-        for image_form in self.images_form:
+        for cnt, image_form in enumerate(self.images_form):
             if (
                 image_form.has_changed()
                 and image_form.is_valid()
                 and image_form.cleaned_data.get("image")
             ):
-                image_form.save()
+                image = image_form.save(commit=False)
+                image.priority = cnt
+                image.save()
                 for obj in getattr(image_form, "deleted_objects", []):
                     obj.delete()
+
+        return self.get_success_url()
+
+    def get_success_url(self):
+        if self.object.published:
+            messages.success(
+                self.request,
+                _("You have created '{event_name}', please have a look below.").format(
+                    event_name=self.object.name
+                ),
+            )
+            return redirect("calendar:event_detail", pk=self.object.pk)
+        else:
+            messages.success(
+                self.request,
+                _("Images for '{event_name}' were updated").format(
+                    event_name=self.object.name
+                ),
+            )
+            return redirect("calendar:event_dashboard")
 
     def get_context_data(self, **kwargs):
         c = super().get_context_data(**kwargs)
@@ -519,7 +541,7 @@ class EventDashboard(ListView):
         return super().dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
-        qs = super().get_queryset(self)
+        qs = super().get_queryset()
         qs = qs.filter(
             Q(owner_user=self.request.user) | Q(owner_group__members=self.request.user)
         ).distinct()

@@ -23,7 +23,7 @@ def create_form_data(response):
     data["csrf_token"] = response.context["csrf_token"]
 
     # management form information, needed because of the formset
-    for form_name in ["times", "recurrences", "images", "links"]:
+    for form_name in ["times", "recurrences", "links"]:
         management_form = response.context[form_name].management_form
         for i in "TOTAL_FORMS", "INITIAL_FORMS", "MIN_NUM_FORMS", "MAX_NUM_FORMS":
             data["%s-%s" % (management_form.prefix, i)] = management_form[i].value()

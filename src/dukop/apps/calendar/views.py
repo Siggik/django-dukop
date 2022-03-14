@@ -177,7 +177,12 @@ class EventProcessFormMixin:
 
     @transaction.atomic()
     def form_valid(self, form):  # noqa: max-complexity=13
+        # Save the Event object
         self.object = form.save()
+        # Saves 'Event.spheres' field separately as it's a m2m relation that
+        # needs the initial Event object to be created firstly
+        # http://docs.djangoproject.com/en/dev/topics/forms/modelforms/#the-save-method
+        form.save_m2m()
         event = self.object
         if not event.short_description:
             event.short_description = event.get_short_description()
@@ -196,8 +201,8 @@ class EventProcessFormMixin:
         for link_form in self.links_form:
             if link_form.has_changed() and link_form.is_valid():
                 link_form.save()
-                for obj in getattr(link_form, "deleted_objects", []):
-                    obj.delete()
+        for obj in getattr(self.links_form, "deleted_objects", []):
+            obj.delete()
 
         if form.cleaned_data["recurrence_choice"]:
             for recurrence_form in self.recurrences_form:
@@ -206,15 +211,22 @@ class EventProcessFormMixin:
                     recurrence.event = event
                     recurrence.event_time_anchor = event.times.all().first()
                     recurrence.save()
+                    # Ensure that everything in the past is kept and marked
+                    # as no longer automatically updated
+                    recurrence.times.all().past().update(recurrence_auto=False)
                     recurrence.sync()
-                    for obj in getattr(recurrence_form, "deleted_objects", []):
-                        obj.delete()
+            for obj in getattr(self.recurrences_form, "deleted_objects", []):
+                obj.delete()
         else:
             if self.object.pk:
                 for recurrence in self.object.recurrences.all():
                     recurrence.event_time_anchor.recurrence = None
                     recurrence.event_time_anchor.save()
-                self.object.recurrences.all().delete()
+                    # Delete all future recurrences
+                    recurrence.times.all().future().delete()
+                    # Ensure that everything in the past is kept and marked
+                    # as no longer automatically updated
+                    recurrence.times.all().past().update(recurrence_auto=False)
 
         for recurrence_time_form in self.recurrences_times_form:
             if recurrence_time_form.has_changed() and recurrence_time_form.is_valid():
@@ -244,7 +256,8 @@ class EventProcessFormMixin:
 
     def get_initial(self):
         initial = super().initial
-        initial["spheres"] = models.Sphere.objects.filter(id=self.request.sphere.id)
+        if not self.object:
+            initial["spheres"] = models.Sphere.objects.filter(id=self.request.sphere.id)
         return initial
 
     def get_times_form_class(self):
@@ -322,11 +335,6 @@ class EventImagesUpdateView(UpdateView):
             ).distinct()
         return qs
 
-    def _create_formset_instances(self, request):
-        self.images_form = forms.EventImageFormSet(
-            data=request.POST, instance=self.object
-        )
-
     def get(self, request, *args, **kwargs):
         """Handle GET requests: instantiate a blank version of the form."""
         self.images_form = forms.EventImageFormSet(
@@ -342,7 +350,12 @@ class EventImagesUpdateView(UpdateView):
         POST variables and then check if it's valid.
         """
         form = self.get_form()
-        self._create_formset_instances(request)
+        self.images_form = forms.EventImageFormSet(
+            prefix="images",
+            data=request.POST,
+            files=request.FILES,
+            instance=self.object,
+        )
         if form.is_valid() and self.images_form.is_valid():
             return self.form_valid(form)
         else:
@@ -351,16 +364,15 @@ class EventImagesUpdateView(UpdateView):
     def form_valid(self, form):
         for cnt, image_form in enumerate(self.images_form):
             if (
-                image_form.has_changed()
-                and image_form.is_valid()
+                image_form.is_valid()
+                and image_form.has_changed()
                 and image_form.cleaned_data.get("image")
             ):
                 image = image_form.save(commit=True)
-                print("saved a form")
                 image.priority = cnt
                 image.save()
-                for obj in getattr(image_form, "deleted_objects", []):
-                    obj.delete()
+        for obj in getattr(self.images_form, "deleted_objects", []):
+            obj.delete()
 
         return self.get_success_url()
 
@@ -368,19 +380,19 @@ class EventImagesUpdateView(UpdateView):
         if self.object.published:
             messages.success(
                 self.request,
-                _("You have created '{event_name}', please have a look below.").format(
-                    event_name=self.object.name
-                ),
-            )
-            return redirect("calendar:event_detail", pk=self.object.pk)
-        else:
-            messages.success(
-                self.request,
                 _("Images for '{event_name}' were updated").format(
                     event_name=self.object.name
                 ),
             )
             return redirect("calendar:event_dashboard")
+        else:
+            messages.success(
+                self.request,
+                _("You have created '{event_name}', please have a look below.").format(
+                    event_name=self.object.name
+                ),
+            )
+            return redirect("calendar:event_detail", pk=self.object.pk)
 
     def get_context_data(self, **kwargs):
         c = super().get_context_data(**kwargs)

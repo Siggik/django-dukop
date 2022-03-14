@@ -32,8 +32,8 @@
               <input type="text" value="{{ event.share_link }}" class="share-text-input">
               <button class="js-copy" title="{% trans "Copy url to clipboard" %}"><div class="icon icon__copy"></div></button>
             </p>
-            <h5>{% trans "More information" %}</h5>
             {% if event.links.all %}
+                <h5>{% trans "More information" %}</h5>
                 {% for link in event.links.all %}
                 <p><a href="{{ link.link }}" target="_blank">{{ link.link|url_alias }}</a></p>
                 {% endfor %}

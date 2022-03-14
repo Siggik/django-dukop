@@ -35,3 +35,8 @@ def message_css_class(message):
     if lvl >= messages.INFO:
         return "info"
     return "default"
+
+
+@register.filter_function
+def equals_string(value1, value2):
+    return str(value1) == str(value2)

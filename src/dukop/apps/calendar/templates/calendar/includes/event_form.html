@@ -1,4 +1,4 @@
-{% load i18n thumbnail calendar_tags %}
+{% load i18n thumbnail calendar_tags dukop_utils %}
 
 <table>
 
@@ -20,7 +20,7 @@
 <div>
 
 <div class="collapsible-bar collapsible-bar-show-input">
-  <input type="radio" value="{{ form.host_choice.field.choices.0.0 }}" name="{{ form.host_choice.html_name }}" id="id_{{ form.host_choice.html_name }}_0"{% if form.host_choice.value == form.host_choice.field.choices.0.0 %} checked="true"{% endif %}>
+  <input type="radio" value="{{ form.host_choice.field.choices.0.0 }}" name="{{ form.host_choice.html_name }}" id="id_{{ form.host_choice.html_name }}_0"{% if form.host_choice.value|equals_string:form.host_choice.field.choices.0.0 %} checked="true"{% endif %}>
   <label class="collapsible-title" for="id_{{ form.host_choice.html_name }}_0">
       {% trans "Existing group" %}
   </label>
@@ -32,7 +32,7 @@
 </div>
 
 <div class="collapsible-bar collapsible-bar-show-input">
-  <input type="radio" value="{{ form.host_choice.field.choices.1.0 }}" name="{{ form.host_choice.html_name }}" id="id_{{ form.host_choice.html_name }}_1"{% if form.host_choice.value == form.host_choice.field.choices.1.0 %} checked="true"{% endif %}>
+  <input type="radio" value="{{ form.host_choice.field.choices.1.0 }}" name="{{ form.host_choice.html_name }}" id="id_{{ form.host_choice.html_name }}_1"{% if form.host_choice.value|equals_string:form.host_choice.field.choices.1.0 %} checked="true"{% endif %}>
   <label class="collapsible-title" for="id_{{ form.host_choice.html_name }}_1">
       {% trans "New group" %}
   </label>
@@ -44,7 +44,7 @@
 </div>
 
 <div class="collapsible-bar collapsible-bar-show-input">
-  <input type="radio" value="{{ form.host_choice.field.choices.2.0 }}" name="{{ form.host_choice.html_name }}" id="id_{{ form.host_choice.html_name }}_2"{% if form.host_choice.value == form.host_choice.field.choices.2.0 %} checked="true"{% endif %}>
+  <input type="radio" value="{{ form.host_choice.field.choices.2.0 }}" name="{{ form.host_choice.html_name }}" id="id_{{ form.host_choice.html_name }}_2"{% if form.host_choice.value|equals_string:form.host_choice.field.choices.2.0 %} checked="true"{% endif %}>
   <label class="collapsible-title" for="id_{{ form.host_choice.html_name }}_2">
       {% trans "Unspecified" %}
   </label>
@@ -59,7 +59,7 @@
 <div>
 
 <div class="collapsible-bar collapsible-bar-show-input">
-  <input type="radio" value="{{ form.location_choice.field.choices.0.0 }}" name="{{ form.location_choice.html_name }}" id="id_{{ form.location_choice.html_name }}_0"{% if form.location_choice.value == form.location_choice.field.choices.0.0 %} checked="true"{% endif %}>
+  <input type="radio" value="{{ form.location_choice.field.choices.0.0 }}" name="{{ form.location_choice.html_name }}" id="id_{{ form.location_choice.html_name }}_0"{% if form.location_choice.value|equals_string:form.location_choice.field.choices.0.0 %} checked="true"{% endif %}>
   <label class="collapsible-title" for="id_{{ form.location_choice.html_name }}_0">
       {% trans "Existing location" %}
   </label>
@@ -71,7 +71,7 @@
 </div>
 
 <div class="collapsible-bar collapsible-bar-show-input">
-  <input type="radio" value="{{ form.location_choice.field.choices.1.0 }}" name="{{ form.location_choice.html_name }}" id="id_{{ form.location_choice.html_name }}_1"{% if form.location_choice.value == form.location_choice.field.choices.1.0 %} checked="true"{% endif %}>
+  <input type="radio" value="{{ form.location_choice.field.choices.1.0 }}" name="{{ form.location_choice.html_name }}" id="id_{{ form.location_choice.html_name }}_1"{% if form.location_choice.value|equals_string:form.location_choice.field.choices.1.0 %} checked="true"{% endif %}>
   <label class="collapsible-title" for="id_{{ form.location_choice.html_name }}_1">
       {% trans "New location" %}
   </label>
@@ -87,7 +87,7 @@
 </div>
 
 <div class="collapsible-bar collapsible-bar-show-input">
-  <input type="radio" value="{{ form.location_choice.field.choices.2.0 }}" name="{{ form.location_choice.html_name }}" id="id_{{ form.location_choice.html_name }}_2"{% if form.location_choice.value == form.location_choice.field.choices.2.0 %} checked="true"{% endif %}>
+  <input type="radio" value="{{ form.location_choice.field.choices.2.0 }}" name="{{ form.location_choice.html_name }}" id="id_{{ form.location_choice.html_name }}_2"{% if form.location_choice.value|equals_string:form.location_choice.field.choices.2.0 %} checked="true"{% endif %}>
   <label class="collapsible-title" for="id_{{ form.location_choice.html_name }}_2">
     {% trans "TBA (To Be Announced)" %}
   </label>
@@ -97,7 +97,7 @@
 </div>
 
 <div class="collapsible-bar collapsible-bar-show-input">
-  <input type="radio" value="{{ form.location_choice.field.choices.3.0 }}" name="{{ form.location_choice.html_name }}" id="id_{{ form.location_choice.html_name }}_3"{% if form.location_choice.value == form.location_choice.field.choices.3.0 %} checked="true"{% endif %}>
+  <input type="radio" value="{{ form.location_choice.field.choices.3.0 }}" name="{{ form.location_choice.html_name }}" id="id_{{ form.location_choice.html_name }}_3"{% if form.location_choice.value|equals_string:form.location_choice.field.choices.3.0 %} checked="true"{% endif %}>
   <label class="collapsible-title" for="id_{{ form.location_choice.html_name }}_3">
       {% trans "Online only / no location" %}
   </label>
@@ -164,12 +164,11 @@
     {% endif %}
   </p>
 
-{% endwith %}
 <div>
 <div class="collapsible-bar collapsible-bar-show-input">
-  <input type="radio" value="false" name="{{ form.recurrence_choice.html_name }}" id="id_{{ form.recurrence_choice.html_name }}_0"{% if not form.recurrence_choice.value %} checked="true"{% endif %}>
+  <input type="radio" value="false" name="{{ form.recurrence_choice.html_name }}" id="id_{{ form.recurrence_choice.html_name }}_0"{% if form.recurrence_choice.value|equals_string:"false" %} checked="true"{% endif %}>
   <label class="collapsible-title" for="id_{{ form.recurrence_choice.html_name }}_0">
-    {% trans "No" %}
+    {% trans "No" %} {{ form.recurrence_choice.field.choices }}
   </label>
   {% if recurrences_times|length > 0 %}
   <div class="collapsible-content">
@@ -179,7 +178,7 @@
 </div>
 
 <div class="collapsible-bar collapsible-bar-show-input">
-  <input type="radio" value="true" name="{{ form.recurrence_choice.html_name }}" id="id_{{ form.recurrence_choice.html_name }}_1"{% if form.recurrence_choice.value %} checked="true"{% endif %}>
+  <input type="radio" value="true" name="{{ form.recurrence_choice.html_name }}" id="id_{{ form.recurrence_choice.html_name }}_1"{% if form.recurrence_choice.value|equals_string:"true" or repetitions > 0 %} checked="true"{% endif %}>
   <label class="collapsible-title" for="id_{{ form.recurrence_choice.html_name }}_1">
     {% trans "Yes" %}
   </label>
@@ -223,6 +222,7 @@
 </div>
 
 </div>
+{% endwith %}
 
 {% with recurrences_times|length as recurrences_cnt %}
 {% if recurrences_cnt > 0 %}

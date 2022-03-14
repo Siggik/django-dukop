@@ -33,6 +33,9 @@ class EventForm(forms.ModelForm):
             if instance.recurrences.exists():
                 initial["recurrence_choice"] = True
 
+        if instance and instance.pk:
+            initial["spheres"] = instance.spheres.all().values_list("id", flat=True)
+
         kwargs["initial"] = initial
         super().__init__(*args, **kwargs)
 

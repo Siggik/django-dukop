@@ -19,7 +19,22 @@
     <a href="{% url "calendar:event_cancel" pk=event.pk %}">{% trans "Cancel Event" %}</a>.
   </p>
 
+  <form action="" method="POST" class="event__form" enctype="multipart/form-data">
+  {% csrf_token %}
+
   {% include "calendar/includes/event_form.html" %}
+
+  <hr>
+  <table>
+    <tr>
+      <th><br></th>
+      <td>
+          <button type="submit" class="button-big">{% trans "Save changes" %}</button>
+      </td>
+    </tr>
+  </table>
+
+  </form>
 
 </div>
 

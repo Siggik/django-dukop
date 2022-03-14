@@ -260,7 +260,9 @@ class EventCreateView(EventProcessFormMixin, CreateView):
     def get_success_url(self):
         messages.success(
             self.request,
-            _("Event '{event_name}' was created").format(event_name=self.object.name),
+            _(
+                "Event '{event_name}' was created but not yet published. The next step is to add images."
+            ).format(event_name=self.object.name),
         )
         return redirect("calendar:event_images_update", pk=self.object.pk)
 
@@ -353,7 +355,8 @@ class EventImagesUpdateView(UpdateView):
                 and image_form.is_valid()
                 and image_form.cleaned_data.get("image")
             ):
-                image = image_form.save(commit=False)
+                image = image_form.save(commit=True)
+                print("saved a form")
                 image.priority = cnt
                 image.save()
                 for obj in getattr(image_form, "deleted_objects", []):

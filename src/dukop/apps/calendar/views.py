@@ -451,6 +451,11 @@ class EventPublishView(UpdateView):
         self.object = self.get_object()
         return super().dispatch(*args, **kwargs)
 
+    @method_decorator(ratelimit(key="ip", rate="10/d", method="POST"))
+    @method_decorator(ratelimit(key="ip", rate="5/h", method="POST"))
+    def post(self, request, *args, **kwargs):
+        return super().post(request, *args, **kwargs)
+
     def form_valid(self, form):
         form.save()
         if form.cleaned_data["published"]:
@@ -489,6 +494,11 @@ class EventDeleteView(UpdateView):
     def dispatch(self, *args, **kwargs):
         self.object = self.get_object()
         return super().dispatch(*args, **kwargs)
+
+    @method_decorator(ratelimit(key="ip", rate="10/d", method="POST"))
+    @method_decorator(ratelimit(key="ip", rate="5/h", method="POST"))
+    def post(self, request, *args, **kwargs):
+        return super().post(request, *args, **kwargs)
 
     def form_valid(self, form):
         form.save()

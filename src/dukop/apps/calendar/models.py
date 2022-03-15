@@ -122,7 +122,8 @@ class Sphere(models.Model):
             "Other spheres intersecting or contained within this sphere. This can only have one level of 'nested' spheres - you can only choose spheres that aren't also containing other spheres."
         ),
         limit_choices_to={"sub_spheres": None},
-        related_name="metasphere",
+        related_name="metaspheres",
+        symmetrical=False,
     )
 
     class Meta:

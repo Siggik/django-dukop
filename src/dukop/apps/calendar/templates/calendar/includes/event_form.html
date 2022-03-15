@@ -1,295 +1,205 @@
-{% load i18n thumbnail calendar_tags %}
+{% load i18n thumbnail calendar_tags dukop_utils %}
 
-<form action="" method="POST" class="event__form" enctype="multipart/form-data">
-    {% csrf_token %}
+<table>
 
+  {% include "calendar/includes/event_form_render_field_tr.html" with field=form.name %}
+  {% include "calendar/includes/event_form_render_field_tr.html" with field=form.description %}
+
+  {% include "calendar/includes/event_form_render_field_tr.html" with field=form.spheres %}
+
+  {% include "calendar/includes/event_form_render_field_tr.html" with field=form.online %}
+
+</table>
+
+{% if form.host_choice %}
+
+<h2>{% trans "Host" %}</h2>
+
+<p>{% trans "Tell people about the group that hosts an event - the group may also host other events. You can add details about the group later. They can have their own listing of events. You can even invite other people to the group." %}</p>
+
+<div>
+
+<div class="collapsible-bar collapsible-bar-show-input">
+  <input type="radio" value="{{ form.host_choice.field.choices.0.0 }}" name="{{ form.host_choice.html_name }}" id="id_{{ form.host_choice.html_name }}_0"{% if form.host_choice.value|equals_string:form.host_choice.field.choices.0.0 %} checked="true"{% endif %}>
+  <label class="collapsible-title" for="id_{{ form.host_choice.html_name }}_0">
+      {% trans "Existing group" %}
+  </label>
+  <div class="collapsible-content">
+  <table>
+    {% include "calendar/includes/event_form_render_field_tr.html" with field=form.host %}
+  </table>
+  </div>
+</div>
+
+<div class="collapsible-bar collapsible-bar-show-input">
+  <input type="radio" value="{{ form.host_choice.field.choices.1.0 }}" name="{{ form.host_choice.html_name }}" id="id_{{ form.host_choice.html_name }}_1"{% if form.host_choice.value|equals_string:form.host_choice.field.choices.1.0 %} checked="true"{% endif %}>
+  <label class="collapsible-title" for="id_{{ form.host_choice.html_name }}_1">
+      {% trans "New group" %}
+  </label>
+  <div class="collapsible-content">
+  <table>
+    {% include "calendar/includes/event_form_render_field_tr.html" with field=form.new_host %}
+  </table>
+  </div>
+</div>
+
+<div class="collapsible-bar collapsible-bar-show-input">
+  <input type="radio" value="{{ form.host_choice.field.choices.2.0 }}" name="{{ form.host_choice.html_name }}" id="id_{{ form.host_choice.html_name }}_2"{% if form.host_choice.value|equals_string:form.host_choice.field.choices.2.0 %} checked="true"{% endif %}>
+  <label class="collapsible-title" for="id_{{ form.host_choice.html_name }}_2">
+      {% trans "Unspecified" %}
+  </label>
+</div>
+
+</div>
+
+{% endif %}
+
+<h2>{% trans "Location" %}</h2>
+
+<div>
+
+<div class="collapsible-bar collapsible-bar-show-input">
+  <input type="radio" value="{{ form.location_choice.field.choices.0.0 }}" name="{{ form.location_choice.html_name }}" id="id_{{ form.location_choice.html_name }}_0"{% if form.location_choice.value|equals_string:form.location_choice.field.choices.0.0 %} checked="true"{% endif %}>
+  <label class="collapsible-title" for="id_{{ form.location_choice.html_name }}_0">
+      {% trans "Existing location" %}
+  </label>
+  <div class="collapsible-content">
+  <table>
+    {% include "calendar/includes/event_form_render_field_tr.html" with field=form.location %}
+  </table>
+  </div>
+</div>
+
+<div class="collapsible-bar collapsible-bar-show-input">
+  <input type="radio" value="{{ form.location_choice.field.choices.1.0 }}" name="{{ form.location_choice.html_name }}" id="id_{{ form.location_choice.html_name }}_1"{% if form.location_choice.value|equals_string:form.location_choice.field.choices.1.0 %} checked="true"{% endif %}>
+  <label class="collapsible-title" for="id_{{ form.location_choice.html_name }}_1">
+      {% trans "New location" %}
+  </label>
+  <div class="collapsible-content">
+  <table>
+    {% include "calendar/includes/event_form_render_field_tr.html" with field=form.venue_name %}
+    {% include "calendar/includes/event_form_render_field_tr.html" with field=form.street %}
+    {% include "calendar/includes/event_form_render_field_tr.html" with field=form.zip_code %}
+    {% include "calendar/includes/event_form_render_field_tr.html" with field=form.city %}
+    {% include "calendar/includes/event_form_render_field_tr.html" with field=form.location_new %}
+  </table>
+  </div>
+</div>
+
+<div class="collapsible-bar collapsible-bar-show-input">
+  <input type="radio" value="{{ form.location_choice.field.choices.2.0 }}" name="{{ form.location_choice.html_name }}" id="id_{{ form.location_choice.html_name }}_2"{% if form.location_choice.value|equals_string:form.location_choice.field.choices.2.0 %} checked="true"{% endif %}>
+  <label class="collapsible-title" for="id_{{ form.location_choice.html_name }}_2">
+    {% trans "TBA (To Be Announced)" %}
+  </label>
+  <div class="collapsible-content">
+    <p>{% trans "Your event will appear as TBA - you can edit the event later and add a location." %}</p>
+  </div>
+</div>
+
+<div class="collapsible-bar collapsible-bar-show-input">
+  <input type="radio" value="{{ form.location_choice.field.choices.3.0 }}" name="{{ form.location_choice.html_name }}" id="id_{{ form.location_choice.html_name }}_3"{% if form.location_choice.value|equals_string:form.location_choice.field.choices.3.0 %} checked="true"{% endif %}>
+  <label class="collapsible-title" for="id_{{ form.location_choice.html_name }}_3">
+      {% trans "Online only / no location" %}
+  </label>
+  <div class="collapsible-content">
+    <p>{% trans "You can write details about joining in the description and add links further down in the Links section." %}</p>
+  </div>
+</div>
+
+</div>
+
+
+<h2>{% trans "Date and times" %}</h2>
+<p>
+  {% trans "Most events just had a single start and finish time. But if your event spans several days, you can add additional start and finish times." %}
+  {% trans "If this event recurs on a regular basis, you can indicate this further down this page." %}
+</p>
+
+{{ times.management_form }}
+
+{% if times.non_form_errors %}
+  {{ times.non_form_errors }}
+{% endif %}
+
+<div>
+{% for time in times %}
+<div class="formset--element {% if not time.errors and not forloop.first %}hide{% endif %}">
+{{ time.id }}
     <table>
 
-      {% include "calendar/includes/event_form_render_field_tr.html" with field=form.name %}
-      {% include "calendar/includes/event_form_render_field_tr.html" with field=form.description %}
+        {% include "calendar/includes/event_form_render_field_tr.html" with field=time.start special_tr_field_class="event_form_datetime" %}
+        {% include "calendar/includes/event_form_render_field_tr.html" with field=time.end special_tr_field_class="event_form_datetime" %}
 
-      {% include "calendar/includes/event_form_render_field_tr.html" with field=form.spheres %}
-
-      {% include "calendar/includes/event_form_render_field_tr.html" with field=form.online %}
+        {% if time.instance.pk %}
+            {% include "calendar/includes/event_form_render_field_tr.html" with field=time.DELETE %}
+        {% endif %}
 
     </table>
 
-    {% if form.host_choice %}
-
-    <h2>{% trans "Host" %}</h2>
-
-    <p>{% trans "Tell people about the group that hosts an event - the group may also host other events. You can add details about the group later. They can have their own listing of events. You can even invite other people to the group." %}</p>
-
-    <div>
-
-    <div class="collapsible-bar collapsible-bar-show-input">
-      <input type="radio" value="{{ form.host_choice.field.choices.0.0 }}" name="{{ form.host_choice.html_name }}" id="id_{{ form.host_choice.html_name }}_0"{% if form.host_choice.value == form.host_choice.field.choices.0.0 %} checked="true"{% endif %}>
-      <label class="collapsible-title" for="id_{{ form.host_choice.html_name }}_0">
-          {% trans "Existing group" %}
-      </label>
-      <div class="collapsible-content">
-      <table>
-        {% include "calendar/includes/event_form_render_field_tr.html" with field=form.host %}
-      </table>
-      </div>
+    <div class="formset-add-remove-buttons">
+        {% if not forloop.last %}
+        <button type="button" class="formset-add-link">
+          {% trans "Add one more..." %}
+        </button>
+        {% endif %}
+        {% if not forloop.first %}
+        <button type="button" class="formset-remove-link">
+          {% trans "Have one less..." %}
+        </button>
+        {% endif %}
     </div>
 
-    <div class="collapsible-bar collapsible-bar-show-input">
-      <input type="radio" value="{{ form.host_choice.field.choices.1.0 }}" name="{{ form.host_choice.html_name }}" id="id_{{ form.host_choice.html_name }}_1"{% if form.host_choice.value == form.host_choice.field.choices.1.0 %} checked="true"{% endif %}>
-      <label class="collapsible-title" for="id_{{ form.host_choice.html_name }}_1">
-          {% trans "New group" %}
-      </label>
-      <div class="collapsible-content">
-      <table>
-        {% include "calendar/includes/event_form_render_field_tr.html" with field=form.new_host %}
-      </table>
-      </div>
-    </div>
+</div>
 
-    <div class="collapsible-bar collapsible-bar-show-input">
-      <input type="radio" value="{{ form.host_choice.field.choices.2.0 }}" name="{{ form.host_choice.html_name }}" id="id_{{ form.host_choice.html_name }}_2"{% if form.host_choice.value == form.host_choice.field.choices.2.0 %} checked="true"{% endif %}>
-      <label class="collapsible-title" for="id_{{ form.host_choice.html_name }}_2">
-          {% trans "Unspecified" %}
-      </label>
-    </div>
+{% endfor %}
+</div>
 
-    </div>
+{% with recurrences.get_queryset.count as repetitions %}
 
+  <h2>{% trans "Repeat event" %} {% if repetitions > 0 %}<span class="badge-counter">{{ repetitions }} {{ repetitions|pluralize:_("rule,rules") }}</span>{% endif %}</h2>
+  <p>
+    {% trans "If you want your event to recur automatically with an interval, you can set it here instead of adding individual timeslots manually." %}
+    {% if repetitions > 0 %}
+    <p>{% trans "Existing recurrence rules can be changed below." %}</p>
     {% endif %}
+  </p>
 
-    <h2>{% trans "Location" %}</h2>
+<div>
+<div class="collapsible-bar collapsible-bar-show-input">
+  <input type="radio" value="false" name="{{ form.recurrence_choice.html_name }}" id="id_{{ form.recurrence_choice.html_name }}_0"{% if form.recurrence_choice.value|equals_string:"false" %} checked="true"{% endif %}>
+  <label class="collapsible-title" for="id_{{ form.recurrence_choice.html_name }}_0">
+    {% trans "No" %} {{ form.recurrence_choice.field.choices }}
+  </label>
+  {% if recurrences_times|length > 0 %}
+  <div class="collapsible-content">
+    <p>{% trans "Existing recurrences will be deleted permanently." %}</p>
+  </div>
+  {% endif %}
+</div>
 
-    <div>
+<div class="collapsible-bar collapsible-bar-show-input">
+  <input type="radio" value="true" name="{{ form.recurrence_choice.html_name }}" id="id_{{ form.recurrence_choice.html_name }}_1"{% if form.recurrence_choice.value|equals_string:"true" or repetitions > 0 %} checked="true"{% endif %}>
+  <label class="collapsible-title" for="id_{{ form.recurrence_choice.html_name }}_1">
+    {% trans "Yes" %}
+  </label>
+  <div class="collapsible-content">
 
-    <div class="collapsible-bar collapsible-bar-show-input">
-      <input type="radio" value="{{ form.location_choice.field.choices.0.0 }}" name="{{ form.location_choice.html_name }}" id="id_{{ form.location_choice.html_name }}_0"{% if form.location_choice.value == form.location_choice.field.choices.0.0 %} checked="true"{% endif %}>
-      <label class="collapsible-title" for="id_{{ form.location_choice.html_name }}_0">
-          {% trans "Existing location" %}
-      </label>
-      <div class="collapsible-content">
-      <table>
-        {% include "calendar/includes/event_form_render_field_tr.html" with field=form.location %}
-      </table>
-      </div>
-    </div>
+    {{ recurrences.management_form }}
 
-    <div class="collapsible-bar collapsible-bar-show-input">
-      <input type="radio" value="{{ form.location_choice.field.choices.1.0 }}" name="{{ form.location_choice.html_name }}" id="id_{{ form.location_choice.html_name }}_1"{% if form.location_choice.value == form.location_choice.field.choices.1.0 %} checked="true"{% endif %}>
-      <label class="collapsible-title" for="id_{{ form.location_choice.html_name }}_1">
-          {% trans "New location" %}
-      </label>
-      <div class="collapsible-content">
-      <table>
-        {% include "calendar/includes/event_form_render_field_tr.html" with field=form.venue_name %}
-        {% include "calendar/includes/event_form_render_field_tr.html" with field=form.street %}
-        {% include "calendar/includes/event_form_render_field_tr.html" with field=form.zip_code %}
-        {% include "calendar/includes/event_form_render_field_tr.html" with field=form.city %}
-        {% include "calendar/includes/event_form_render_field_tr.html" with field=form.location_new %}
-      </table>
-      </div>
-    </div>
-
-    <div class="collapsible-bar collapsible-bar-show-input">
-      <input type="radio" value="{{ form.location_choice.field.choices.2.0 }}" name="{{ form.location_choice.html_name }}" id="id_{{ form.location_choice.html_name }}_2"{% if form.location_choice.value == form.location_choice.field.choices.2.0 %} checked="true"{% endif %}>
-      <label class="collapsible-title" for="id_{{ form.location_choice.html_name }}_2">
-        {% trans "TBA (To Be Announced)" %}
-      </label>
-      <div class="collapsible-content">
-        <p>{% trans "Your event will appear as TBA - you can edit the event later and add a location." %}</p>
-      </div>
-    </div>
-
-    <div class="collapsible-bar collapsible-bar-show-input">
-      <input type="radio" value="{{ form.location_choice.field.choices.3.0 }}" name="{{ form.location_choice.html_name }}" id="id_{{ form.location_choice.html_name }}_3"{% if form.location_choice.value == form.location_choice.field.choices.3.0 %} checked="true"{% endif %}>
-      <label class="collapsible-title" for="id_{{ form.location_choice.html_name }}_3">
-          {% trans "Online only / no location" %}
-      </label>
-      <div class="collapsible-content">
-        <p>{% trans "You can write details about joining in the description and add links further down in the Links section." %}</p>
-      </div>
-    </div>
-
-    </div>
-
-
-    <h2>{% trans "Date and times" %}</h2>
-    <p>
-      {% trans "Most events just had a single start and finish time. But if your event spans several days, you can add additional start and finish times." %}
-      {% trans "If this event recurs on a regular basis, you can indicate this further down this page." %}
-    </p>
-
-    {{ times.management_form }}
-
-    {% if times.non_form_errors %}
-      {{ times.non_form_errors }}
+    {% if recurrences.non_form_errors %}
+      {{ recurrences.non_form_errors }}
     {% endif %}
 
     <div>
-    {% for time in times %}
-    <div class="formset--element {% if not time.errors and not forloop.first %}hide{% endif %}">
-    {{ time.id }}
-        <table>
-
-            {% include "calendar/includes/event_form_render_field_tr.html" with field=time.start special_tr_field_class="event_form_datetime" %}
-            {% include "calendar/includes/event_form_render_field_tr.html" with field=time.end special_tr_field_class="event_form_datetime" %}
-
-            {% if time.instance.pk %}
-                {% include "calendar/includes/event_form_render_field_tr.html" with field=time.DELETE %}
-            {% endif %}
-
-        </table>
-
-        <div class="formset-add-remove-buttons">
-            {% if not forloop.last %}
-            <button type="button" class="formset-add-link">
-              {% trans "Add one more..." %}
-            </button>
-            {% endif %}
-            {% if not forloop.first %}
-            <button type="button" class="formset-remove-link">
-              {% trans "Have one less..." %}
-            </button>
-            {% endif %}
-        </div>
-
-    </div>
-
-    {% endfor %}
-    </div>
-
-    {% with recurrences.get_queryset.count as repetitions %}
-
-      <h2>{% trans "Repeat event" %} {% if repetitions > 0 %}<span class="badge-counter">{{ repetitions }} {{ repetitions|pluralize:_("rule,rules") }}</span>{% endif %}</h2>
-      <p>
-        {% trans "If you want your event to recur automatically with an interval, you can set it here instead of adding individual timeslots manually." %}
-        {% if repetitions > 0 %}
-        <p>{% trans "Existing recurrence rules can be changed below." %}</p>
-        {% endif %}
-      </p>
-
-    {% endwith %}
-    <div>
-    <div class="collapsible-bar collapsible-bar-show-input">
-      <input type="radio" value="false" name="{{ form.recurrence_choice.html_name }}" id="id_{{ form.recurrence_choice.html_name }}_0"{% if not form.recurrence_choice.value %} checked="true"{% endif %}>
-      <label class="collapsible-title" for="id_{{ form.recurrence_choice.html_name }}_0">
-        {% trans "No" %}
-      </label>
-      {% if recurrences_times|length > 0 %}
-      <div class="collapsible-content">
-        <p>{% trans "Existing recurrences will be deleted permanently." %}</p>
-      </div>
-      {% endif %}
-    </div>
-
-    <div class="collapsible-bar collapsible-bar-show-input">
-      <input type="radio" value="true" name="{{ form.recurrence_choice.html_name }}" id="id_{{ form.recurrence_choice.html_name }}_1"{% if form.recurrence_choice.value %} checked="true"{% endif %}>
-      <label class="collapsible-title" for="id_{{ form.recurrence_choice.html_name }}_1">
-        {% trans "Yes" %}
-      </label>
-      <div class="collapsible-content">
-
-        {{ recurrences.management_form }}
-
-        {% if recurrences.non_form_errors %}
-          {{ recurrences.non_form_errors }}
-        {% endif %}
-
-        <div>
-        {% for recurrence in recurrences %}
-        <div class="formset--element {% if not recurrence.errors and not forloop.first %}hide{% endif %}">
-        {{ recurrence.id }}
-        <table>
-          {% include "calendar/includes/event_form_render_field_tr.html" with field=recurrence.interval_type %}
-          {% include "calendar/includes/event_form_render_field_tr.html" with field=recurrence.end special_tr_field_class="event_form_datetime" %}
-          {% if recurrence.instance.pk %}
-            {% include "calendar/includes/event_form_render_field_tr.html" with field=recurrence.DELETE %}
-          {% endif %}
-        </table>
-
-        <div class="formset-add-remove-buttons">
-            {% if not forloop.last %}
-            <button type="button" class="formset-add-link">
-              {% trans "Add one more..." %}
-            </button>
-            {% endif %}
-            {% if not forloop.first %}
-            <button type="button" class="formset-remove-link">
-              {% trans "Have one less..." %}
-            </button>
-            {% endif %}
-        </div>
-
-        </div>
-        {% endfor %}
-        </div>
-      </div>
-    </div>
-
-    </div>
-
-    {% with recurrences_times|length as recurrences_cnt %}
-    {% if recurrences_cnt > 0 %}
-    <h2>{% trans "Repetitions" %} <span class="badge-counter">{{ recurrences_cnt }}</span></h2>
-    <p>
-      {% trans "You can change individual repetitions. This will remove them from the automatically-handled series." %}
-    </p>
-
-    {{ recurrences_times.management_form }}
-
-    {% if recurrences_times.non_form_errors %}
-      {{ recurrences_times.non_form_errors }}
-    {% endif %}
-
-    {% for event_time in recurrences_times %}
-    {{ event_time.id }}
-    <div class="collapsible-bar">
-    <input type="checkbox" id="blah{{ event_time.instance.pk }}">
-    <label class="collapsible-title" for="blah{{ event_time.instance.pk }}">
-        {{ event_time.instance.start|dukop_interval:event_time.instance.end }}
-        {% if event_time.instance.recurrence_auto %}
-            <em class="muted">auto-created</em>
-        {% else %}
-            <em class="success">manually modified</em>
-        {% endif %}
-    </label>
-    <div class="collapsible-content">
+    {% for recurrence in recurrences %}
+    <div class="formset--element {% if not recurrence.errors and not forloop.first %}hide{% endif %}">
+    {{ recurrence.id }}
     <table>
-      {% include "calendar/includes/event_form_render_field_tr.html" with field=event_time.start special_tr_field_class="event_form_datetime" %}
-      {% include "calendar/includes/event_form_render_field_tr.html" with field=event_time.end special_tr_field_class="event_form_datetime" %}
-      {% include "calendar/includes/event_form_render_field_tr.html" with field=event_time.description %}
-      {% include "calendar/includes/event_form_render_field_tr.html" with field=event_time.is_cancelled %}
-    </table>
-    </div>
-    </div>
-
-    {% endfor %}
-    {% endif %}
-    {% endwith %}
-
-    <h2 id="images">{% trans "Images" %}</h2>
-    <p>
-      {% trans "We really recommend that you add an illustration. Don't let your Facebook event look better than your Duk Op event!" %}
-    </p>
-
-    <p>{% trans "The collective behind Duk Op does not create events itself, and disclaims responsibility for copyright matters. Use an image you have rights to use - so we don't have to bother with silly copyright trolls." %}</p>
-
-    {{ images.management_form }}
-
-    {% if images.non_form_errors %}
-      {{ images.non_form_errors }}
-    {% endif %}
-
-    <div>
-    {% for image in images %}
-    <div class="formset--element {% if not image.errors and not forloop.first %}hide{% endif %}">
-    {{ image.id }}
-    <table>
-      {% include "calendar/includes/event_form_render_field_tr.html" with field=image.image %}
-      {% include "calendar/includes/event_form_render_field_tr.html" with field=image.is_cover %}
-      {% if image.instance.pk %}
-        {% include "calendar/includes/event_form_render_field_tr.html" with field=image.DELETE %}
+      {% include "calendar/includes/event_form_render_field_tr.html" with field=recurrence.interval_type %}
+      {% include "calendar/includes/event_form_render_field_tr.html" with field=recurrence.end special_tr_field_class="event_form_datetime" %}
+      {% if recurrence.instance.pk %}
+        {% include "calendar/includes/event_form_render_field_tr.html" with field=recurrence.DELETE %}
       {% endif %}
-
     </table>
 
     <div class="formset-add-remove-buttons">
@@ -308,56 +218,86 @@
     </div>
     {% endfor %}
     </div>
+  </div>
+</div>
 
+</div>
+{% endwith %}
 
-    <h2>{% trans "Links" %}</h2>
-    <p>
-      {% trans "You can add links (URLs) to other pages, if for instance you have a website or a signup page." %}
-    </p>
-    {{ links.management_form }}
-    {% if links.non_form_errors %}
-      {{ links.non_form_errors }}
+{% with recurrences_times|length as recurrences_cnt %}
+{% if recurrences_cnt > 0 %}
+<h2>{% trans "Repetitions" %} <span class="badge-counter">{{ recurrences_cnt }}</span></h2>
+<p>
+  {% trans "You can change individual repetitions. This will remove them from the automatically-handled series." %}
+</p>
+
+{{ recurrences_times.management_form }}
+
+{% if recurrences_times.non_form_errors %}
+  {{ recurrences_times.non_form_errors }}
+{% endif %}
+
+{% for event_time in recurrences_times %}
+{{ event_time.id }}
+<div class="collapsible-bar">
+<input type="checkbox" id="blah{{ event_time.instance.pk }}">
+<label class="collapsible-title" for="blah{{ event_time.instance.pk }}">
+    {{ event_time.instance.start|dukop_interval:event_time.instance.end }}
+    {% if event_time.instance.recurrence_auto %}
+        <em class="muted">auto-created</em>
+    {% else %}
+        <em class="success">manually modified</em>
     {% endif %}
+</label>
+<div class="collapsible-content">
+<table>
+  {% include "calendar/includes/event_form_render_field_tr.html" with field=event_time.start special_tr_field_class="event_form_datetime" %}
+  {% include "calendar/includes/event_form_render_field_tr.html" with field=event_time.end special_tr_field_class="event_form_datetime" %}
+  {% include "calendar/includes/event_form_render_field_tr.html" with field=event_time.description %}
+  {% include "calendar/includes/event_form_render_field_tr.html" with field=event_time.is_cancelled %}
+</table>
+</div>
+</div>
 
-    <div>
-    {% for link in links %}
-    <div class="formset--element {% if not link.errors and not forloop.first %}hide{% endif %}">
-    {{ link.id }}
-    <table>
+{% endfor %}
+{% endif %}
+{% endwith %}
 
-      {% include "calendar/includes/event_form_render_field_tr.html" with field=link.link %}
-      {% if link.instance.pk %}
-        {% include "calendar/includes/event_form_render_field_tr.html" with field=link.DELETE %}
-      {% endif %}
+<h2>{% trans "Links" %}</h2>
+<p>
+  {% trans "You can add links (URLs) to other pages, if for instance you have a website or a signup page." %}
+</p>
+{{ links.management_form }}
+{% if links.non_form_errors %}
+  {{ links.non_form_errors }}
+{% endif %}
 
-    </table>
+<div>
+{% for link in links %}
+<div class="formset--element {% if not link.errors and not forloop.first %}hide{% endif %}">
+{{ link.id }}
+<table>
 
-    <div class="formset-add-remove-buttons">
-        {% if not forloop.last %}
-        <button type="button" class="formset-add-link">
-          {% trans "Add one more..." %}
-        </button>
-        {% endif %}
-        {% if not forloop.first %}
-        <button type="button" class="formset-remove-link">
-          {% trans "Have one less..." %}
-        </button>
-        {% endif %}
-    </div>
+  {% include "calendar/includes/event_form_render_field_tr.html" with field=link.link %}
+  {% if link.instance.pk %}
+    {% include "calendar/includes/event_form_render_field_tr.html" with field=link.DELETE %}
+  {% endif %}
 
-    </div>
-    {% endfor %}
-    </div>
+</table>
 
-    <hr>
-    <table>
-      <tr>
-        <th><br></th>
-        <td>
-            <button type="submit" class="button-big">{% trans "Save changes" %}</button>
-        </td>
-      </tr>
-    </table>
+<div class="formset-add-remove-buttons">
+    {% if not forloop.last %}
+    <button type="button" class="formset-add-link">
+      {% trans "Add one more..." %}
+    </button>
+    {% endif %}
+    {% if not forloop.first %}
+    <button type="button" class="formset-remove-link">
+      {% trans "Have one less..." %}
+    </button>
+    {% endif %}
+</div>
 
-
-</form>
+</div>
+{% endfor %}
+</div>

@@ -3,6 +3,7 @@ from django.forms.models import inlineformset_factory
 from django.utils.translation import gettext_lazy as _
 from dukop.apps.calendar import widgets
 from dukop.apps.calendar.utils import get_now
+from dukop.apps.calendar.widgets import ImageInput
 from dukop.apps.users.models import Group
 from dukop.apps.users.models import Location
 
@@ -31,6 +32,9 @@ class EventForm(forms.ModelForm):
 
             if instance.recurrences.exists():
                 initial["recurrence_choice"] = True
+
+        if instance and instance.pk:
+            initial["spheres"] = instance.spheres.all().values_list("id", flat=True)
 
         kwargs["initial"] = initial
         super().__init__(*args, **kwargs)
@@ -265,28 +269,32 @@ class EventTimeUpdateForm(EventTimeForm):
         fields = EventTimeForm.Meta.fields + ["is_cancelled"]
 
 
-class EventImageForm(forms.ModelForm):
-
-    is_cover = forms.BooleanField(
-        required=False,
-        label=_("Cover image"),
-        help_text=_("If you have several images, use this one as the cover"),
+class EventUpdateImageForm(forms.ModelForm):
+    cover_image = forms.BooleanField(
+        widget=forms.CheckboxInput(), required=False, initial=True
+    )
+    extra_images = forms.BooleanField(
+        widget=forms.CheckboxInput(), required=False, initial=False
     )
 
-    def save(self, commit=True):
-        # A very naive implementation of priority, just sets '0' on the
-        # cover image
-        image = forms.ModelForm.save(self, commit=False)
-        if self.cleaned_data.get("is_cover", False):
-            image.priority = 0
-        else:
-            image.priority = 1
-        image.save()
-        return image
+    class Meta:
+        model = models.Event
+        fields = ()
+
+
+class EventImageForm(forms.ModelForm):
+
+    image = forms.ImageField(
+        widget=ImageInput,
+        label=_("Image file"),
+        help_text=_(
+            "Allowed formats: JPEG, PNG, GIF. Please upload high resolution (>1000 pixels wide). "
+        ),
+    )
 
     class Meta:
         model = models.EventImage
-        fields = ("image", "is_cover")
+        fields = ("image",)
 
 
 class EventLinkForm(forms.ModelForm):

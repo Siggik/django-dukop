@@ -61,11 +61,24 @@ class EventManager(models.Manager):
 
 class EventTimeQuerySet(models.QuerySet):
     def future(self, truncate_time_today=True):
+        """
+        Selects all events that start in the future or haven't yet finished
+        """
         if truncate_time_today:
             now = utils.get_now().replace(minute=0, hour=0, second=0)
         else:
             now = utils.get_now()
         return self.filter(Q(start__gte=now) | Q(end__gte=now))
+
+    def past(self, truncate_time_today=True):
+        """
+        Selects all irrelevant events, i.e. events that have ended
+        """
+        if truncate_time_today:
+            now = utils.get_now().replace(minute=0, hour=0, second=0)
+        else:
+            now = utils.get_now()
+        return self.filter(Q(start__lt=now) & (Q(end__lt=now) | Q(end=None)))
 
 
 class EventTimeManager(models.Manager):
@@ -74,6 +87,9 @@ class EventTimeManager(models.Manager):
 
     def future(self, truncate_time_today=True):
         return self.get_queryset().future(truncate_time_today=truncate_time_today)
+
+    def past(self, truncate_time_today=True):
+        return self.get_queryset().past(truncate_time_today=truncate_time_today)
 
 
 class Sphere(models.Model):
@@ -102,12 +118,12 @@ class Sphere(models.Model):
         "self",
         verbose_name=_("Related spheres"),
         blank=True,
-        null=True,
         help_text=_(
             "Other spheres intersecting or contained within this sphere. This can only have one level of 'nested' spheres - you can only choose spheres that aren't also containing other spheres."
         ),
         limit_choices_to={"sub_spheres": None},
-        related_name="metasphere",
+        related_name="metaspheres",
+        symmetrical=False,
     )
 
     class Meta:
@@ -141,7 +157,7 @@ class Sphere(models.Model):
         This can be cached in-memory insofar that we don't do any more funky
         stuff with the Spheres, like related querysets etc.
         """
-        if hasattr(Sphere, "_cached_default"):
+        if getattr(Sphere, "_cached_default", None):
             return Sphere._cached_default
         else:
             Sphere._cached_default = Sphere.get_default()

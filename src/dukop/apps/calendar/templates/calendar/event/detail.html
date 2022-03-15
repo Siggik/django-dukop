@@ -41,8 +41,8 @@
 
 {% if not event.images.all %}
 <p>
-  <a href="{% url "calendar:event_update" pk=event.pk %}#images" class="button">
-    {% trans "Add images" %}<br><span class="icon icon__eye"></span>
+  <a href="{% url "calendar:event_images_update" pk=event.pk %}" class="button">
+    {% trans "Add images" %}<br><span class="icon icon__image"></span>
   </a>
 </p>
 {% endif %}

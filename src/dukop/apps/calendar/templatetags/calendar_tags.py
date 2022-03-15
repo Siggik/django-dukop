@@ -35,7 +35,7 @@ def get_event_times(  # noqa: max-complexity=12
 
     if sphere:
         lookups.append(
-            Q(Q(event__spheres=sphere) | Q(event__spheres__sub_spheres=sphere))
+            Q(Q(event__spheres=sphere) | Q(event__spheres__metaspheres=sphere))
         )
 
     if from_date == "today":

@@ -8,7 +8,7 @@
 <div class="create-event">
   {% if forms_had_errors %}
   <div class="message message__error">
-    {% trans "There were errors. Please check below. If you submitted images, you have to re-select them." %}
+    {% trans "There were errors. Please check below." %}
   </div>
   {% endif %}
   <h1 class="card__title">{% trans "Create event" %}</h1>
@@ -20,8 +20,23 @@
       {% trans "After creating the event, it's possible to edit it further. You will have to finally publish the event when it's ready." %}
   </p>
 
+  <form action="" method="POST" class="event__form" enctype="multipart/form-data">
+  {% csrf_token %}
+
   {% include "calendar/includes/event_form.html" %}
 
+
+  <hr>
+  <table>
+    <tr>
+      <th><br></th>
+      <td>
+          <button type="submit" class="button-big">{% trans "Create event and go to next step" %} »</button>
+      </td>
+    </tr>
+  </table>
+
+</form>
 
 </div>
 

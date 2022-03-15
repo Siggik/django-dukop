@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% load i18n sekizai_tags static %}
+
+{% block dukop_title %}{% trans "Update images" %} - {{ event.name }}{% endblock %}
+
+{% block content %}
+
+<div class="create-event">
+  {% if forms_had_errors %}
+  <div class="message message__error">
+    {% trans "There were errors. Please check below. If you submitted images, you have to re-select them." %}
+  </div>
+  {% endif %}
+  <h1 class="card__title">{% trans "Images for:" %} {{ event.name }}</h1>
+  <p>
+    {% trans "We really recommend that you add an illustration. Don't let your Facebook event look better than your Duk Op event!" %}
+  </p>
+
+  <form action="" method="POST" class="event__form" enctype="multipart/form-data">
+  {% csrf_token %}
+
+  {{ images.management_form }}
+
+  {% if images.non_form_errors %}
+    {{ images.non_form_errors }}
+  {% endif %}
+
+  <div class="collapsible-bar collapsible-bar-show-input">
+    <input type="checkbox" value="false" name="{{ form.cover_image.html_name }}" id="id_{{ form.cover_image.html_name }}_0"{% if form.cover_image.value or images.0.image.value %} checked="true"{% endif %}>
+    <label class="collapsible-title" for="id_{{ form.cover_image.html_name }}_0">
+      {% trans "Cover image" %}
+    </label>
+
+    <div class="collapsible-content">
+
+      {{ images.0.id }}
+      <table>
+        {% include "calendar/includes/event_form_render_field_tr.html" with field=images.0.image %}
+        {% if images.0.instance.pk %}
+          {% include "calendar/includes/event_form_render_field_tr.html" with field=images.0.DELETE %}
+        {% endif %}
+
+      </table>
+    </div>
+  </div>
+
+  <div class="collapsible-bar collapsible-bar-show-input">
+    <input type="checkbox" value="false" name="{{ form.extra_images.html_name }}" id="id_{{ form.extra_images.html_name }}_0"{% if form.extra_images.value or images.1.image.value %} checked="true"{% endif %}>
+    <label class="collapsible-title" for="id_{{ form.extra_images.html_name }}_0">
+      {% trans "Extra images" %}
+    </label>
+
+    <div class="collapsible-content">
+
+      <div>
+      {% for image in images|slice:"1:" %}
+      <div class="formset--element {% if not image.errors and not forloop.first %}hide{% endif %}">
+      {{ image.id }}
+      <table>
+        {% include "calendar/includes/event_form_render_field_tr.html" with field=image.image %}
+        {% if image.instance.pk %}
+          {% include "calendar/includes/event_form_render_field_tr.html" with field=image.DELETE %}
+        {% endif %}
+
+      </table>
+
+      <div class="formset-add-remove-buttons">
+        <table>
+          <tr>
+            <th><br></th>
+            <td>
+              {% if not forloop.last %}
+              <button type="button" class="formset-add-link">
+                {% trans "Add one more..." %}
+              </button>
+              {% endif %}
+              {% if not forloop.first %}
+              <button type="button" class="formset-remove-link">
+                {% trans "Have one less..." %}
+              </button>
+              {% endif %}
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      </div>
+
+      {% endfor %}
+
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="message">{% trans "The collective behind Duk Op does not create events itself, and disclaims responsibility for copyright matters. Use images you have rights to use - so we don't have to bother with silly copyright trolls." %}</div>
+
+  <table>
+    <tr>
+      <th><br></th>
+      <td>
+          <button type="submit" class="button-big">{% trans "Save and view event" %}</button>
+      </td>
+    </tr>
+  </table>
+
+  </form>
+
+
+</div>
+
+
+{% addtoblock "js" %}
+    <script type="text/javascript" src="{% url "calendar:javascript-catalog" %}"></script>
+    <script type="text/javascript" src="{% static 'calendar/js/create_event.js' %}"></script>
+{% endaddtoblock %}
+
+{% endblock %}

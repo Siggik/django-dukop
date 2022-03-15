@@ -15,7 +15,9 @@ def single_event(db):
         description="A longer description",
         venue_name="The Place",
     )
-    event.spheres.add(models.Sphere.get_default_cached())
+    models.Sphere._cached_default = None
+    default_sphere = models.Sphere.get_default_cached()
+    event.spheres.add(default_sphere)
     models.EventTime.objects.create(
         event=event,
         start=start,

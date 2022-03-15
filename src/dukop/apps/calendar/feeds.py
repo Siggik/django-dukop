@@ -45,7 +45,7 @@ class EventFeed(ICalFeed):
             return _("Duk Op future events")
 
     def items(self, obj):
-        event_times = models.EventTime.objects.filter(event__published=True)
+        event_times = models.EventTime.objects.active()
         if obj:
             event_times = event_times.filter(event__spheres=obj)
         return event_times.future()
@@ -85,7 +85,7 @@ class EventFeedDetail(EventFeed):
 
     def get_object(self, request, *args, **kwargs):
         self.event_id = kwargs.get("event_id")
-        self.event = get_object_or_404(models.Event, id=self.event_id)
+        self.event = get_object_or_404(models.Event.objects.active(), id=self.event_id)
         return super().get_object(request, *args, **kwargs)
 
     def file_name(self, obj):
@@ -165,7 +165,7 @@ class RssFeed(Feed):
         return _("RSS feed of the latest events on Duk Op")
 
     def items(self, obj):
-        event_times = models.EventTime.objects.all()
+        event_times = models.EventTime.objects.active()
         if obj:
             event_times = event_times.filter(event__spheres=obj)
         return event_times.future()[:30]

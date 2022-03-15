@@ -77,7 +77,8 @@ def get_event_times(  # noqa: max-complexity=12
             lookups.append(Q(event__images=None))
 
     return (
-        models.EventTime.objects.filter(*lookups)
+        models.EventTime.objects.active()
+        .filter(*lookups)
         .select_related("event")
         .prefetch_related("event__images", "event__links")
     ).distinct()[:max_count]

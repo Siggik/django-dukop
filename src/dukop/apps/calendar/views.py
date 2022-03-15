@@ -92,7 +92,7 @@ class EventDetailView(DetailView):
     context_object_name = "event"
 
     def get_queryset(self):
-        qs = super().get_queryset()
+        qs = super().get_queryset().filter(deleted=False)
 
         if not self.request.user or not self.request.user.is_staff:
             if self.request.user.is_authenticated:
@@ -304,7 +304,7 @@ class EventUpdateView(EventProcessFormMixin, UpdateView):
         return redirect("calendar:event_dashboard")
 
     def get_queryset(self):
-        qs = DetailView.get_queryset(self)
+        qs = DetailView.get_queryset(self).filter(deleted=False)
         if not self.request.user.is_superuser:
             qs = qs.filter(
                 Q(owner_user=self.request.user)
@@ -327,7 +327,7 @@ class EventImagesUpdateView(UpdateView):
         return super().dispatch(*args, **kwargs)
 
     def get_queryset(self):
-        qs = super().get_queryset()
+        qs = super().get_queryset().filter(deleted=False)
         if not self.request.user.is_superuser:
             qs = qs.filter(
                 Q(owner_user=self.request.user)
@@ -431,7 +431,7 @@ class EventCancelView(UpdateView):
         return redirect("calendar:event_dashboard")
 
     def get_queryset(self):
-        qs = super().get_queryset()
+        qs = super().get_queryset().filter(deleted=False)
         if not self.request.user.is_superuser:
             qs = qs.filter(
                 Q(owner_user=self.request.user)
@@ -470,7 +470,46 @@ class EventPublishView(UpdateView):
         return redirect("calendar:event_dashboard")
 
     def get_queryset(self):
-        qs = super().get_queryset()
+        qs = super().get_queryset().filter(deleted=False)
+        if not self.request.user.is_superuser:
+            qs = qs.filter(
+                Q(owner_user=self.request.user)
+                | Q(owner_group__members=self.request.user)
+            ).distinct()
+        return qs
+
+
+class EventDeleteView(UpdateView):
+
+    template_name = "calendar/event/delete.html"
+    model = models.Event
+    form_class = forms.EventDeleteForm
+
+    @method_decorator(login_required)
+    def dispatch(self, *args, **kwargs):
+        self.object = self.get_object()
+        return super().dispatch(*args, **kwargs)
+
+    def form_valid(self, form):
+        form.save()
+        if form.cleaned_data["deleted"]:
+            messages.success(
+                self.request,
+                _("Event '{event_name}' was deleted.").format(
+                    event_name=self.object.name
+                ),
+            )
+        else:
+            messages.success(
+                self.request,
+                _(
+                    "Event '{event_name}' was kept, you did not confirm to delete it."
+                ).format(event_name=self.object.name),
+            )
+        return redirect("calendar:event_dashboard")
+
+    def get_queryset(self):
+        qs = super().get_queryset().filter(deleted=False)
         if not self.request.user.is_superuser:
             qs = qs.filter(
                 Q(owner_user=self.request.user)
@@ -556,7 +595,7 @@ class EventDashboard(ListView):
         return super().dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
-        qs = super().get_queryset()
+        qs = super().get_queryset().filter(deleted=False)
         qs = qs.filter(
             Q(owner_user=self.request.user) | Q(owner_group__members=self.request.user)
         ).distinct()

@@ -1,5 +1,6 @@
 from django import forms
 from django.forms.models import inlineformset_factory
+from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from dukop.apps.calendar import widgets
 from dukop.apps.calendar.utils import get_now
@@ -246,6 +247,19 @@ class EventPublishForm(forms.ModelForm):
     class Meta:
         model = models.Event
         fields = ("published",)
+
+
+class EventDeleteForm(forms.ModelForm):
+    def save(self, commit=True):
+        event = super().save(commit=False)
+        event.deleted_on = timezone.now()
+        event.save()
+        return event
+
+    class Meta:
+        model = models.Event
+        fields = ("deleted",)
+        help_texts = {"deleted": _("Confirm to permanently remove this event")}
 
 
 class EventTimeForm(forms.ModelForm):

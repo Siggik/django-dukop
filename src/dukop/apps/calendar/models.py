@@ -52,11 +52,22 @@ def sluggify_instance(instance, ModelClass, name_field, slug_field):
         setattr(instance, slug_field, proposal)
 
 
+class EventQuerySet(models.QuerySet):
+    def active(self):
+        """Returns queryset of active events"""
+        return self.filter(published=True, deleted=False)
+
+
 class EventManager(models.Manager):
     def get_queryset(self):
         return (
-            super().get_queryset().prefetch_related("times").prefetch_related("images")
+            EventTimeQuerySet(self.model, using=self._db)
+            .prefetch_related("times")
+            .prefetch_related("images")
         )
+
+    def active(self):
+        return self.get_queryset().active()
 
 
 class EventTimeQuerySet(models.QuerySet):
@@ -80,6 +91,10 @@ class EventTimeQuerySet(models.QuerySet):
             now = utils.get_now()
         return self.filter(Q(start__lt=now) & (Q(end__lt=now) | Q(end=None)))
 
+    def active(self):
+        """Returns EventTime queryset of active events"""
+        return self.filter(event__published=True, event__deleted=False)
+
 
 class EventTimeManager(models.Manager):
     def get_queryset(self):
@@ -90,6 +105,9 @@ class EventTimeManager(models.Manager):
 
     def past(self, truncate_time_today=True):
         return self.get_queryset().past(truncate_time_today=truncate_time_today)
+
+    def active(self):
+        return self.get_queryset().active()
 
 
 class Sphere(models.Model):
@@ -267,6 +285,7 @@ class Event(models.Model):
 
     featured = models.BooleanField(default=False)
     published = models.BooleanField(default=True)
+    deleted = models.BooleanField(default=False)
 
     online = models.BooleanField(
         default=False,
@@ -304,6 +323,7 @@ class Event(models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
+    deleted_on = models.DateTimeField(null=True, blank=True, editable=False)
 
     owner_user = models.ForeignKey(
         "users.User",

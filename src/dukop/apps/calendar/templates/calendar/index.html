@@ -80,7 +80,7 @@
 </div>
 
 
-{% get_event_times from_date=today days=1 max_count=30 sphere=SPHERE as todays_events %}
+{% get_event_times from_date="today_from_08" days=1 max_count=30 sphere=SPHERE as todays_events %}
 
 <div class="page-container">
   <h1 class="title title--space">{% trans "Happening" %} <strong>{% trans "today" %}</strong></h1>

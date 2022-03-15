@@ -38,8 +38,8 @@ def get_event_times(  # noqa: max-complexity=12
             Q(Q(event__spheres=sphere) | Q(event__spheres__metaspheres=sphere))
         )
 
-    if from_date == "today":
-        from_date = utils.get_now().replace(minute=0, hour=0, second=0)
+    if from_date == "today_from_08":
+        from_date = utils.get_now().replace(minute=0, hour=8, second=0)
     elif from_date == "future":
         from_date = utils.get_now()
     else:

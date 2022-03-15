@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load i18n sekizai_tags static %}
+
+{% block dukop_title %}{% trans "Delete event" %} - {{ event.name }}{% endblock %}
+
+{% block content %}
+
+<div class="create-event">
+
+  <h1 class="card__title">{% trans "Delete:" %} {{ event.name }}</h1>
+
+  <p>
+    {% trans "Delete events that were created by mistake or just need to be removed completely. By deleting the event, it will completely disappear. You can also unpublish or cancel events." %}
+  </p>
+
+  <ul>
+    <li><a href="{% url "calendar:event_cancel" pk=event.pk %}">{% trans "Cancel event" %}</a></li>
+    <li><a href="{% url "calendar:event_publish" pk=event.pk %}">{% trans "Unpublish event" %}</a></li>
+  </ul>
+
+  <form method="POST" action="">
+    {% csrf_token %}
+    <table>
+      {% include "calendar/includes/event_form_render_field_tr.html" with field=form.deleted %}
+    </table>
+    <hr>
+    <table>
+      <tr>
+        <th><br></th>
+        <td>
+            <button type="submit" class="button-big">{% trans "Confirm changes" %}</button>
+        </td>
+      </tr>
+    </table>
+
+  </form>
+
+</div>
+
+{% endblock %}

@@ -12,6 +12,9 @@ jobs:
           command: pip install -e ".[dev]"
           name: Install dependencies
       - run:
+          command: python manage.py makemigrations --dry-run --check
+          name: Check migrations
+      - run:
           command: pytest
           name: Run pytest
       - run:

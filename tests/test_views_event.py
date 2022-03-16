@@ -7,6 +7,7 @@ from django.utils import timezone
 from dukop.apps.calendar import forms
 from dukop.apps.calendar import models
 
+from .fixtures_calendar import default_sphere  # noqa
 from .fixtures_calendar import single_event  # noqa
 from .fixtures_users import single_user  # noqa
 from .fixtures_users import SINGLE_USER_PASSWORD
@@ -45,12 +46,14 @@ def create_form_data(response):
 
 
 @pytest.mark.django_db(transaction=True)
-def test_create_event(client, single_user):  # noqa
+def test_create_event(single_user, default_sphere, client, settings):  # noqa
     """
     Test basic event creation
     """
+    settings.IS_CI_TEST = True
     client.login(username=single_user.email, password=SINGLE_USER_PASSWORD)
     response = client.get(reverse("calendar:event_create"))
+
     assert response.status_code == 200
 
     data = create_form_data(response)
@@ -67,20 +70,22 @@ def test_create_event(client, single_user):  # noqa
     data["name"] = event_name
     data["host_choice"] = forms.CreateEventForm.HOST_NEW
     data["location_choice"] = forms.EventForm.LOCATION_NEW
-
+    data["spheres"] = models.Sphere.objects.get(slug="cph").id
     data["new_host"] = "Test group {random.randint(10000, 99999)}"
 
     response = client.post(reverse("calendar:event_create"), data=data)
+    print(response.content)
     assert response.status_code == 302
 
     assert models.Event.objects.all().latest("id").name == event_name
 
 
 @pytest.mark.django_db(transaction=True)
-def test_create_recurring_event(client, single_user):  # noqa
+def test_create_recurring_event(single_user, default_sphere, client, settings):  # noqa
     """
     Creates an event that recurs weekly
     """
+    settings.IS_CI_TEST = True
     client.login(username=single_user.email, password=SINGLE_USER_PASSWORD)
     response = client.get(reverse("calendar:event_create"))
     assert response.status_code == 200
@@ -125,10 +130,11 @@ def test_create_recurring_event(client, single_user):  # noqa
 
 
 @pytest.mark.django_db(transaction=True)
-def test_update_event(client, single_user, single_event):  # noqa
+def test_update_event(single_user, single_event, client, settings):  # noqa
     """
     Test basic event creation
     """
+    settings.IS_CI_TEST = True
     single_event.owner_user = single_user
     single_event.save()
     client.login(username=single_user.email, password=SINGLE_USER_PASSWORD)

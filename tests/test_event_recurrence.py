@@ -6,6 +6,7 @@ from dukop.apps.calendar import models
 from dukop.apps.calendar.utils import get_now
 from dukop.apps.calendar.utils import timedelta_fixed_time
 
+from .fixtures_calendar import default_sphere  # noqa
 from .fixtures_calendar import single_event  # noqa
 from .fixtures_calendar import single_event_3_weeks_past  # noqa
 

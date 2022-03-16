@@ -1,6 +1,7 @@
 import hashlib
 
 from django.conf import settings
+from dukop.apps.calendar.models import Sphere
 
 from . import models
 
@@ -51,6 +52,14 @@ def analytics_middleware(get_response):
                 language_code = path_split[1]
             else:
                 language_code = None
+
+            # This is a bit lame.. but tests do not normally carry out
+            # middleware calls in their test client. So we'll emulate knowing
+            # about a user's sphere here. We should probably figure out a way
+            # to use a fixture that creates a useful request object across all
+            # tests
+            if getattr(settings, "IS_CI_TEST", False):
+                request.sphere = Sphere.get_default()
 
             # If we should not ignore this path and a language code is present
             if not ignore and language_code and request.sphere:

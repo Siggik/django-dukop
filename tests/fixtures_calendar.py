@@ -6,7 +6,13 @@ from dukop.apps.calendar import utils
 
 
 @pytest.fixture
-def single_event(db):
+def default_sphere(db):
+    models.Sphere._cached_default = None
+    return models.Sphere.get_default()
+
+
+@pytest.fixture
+def single_event(db, default_sphere):
     start = utils.get_now() + timedelta(days=14)
     end = start + timedelta(hours=2)
     event = models.Event.objects.create(
@@ -15,8 +21,6 @@ def single_event(db):
         description="A longer description",
         venue_name="The Place",
     )
-    models.Sphere._cached_default = None
-    default_sphere = models.Sphere.get_default_cached()
     event.spheres.add(default_sphere)
     models.EventTime.objects.create(
         event=event,
@@ -27,7 +31,8 @@ def single_event(db):
 
 
 @pytest.fixture
-def single_event_3_weeks_past(db):
+def single_event_3_weeks_past(db, default_sphere):
+    models.Sphere._cached_default = None
     start = utils.get_now() - timedelta(days=21)
     start = start.replace(hour=18, minute=0)
     end = start + timedelta(hours=2)
@@ -37,7 +42,7 @@ def single_event_3_weeks_past(db):
         description="A longer description",
         venue_name="The Place",
     )
-    event.spheres.add(models.Sphere.get_default_cached())
+    event.spheres.add(default_sphere)
     models.EventTime.objects.create(
         event=event,
         start=start,

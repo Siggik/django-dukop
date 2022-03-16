@@ -25,7 +25,7 @@ def assert_fail_on_repeat(client, url, no_times=8):
 
 
 @clear_cache
-@pytest.mark.django_db(transaction=True)
+@pytest.mark.django_db()
 def test_login_page_ratelimit(client):
     # Assert that we don't mix in GET requests, they are okay
     for __ in range(10):
@@ -35,13 +35,13 @@ def test_login_page_ratelimit(client):
 
 
 @clear_cache
-@pytest.mark.django_db(transaction=True)
+@pytest.mark.django_db()
 def test_signup_page_ratelimit(client):
     assert_fail_on_repeat(client, reverse("users:signup"), 5)
 
 
 @clear_cache
-@pytest.mark.django_db(transaction=True)
+@pytest.mark.django_db()
 def test_token_page_ratelimit(client, single_user):  # noqa
     single_user.set_token()
     assert_fail_on_repeat(

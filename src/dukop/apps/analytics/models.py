@@ -7,7 +7,7 @@ class Visit(models.Model):
     from or there browser etc. Just stuff that we can very quickly analyze.
     """
 
-    visitor_hash = models.CharField(max_length=32)
+    visitor_hash = models.CharField(max_length=64)
     created = models.DateTimeField(auto_now_add=True)
     last_visit = models.DateTimeField(auto_now=True)
     language_code = models.CharField(max_length=6)

@@ -95,5 +95,6 @@ Then pass the path to the new directory to the
 command:
 
 ```console
-./manage.py startapp name src/dukop/apps/name
+mkdir src/dukop/apps/<name>
+python manage.py startapp name src/dukop/apps/<name>
 ```

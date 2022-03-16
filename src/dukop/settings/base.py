@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "django.contrib.staticfiles",
     "compressor",
+    "dukop.apps.analytics",
     "dukop.apps.calendar",
     "dukop.apps.news",
     "dukop.apps.users",
@@ -43,6 +44,7 @@ MIDDLEWARE = [
     "django.middleware.locale.LocaleMiddleware",
     "csp.middleware.CSPMiddleware",  # Modifies/sets CSP headers
     "dukop.apps.calendar.middleware.sphere_middleware",
+    "dukop.apps.analytics.middleware.analytics_middleware",
     "django.contrib.sites.middleware.CurrentSiteMiddleware",
 ]
 
@@ -141,6 +143,11 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = str(BASE_DIR.parent.parent / "media")
 
 SITE_ID = 1
+
+# SESSION AGE 24 hours
+# This makes analytics fairly accurate, but it can be expanded if it's too
+# annoying
+SESSION_COOKIE_AGE = 60 * 60 * 24
 
 # This is an annoying setting for django-markdownfield
 # Would be ideal if it could be replaced with something using django.contrib.sites

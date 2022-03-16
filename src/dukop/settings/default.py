@@ -18,13 +18,17 @@ except ImportError:
         """from .dev import *  # noqa\n"""
         """\n"""
         """SECRET_KEY = "{secret_key}"\n"""
+        """DUKOP_ANALYTICS_SALT = "{analytics_salt}"\n"""
         """DATABASES = {{\n"""
         """    "default": {{\n"""
         """        "ENGINE": "django.db.backends.sqlite3",\n"""
         """        "NAME": str(BASE_DIR.parent.parent / "db.sqlite3"),\n"""
         """    }}\n"""
         """}}\n"""
-    ).format(secret_key=get_random_secret_key())
+    ).format(
+        secret_key=get_random_secret_key(),
+        analytics_salt=get_random_secret_key(),
+    )
     f = open(os.path.join(os.path.dirname(__file__), "local.py"), "w")
     f.write(default)
     sys.exit(1)

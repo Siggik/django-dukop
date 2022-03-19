@@ -144,7 +144,15 @@ def dukop_interval(start, end=None):
     """
     Displays an interval, e.g. "2021-04-02 15:00-16:00"
     """
-    return utils.display_interval(start, end)
+    return utils.display_interval(start, end, line_break=False)
+
+
+@register.filter_function
+def dukop_interval_linebreak(start, end=None):
+    """
+    Displays an interval, e.g. "2021-04-02 15:00<br> - 2021-04-03 16:00"
+    """
+    return mark_safe(utils.display_interval(start, end, line_break=True))
 
 
 @register.simple_tag

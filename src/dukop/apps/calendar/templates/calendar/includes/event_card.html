@@ -48,11 +48,11 @@
           <div class="card__date">
             {% with event_time|default:event.times.future.first as next_occurrence %}
                 {% if next_occurrence.start %}
-                    {{ next_occurrence.start|dukop_interval:next_occurrence.end }}
+                    {{ next_occurrence.start|dukop_interval_linebreak:next_occurrence.end }}
                 {% else %}
                     {% with event.times.last as last_occurrence %}
                         {% if last_occurrence.start %}
-                            {{ last_occurrence.start|dukop_interval:last_occurrence.end }}
+                            {{ last_occurrence.start|dukop_interval_linebreak:last_occurrence.end }}
                         {% else %}
                             <em class="muted">{% trans "No scheduled times" %}</em>
                         {% endif %}

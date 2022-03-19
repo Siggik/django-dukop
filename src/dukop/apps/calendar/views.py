@@ -362,17 +362,11 @@ class EventImagesUpdateView(UpdateView):
             return self.form_invalid(form)
 
     def form_valid(self, form):
-        for cnt, image_form in enumerate(self.images_form):
-            if (
-                image_form.is_valid()
-                and image_form.has_changed()
-                and image_form.cleaned_data.get("image")
-            ):
-                image = image_form.save(commit=True)
-                image.priority = cnt
-                image.save()
+        self.images_form.save(commit=True)
         for obj in getattr(self.images_form, "deleted_objects", []):
-            obj.delete()
+            print("deleting")
+            if obj.pk:
+                obj.delete()
 
         return self.get_success_url()
 

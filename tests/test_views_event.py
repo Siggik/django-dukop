@@ -2,6 +2,7 @@ import random
 from datetime import timedelta
 
 import pytest
+from django.forms.fields import SplitDateTimeField
 from django.urls.base import reverse
 from django.utils import timezone
 from dukop.apps.calendar import forms
@@ -37,9 +38,18 @@ def create_form_data(response):
             # retrieve all the fields
             for field_name in current_form.fields:
                 value = current_form[field_name].value()
-                data["%s-%s" % (current_form.prefix, field_name)] = (
-                    value if value is not None else ""
-                )
+                if isinstance(current_form.fields[field_name], SplitDateTimeField):
+                    if value:
+                        data[
+                            "%s-%s_0" % (current_form.prefix, field_name)
+                        ] = value.date()
+                        data[
+                            "%s-%s_1" % (current_form.prefix, field_name)
+                        ] = value.strftime("%H:%M")
+                else:
+                    data["%s-%s" % (current_form.prefix, field_name)] = (
+                        value if value is not None else ""
+                    )
     data["spheres"] = models.Sphere.get_default().pk
 
     return data

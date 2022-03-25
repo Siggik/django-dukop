@@ -203,3 +203,8 @@ def event_description(event, truncate=100):
 @register.filter
 def recurrence_interval(recurrence_like_obj):
     return models.EventRecurrence.recurrence_name_static(recurrence_like_obj)
+
+
+@register.filter
+def has_locations(user):
+    return user.dukop_groups.all().exists()

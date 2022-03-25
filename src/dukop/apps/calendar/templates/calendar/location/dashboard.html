@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load i18n sekizai_tags static %}
+{% load calendar_tags sorl_thumbnail %}
+{% load l10n %}
+
+{% block dukop_title %}{% trans "My locations" %}{% endblock %}
+
+
+{% block content %}
+
+  <h1>
+    {% trans "Locations that you manage" %}
+  </h1>
+
+  <p>
+    {% trans "Below is the list of locations that you have created or which a group you're in has created." %}
+  </p>
+
+  <table class="table">
+
+    <thead>
+      <tr>
+        <th>{% trans "Name" %}</th>
+        <th>{% trans "Event count" %}</th>
+        <th>{% trans "Next event" %}</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for location in locations %}
+      <tr>
+        <td><a href="">{{ location.name }}</a></td>
+        <td></td>
+        <td></td>
+        <td class="center">
+            {% if event.published %}
+                <div class="icon icon__check-circle"></div>
+            {% else %}
+                <div class="icon icon__circle"></div>
+            {% endif %}
+        </td>
+      </tr>
+      {% empty %}
+
+      <tr>
+        <td colspan="100"><em>{% trans "No locations found" %}</em></td>
+      </tr>
+
+      {% endfor %}
+    </tbody>
+
+  <tbody>
+  </table>
+
+{% endblock %}

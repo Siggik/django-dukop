@@ -29,8 +29,15 @@ urlpatterns = [
     path(
         "location/<int:pk>/", views.LocationDetailView.as_view(), name="location_detail"
     ),
+    path(
+        "location/dashboard/",
+        views.LocationDashboardView.as_view(),
+        name="location_dashboard",
+    ),
     path("events/", views.EventListView.as_view(), name="event_list"),
-    path("events/dashboard/", views.EventDashboard.as_view(), name="event_dashboard"),
+    path(
+        "events/dashboard/", views.EventDashboardView.as_view(), name="event_dashboard"
+    ),
     path("event/<int:pk>/", views.EventDetailView.as_view(), name="event_detail"),
     path(
         "event/<int:pk>/<int:time_pk>/",

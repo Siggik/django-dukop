@@ -181,3 +181,13 @@ class Location(Group):
     class Meta:
         verbose_name = _("Location")
         ordering = ("name",)
+
+
+class GroupLink(models.Model):
+    group = models.ForeignKey(Group, on_delete=models.CASCADE)
+    link = models.URLField(blank=True, null=True, max_length=2048)
+    priority = models.PositiveSmallIntegerField(
+        default=0, help_text=_("0=first, 1=second etc.")
+    )
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)

@@ -582,7 +582,7 @@ class EventListView(ListView):
         return c
 
 
-class EventDashboard(ListView):
+class EventDashboardView(ListView):
     """
     This lists all Event objects -- BUT! Notice that the listing is happening
     via the EventTime relation. We are only ever interested in listing events
@@ -622,6 +622,28 @@ class GroupDetailView(DetailView):
 
     def get_queryset(self):
         return Group.objects.filter(deactivated=False)
+
+
+class LocationDashboardView(ListView):
+    """
+    This lists all Event objects -- BUT! Notice that the listing is happening
+    via the EventTime relation. We are only ever interested in listing events
+    from their occurrence in time, past present or future. The essential feature
+    of the list is to be chronological.
+    """
+
+    template_name = "calendar/location/dashboard.html"
+    model = Location
+    context_object_name = "locations"
+
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_queryset(self):
+        qs = super().get_queryset().filter(deactivated=False)
+        qs = qs.filter(members=self.request.user)
+        return qs
 
 
 class LocationDetailView(DetailView):

@@ -134,3 +134,29 @@ class UpdateForm(SetPasswordForm, forms.ModelForm):
     class Meta:
         model = models.User
         fields = ("nick",)
+
+
+class LocationForm(forms.ModelForm):
+
+    update_events = forms.BooleanField(
+        initial=True,
+        required=False,
+        help_text=_(
+            "Update future events with new location details. If you change the name or address of the location, you should also choose to update future events. If you leave this unchecked, you can change events individually afterwards."
+        ),
+    )
+
+    def save(self, commit=True):
+        location = super().save(commit=commit)
+        if self.cleaned_data["update_events"]:
+            location.events_here.future().update(
+                venue_name=location.name,
+                street=location.street,
+                city=location.city,
+                zip_code=location.zip_code,
+            )
+        return location
+
+    class Meta:
+        model = models.Location
+        fields = ("name", "description", "street", "city", "zip_code")

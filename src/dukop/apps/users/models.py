@@ -134,10 +134,6 @@ class Group(models.Model):
 
     owner_email = models.EmailField(blank=True, null=True)
 
-    link1 = models.URLField(blank=True, null=True, max_length=2048)
-    link2 = models.URLField(blank=True, null=True, max_length=2048)
-    link3 = models.URLField(blank=True, null=True, max_length=2048)
-
     street = models.CharField(
         max_length=255,
         verbose_name=_("street"),
@@ -181,3 +177,16 @@ class Location(Group):
     class Meta:
         verbose_name = _("Location")
         ordering = ("name",)
+
+
+class GroupLink(models.Model):
+    group = models.ForeignKey(Group, on_delete=models.CASCADE, related_name="links")
+    link = models.URLField(blank=True, null=True, max_length=2048)
+    priority = models.PositiveSmallIntegerField(
+        default=0, help_text=_("0=first, 1=second etc.")
+    )
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ("priority",)

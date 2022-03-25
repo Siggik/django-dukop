@@ -66,6 +66,12 @@
   <div class="collapsible-content">
   <table>
     {% include "calendar/includes/event_form_render_field_tr.html" with field=form.location %}
+    <th></th>
+    <td>
+      {% if form.instance.pk and form.instance.location|location_can_edit:user %}
+        {% blocktrans with location=form.instance.location.name %}You can edit {{ location }}{% endblocktrans %} <a href="{% url "calendar:location_detail" pk=form.instance.location.id %}">{% trans "here »" %}</a>
+    {% endif %}
+    </td>
   </table>
   </div>
 </div>

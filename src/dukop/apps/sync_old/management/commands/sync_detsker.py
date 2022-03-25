@@ -31,6 +31,7 @@ from dukop.apps.calendar.models import Sphere
 from dukop.apps.calendar.models import Weekday
 from dukop.apps.news.models import NewsStory
 from dukop.apps.sync_old import models
+from dukop.apps.users.models import GroupLink
 from dukop.apps.users.models import Location
 
 
@@ -125,14 +126,15 @@ def ensure_location_exists(old_event):
 def create_location(old_event):
     if not old_event.location or not old_event.location.name:
         return None
-    return Location.objects.get_or_create(
+    location, created = Location.objects.get_or_create(
         name=old_event.location.name,
         street=old_event.location.street_address,
         zip_code=old_event.location.postcode[:16],
         city=old_event.location.town,
         description=old_event.location.description,
-        link1=old_event.location.link,
-    )[0]
+    )
+    if created and old_event.location.link:
+        GroupLink.objects.create(group=location, link=old_event.location.link)
 
 
 def create_event_link(old_event, attach_to_event):

@@ -10,30 +10,35 @@
 
     <h1>{{ location.name }}</h1>
 
-    {{ location.description|default:"No description written" }}
+    {% if location|location_can_edit:user %}
+      <p><a href="{% url "calendar:location_detail" pk=location.id %}">{% trans "Edit" %}</a></p>
+    {% endif %}
+
+    {{ location.description|default:"No description written"|linebreaks }}
+
 
     <h2>{% trans "Links" %}</h2>
 
-    {% if location.link1 %}
-    <p><a href="{{ location.link1 }}" target="_blank">{{ location.link1|url_alias }}</a></p>
-    {% endif %}
-    {% if location.link2 %}
-    <p><a href="{{ location.link2 }}" target="_blank">{{ location.link2|url_alias }}</a></p>
-    {% endif %}
-    {% if location.link3 %}
-    <p><a href="{{ location.link3 }}" target="_blank">{{ location.link3|url_alias }}</a></p>
-    {% endif %}
-
-    {% if not location.link1 and not location.link2 and not location.link3 %}
-        <em>{% trans "No links" %}</em>
-    {% endif %}
+    {% for link in links %}
+    <p>
+      <a href="{{ link.link }}" target="_blank">{{ link.link|url_alias }}</a>
+    </p>
+    {% empty %}
+    <p>
+      <em>{% trans "No links" %}</em>
+    </p>
+    {% endfor %}
 
     <h2>{% trans "Location" %}</h2>
-
+    <p>
+    {% if location.venue_name and location.street %}
     <strong>{{ location.venue_name }}</strong><br>
     {{ location.street }}<br>
     {{ location.zip_code }} {{ location.city }}
-
+    {% else %}
+    <em>{% trans "Address missing" %}</em>
+    {% endif %}
+    </p>
 
 <h2>{% trans "Upcoming events" %}</h2>
 

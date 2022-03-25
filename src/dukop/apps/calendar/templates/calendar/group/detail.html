@@ -10,23 +10,19 @@
 
     <h1>{{ group.name }}</h1>
 
-    {{ group.description|default:"No description written" }}
+    {{ group.description|default:"No description written"|linebreaks }}
 
     <h2>{% trans "Links" %}</h2>
 
-    {% if group.link1 %}
-    <p><a href="{{ group.link1 }}" target="_blank">{{ group.link1|url_alias }}</a></p>
-    {% endif %}
-    {% if group.link2 %}
-    <p><a href="{{ group.link2 }}" target="_blank">{{ group.link2|url_alias }}</a></p>
-    {% endif %}
-    {% if group.link3 %}
-    <p><a href="{{ group.link3 }}" target="_blank">{{ group.link3|url_alias }}</a></p>
-    {% endif %}
-
-    {% if not group.link1 and not group.link2 and not group.link3 %}
-        <em>{% trans "No links" %}</em>
-    {% endif %}
+    {% for link in links %}
+    <p>
+      <a href="{{ link.link }}" target="_blank">{{ link.link|url_alias }}</a>
+    </p>
+    {% empty %}
+    <p>
+      <em>{% trans "No links" %}</em>
+    </p>
+    {% endfor %}
 
     <h2>{% trans "Location" %}</h2>
 

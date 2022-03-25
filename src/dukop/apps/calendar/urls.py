@@ -30,6 +30,11 @@ urlpatterns = [
         "location/<int:pk>/", views.LocationDetailView.as_view(), name="location_detail"
     ),
     path(
+        "location/update/<int:pk>/",
+        views.LocationUpdateView.as_view(),
+        name="location_update",
+    ),
+    path(
         "location/dashboard/",
         views.LocationDashboardView.as_view(),
         name="location_dashboard",

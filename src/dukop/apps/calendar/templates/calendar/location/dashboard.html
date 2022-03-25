@@ -30,15 +30,19 @@
     <tbody>
       {% for location in locations %}
       <tr>
-        <td><a href="">{{ location.name }}</a></td>
-        <td></td>
-        <td></td>
-        <td class="center">
-            {% if event.published %}
-                <div class="icon icon__check-circle"></div>
+        <td><a href="{% url "calendar:location_detail" pk=location.id %}">{{ location.name }}</a></td>
+        <td>{{ location.events_here.all.count|default:0 }}</td>
+        <td>
+          {% with location.events_here.all.future.first as next_event%}
+            {% if next_event %}
+              <a href="{% url "calendar:event_detail" pk=next_event.id %}">{{ next_event.name }}</a>
             {% else %}
-                <div class="icon icon__circle"></div>
+              <em>{% trans "No active events" %}</em>
             {% endif %}
+          {% endwith %}
+        </td>
+        <td class="center">
+          <a href="{% url "calendar:location_update" pk=location.pk %}" title="Edit" class="button">{% trans "Update" %}<br><div class="icon icon__tool"></div></a>
         </td>
       </tr>
       {% empty %}

@@ -10,7 +10,11 @@
 
     <h1>{{ location.name }}</h1>
 
-    {{ location.description|default:"No description written" }}
+    {% if location|location_can_edit:user %}
+      <p><a href="{% url "calendar:location_detail" pk=location.id %}">{% trans "Edit" %}</a></p>
+    {% endif %}
+
+    {{ location.description|default:"No description written"|linebreaks }}
 
 
     <h2>{% trans "Links" %}</h2>
@@ -26,11 +30,15 @@
     {% endfor %}
 
     <h2>{% trans "Location" %}</h2>
-
+    <p>
+    {% if location.venue_name and location.street %}
     <strong>{{ location.venue_name }}</strong><br>
     {{ location.street }}<br>
     {{ location.zip_code }} {{ location.city }}
-
+    {% else %}
+    <em>{% trans "Address missing" %}</em>
+    {% endif %}
+    </p>
 
 <h2>{% trans "Upcoming events" %}</h2>
 

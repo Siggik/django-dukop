@@ -57,17 +57,45 @@ class EventQuerySet(models.QuerySet):
         """Returns queryset of active events"""
         return self.filter(published=True, deleted=False)
 
+    def future(self, truncate_time_today=True):
+        """
+        Selects all events that start in the future or haven't yet finished
+        """
+        if truncate_time_today:
+            now = utils.get_now().replace(minute=0, hour=0, second=0)
+        else:
+            now = utils.get_now()
+        return self.filter(Q(times__start__gte=now) | Q(times__end__gte=now)).distinct()
+
+    def past(self, truncate_time_today=True):
+        """
+        Selects all irrelevant events, i.e. events that have ended
+        """
+        if truncate_time_today:
+            now = utils.get_now().replace(minute=0, hour=0, second=0)
+        else:
+            now = utils.get_now()
+        return self.filter(
+            Q(times__start__lt=now) & (Q(times__end__lt=now) | Q(times__end=None))
+        ).distinct()
+
 
 class EventManager(models.Manager):
     def get_queryset(self):
         return (
-            EventTimeQuerySet(self.model, using=self._db)
+            EventQuerySet(self.model, using=self._db)
             .prefetch_related("times")
             .prefetch_related("images")
         )
 
     def active(self):
         return self.get_queryset().active()
+
+    def future(self):
+        return self.get_queryset().future()
+
+    def past(self):
+        return self.get_queryset().past()
 
 
 class EventTimeQuerySet(models.QuerySet):

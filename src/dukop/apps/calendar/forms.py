@@ -59,7 +59,9 @@ class EventForm(forms.ModelForm):
         ).distinct(),
         required=False,
         label=_("Location"),
-        help_text=_("Choose an existing location or create a new one"),
+        help_text=_(
+            "Choose an existing location and add this event to the location's list of events"
+        ),
     )
 
     location_choice = forms.TypedChoiceField(

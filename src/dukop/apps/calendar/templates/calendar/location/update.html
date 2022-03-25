@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load i18n sekizai_tags static dukop_utils %}
+
+{% block dukop_title %}{% trans "Update location" %} - {{ location.name }}{% endblock %}
+
+{% block content %}
+
+<div class="create-event">
+
+  <h1 class="card__title">{{ location.name }}</h1>
+
+  <form method="POST" action="">
+    {% csrf_token %}
+
+    {% dukop_form form %}
+
+    <hr>
+
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-8">
+        <p><strong>{% trans "Upcoming feature:" %}</strong> {% trans "In the future, you will be able to add other members with access to manage and add events to a location." %}</p>
+        <input type="submit" value="{% trans "Save changes" %}">
+    </div>
+</div>
+
+  </form>
+
+</div>
+
+{% endblock %}

@@ -3,6 +3,7 @@ from datetime import timedelta
 from django import forms
 from django.forms.models import inlineformset_factory
 from django.utils import timezone
+from django.utils.translation import gettext
 from django.utils.translation import gettext_lazy as _
 from dukop.apps.calendar import widgets
 from dukop.apps.calendar.utils import get_now
@@ -280,8 +281,15 @@ class EventTimeForm(forms.ModelForm):
     def clean_start(self):
         start = self.cleaned_data["start"]
         if self.has_changed() and start < get_now():
-            raise forms.ValidationError("Start cannot be in the past.")
+            raise forms.ValidationError(gettext("Start cannot be in the past."))
         return start
+
+    def clean_end(self):
+        start = self.cleaned_data["start"]
+        end = self.cleaned_data["end"]
+        if self.has_changed() and start and end and start >= end:
+            raise forms.ValidationError(gettext("End time has to be after start time."))
+        return end
 
     class Meta:
         model = models.EventTime
@@ -368,6 +376,13 @@ class EventRecurrenceTimesForm(forms.ModelForm):
             },
         ),
     )
+
+    def clean_end(self):
+        start = self.cleaned_data["start"]
+        end = self.cleaned_data["end"]
+        if start and end and start >= end:
+            raise forms.ValidationError(gettext("End time has to be after start time."))
+        return end
 
     class Meta:
         model = models.EventTime

@@ -1,5 +1,3 @@
-from datetime import timedelta
-
 from django import forms
 from django.forms.models import inlineformset_factory
 from django.utils import timezone
@@ -270,10 +268,10 @@ class EventDeleteForm(forms.ModelForm):
 class EventTimeForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         initial = kwargs.get("initial", {})
-        default_start = (timezone.now() + timedelta(days=1)).replace(
-            hour=12, minute=0, second=0
-        )
-        initial.setdefault("start", default_start)
+        # default_start = (timezone.now() + timedelta(days=1)).replace(
+        #     hour=12, minute=0, second=0
+        # )
+        # initial.setdefault("start", default_start)
         kwargs["initial"] = initial
         super().__init__(*args, **kwargs)
 

@@ -50,6 +50,16 @@
   background-color: rgb(236, 236, 222);
   justify-content: center;
   align-items: center;
+}
+
+.card__media__truncate {
+  max-height: 250px;
+  overflow: hidden;
+}
+
+
+.card__text__truncate {
+  max-height: 240px;
   overflow: hidden;
 }
 
@@ -112,19 +122,6 @@
   margin: 20px 0 10px 0;
   letter-spacing: -1px;
   line-height: 1em;
-  overflow: hidden;
-}
-
-.card__more {
-  height: 0;
-  width: 0;
-  overflow: auto;
-  opacity: 0;
-  transition: opacity .5s;
-}
-
-.card__more__cut {
-  overflow: hidden;
 }
 
 .card__color {

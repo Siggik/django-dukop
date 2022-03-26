@@ -281,14 +281,14 @@ class EventTimeForm(forms.ModelForm):
     end = forms.SplitDateTimeField(widget=widgets.SplitDateTimeWidget(), required=False)
 
     def clean_start(self):
-        start = self.cleaned_data["start"]
+        start = self.cleaned_data.get("start")
         if self.has_changed() and start < get_now():
             raise forms.ValidationError(gettext("Start cannot be in the past."))
         return start
 
     def clean_end(self):
-        start = self.cleaned_data["start"]
-        end = self.cleaned_data["end"]
+        start = self.cleaned_data.get("start")
+        end = self.cleaned_data.get("end")
         if self.has_changed() and start and end and start >= end:
             raise forms.ValidationError(gettext("End time has to be after start time."))
         return end
@@ -380,8 +380,8 @@ class EventRecurrenceTimesForm(forms.ModelForm):
     )
 
     def clean_end(self):
-        start = self.cleaned_data["start"]
-        end = self.cleaned_data["end"]
+        start = self.cleaned_data.get("start")
+        end = self.cleaned_data.get("end")
         if start and end and start >= end:
             raise forms.ValidationError(gettext("End time has to be after start time."))
         return end

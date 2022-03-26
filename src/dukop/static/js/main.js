@@ -55,8 +55,8 @@ for (var i = document.getElementsByClassName("timeline__event").length - 1; i >=
          // So if we're out of space, then let's settle on a good 'substring number' to shorten the label by
          if(!stillMoreSpace){
             
-            console.log("Settled on "+allowedNumber+" for now")
-            console.log("I ran "+counter+" times")
+            // console.log("Settled on "+allowedNumber+" for now")
+            // console.log("I ran "+counter+" times")
 
             // Shortening and inserting the newDataText ...
             let newDataText = document.getElementsByClassName("timeline__event")[i].getAttribute('data-text').substring(0, allowedNumber) + '..'

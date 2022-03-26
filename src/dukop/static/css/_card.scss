@@ -112,6 +112,7 @@
   margin: 20px 0 10px 0;
   letter-spacing: -1px;
   line-height: 1em;
+  overflow: hidden;
 }
 
 .card__more {
@@ -120,6 +121,10 @@
   overflow: auto;
   opacity: 0;
   transition: opacity .5s;
+}
+
+.card__more__cut {
+  overflow: hidden;
 }
 
 .card__color {

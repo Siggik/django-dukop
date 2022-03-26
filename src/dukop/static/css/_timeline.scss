@@ -1,4 +1,4 @@
-.timeline {  
+.timeline {
   margin: 20px auto 40px auto;
   max-width: 900px;
   position: relative;
@@ -25,14 +25,17 @@
 
 .timeline__event--color1 {
   background: #3C8E8C;
+  text-shadow: 0px 0px 3px #3c8e8c;
 }
 
 .timeline__event--color2 {
   background: #70AA64;
+  text-shadow: 0px 0px 3px #70AA64;
 }
 
 .timeline__event--color3 {
   background: #42767F;
+  text-shadow: 0px 0px 3px #42767F;
 }
 
 .timeline__event--left,
@@ -115,7 +118,7 @@
 
 @media (max-width: 700px) {
 
-  .timeline {  
+  .timeline {
     zoom: 0.7;
   }
 

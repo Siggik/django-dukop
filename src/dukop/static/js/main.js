@@ -16,11 +16,13 @@ if (document.querySelector(".js-copy")) {
    document.querySelector(".js-copy").addEventListener("click", copy);
 }
 
+
+
 // Going through timeline events (with a mission to shorten the labels so it won't break the div's)
 for (var i = document.getElementsByClassName("timeline__event").length - 1; i >= 0; i--) {
    let lengthOfText = null;
    // Calculate the lenght of text and find the width of the surrounding box
-   if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
+   if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1 && $(window).width() < 700){
       lengthOfText = measureText(document.getElementsByClassName("timeline__event")[i].getAttribute('data-text'), 10, "italic").width
    } else {
       lengthOfText = measureText(document.getElementsByClassName("timeline__event")[i].getAttribute('data-text'), 16, "italic").width
@@ -35,7 +37,7 @@ for (var i = document.getElementsByClassName("timeline__event").length - 1; i >=
    
       let stillMoreSpace = null;
       // Check, if there's more space (if we shortened it too much with the 1 characters from above)
-      if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+      if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1  && $(window).width() < 700) {
          stillMoreSpace = measureText(document.getElementsByClassName("timeline__event")[i].getAttribute('data-text').substring(0, allowedNumber), 10, "italic").width < widthOfElement
       } else {
          stillMoreSpace = measureText(document.getElementsByClassName("timeline__event")[i].getAttribute('data-text').substring(0, allowedNumber), 16, "italic").width < widthOfElement
@@ -44,7 +46,7 @@ for (var i = document.getElementsByClassName("timeline__event").length - 1; i >=
       while (stillMoreSpace) {
 
          // Checking again after last run updated the allowedNumber
-         if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+         if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1  && $(window).width() < 700) {
             stillMoreSpace = measureText(document.getElementsByClassName("timeline__event")[i].getAttribute('data-text').substring(0, allowedNumber), 10, "italic").width + 55 < widthOfElement
          } else {
             stillMoreSpace = measureText(document.getElementsByClassName("timeline__event")[i].getAttribute('data-text').substring(0, allowedNumber), 16, "italic").width + 55 < widthOfElement
@@ -65,14 +67,13 @@ for (var i = document.getElementsByClassName("timeline__event").length - 1; i >=
          }
 
          // Because this is a hacky solution, I check if it's running amok
-         if(counter > 70){
+         if(counter > 50){
             stillMoreSpace = false;
             console.log("Argh, cancelllll, I ran more than 50 times pr event!")
          }
       }
    }
 }
-
 
 // https://stackoverflow.com/a/4032497/4241528
 function measureText(pText, pFontSize, pStyle) {

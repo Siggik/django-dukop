@@ -28,6 +28,8 @@ from . import utils
 
 def image_upload_to(instance, filename):
     ext = filename.split(".")[-1]
+    if not ext:
+        ext = "jpeg"
     filename = "%s.%s" % (uuid.uuid4(), ext)
     return os.path.join("uploads/events", filename)
 

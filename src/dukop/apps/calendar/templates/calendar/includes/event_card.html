@@ -3,7 +3,7 @@
 {% load l10n %}
 
   <div class="card__layout {% if not event_truncate %} card__layout--full {% endif %} {% if event.is_cancelled %}card__cancelled{% endif %}">
-    <div class="card__media">
+    <div class="card__media{% if event_truncate %} card__media__truncate{% endif %}">
         {% if event_truncate %}
         {% with event.images.first as feature_image %}
             {% if feature_image.image %}
@@ -140,9 +140,7 @@
             {% endif %}
 
         {% else %}
-        <div class="card__more__cut">
-            {{ event|event_description:100 }}
-        </div>
+          {{ event|event_description:100 }}
         {% endif %}
 
 

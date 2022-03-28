@@ -2,25 +2,54 @@
 {% load i18n %}
 {% load dukop_utils %}
 
-{% block dukop_title %}{% trans "Profile and events" %}{% endblock %}
+{% block dukop_title %}{% trans "Profile" %}{% endblock %}
 
 {% block content %}
 
 <h1>{% trans "Your profile" %}</h1>
 
-<p>{% trans "Currently, you cannot change your email address. This function will arrive soon, together with much much more." %}</p>
+<p>{% trans "Currently, you cannot change your email address. This function will arrive during 2022, together with much much more." %}</p>
 
-<form method="post" action="{% url 'users:update' %}">
-{% csrf_token %}
+<form method="POST" action="" class="dukop-table-form">
 
-{% dukop_form form %}
+  {% include "includes/forms/formerrors.html" %}
 
-<div class="row">
-    <div class="col-md-4"></div>
-    <div class="col-md-8">
-        <input type="submit" value="{% trans "Update profile" %}">
+  {% if forms_had_errors %}
+  <div class="message message__error">
+    {% trans "There were errors. Please check below." %}
+  </div>
+  {% endif %}
+
+  {% csrf_token %}
+
+  <table>
+
+    {% include "includes/forms/formfield_tr.html" with field=form.nick %}
+
+  </table>
+
+  <div class="collapsible-bar collapsible-bar-show-input">
+    <input type="checkbox" value="true" name="{{ form.change_password.html_name }}" id="id_{{ form.change_password.html_name }}_0"{% if form.change_password.value %} checked="true"{% endif %}>
+    <label class="collapsible-title" for="id_{{ form.change_password.html_name }}_0">
+      {% trans "Set / change password" %}
+    </label>
+
+    <div class="collapsible-content">
+      <table>
+        {% include "includes/forms/formfield_tr.html" with field=form.new_password1 %}
+        {% include "includes/forms/formfield_tr.html" with field=form.new_password2 %}
+      </table>
     </div>
-</div>
+  </div>
+
+  <table>
+    <tr>
+      <th><br></th>
+      <td>
+          <button type="submit" class="button-big">{% trans "Update profile" %}</button>
+      </td>
+    </tr>
+  </table>
 
 </form>
 

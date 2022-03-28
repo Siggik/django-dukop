@@ -5,7 +5,6 @@
 
 {% block content %}
 
-<div class="create-event">
   {% if forms_had_errors %}
   <div class="message message__error">
     {% trans "There were errors. Please check below. If you submitted images, you have to re-select them." %}
@@ -16,7 +15,7 @@
     {% trans "We really recommend that you add an illustration. Don't let your Facebook event look better than your Duk Op event!" %}
   </p>
 
-  <form action="" method="POST" class="event__form" enctype="multipart/form-data">
+  <form action="" method="POST" class="event__form dukop-table-form" enctype="multipart/form-data">
   {% csrf_token %}
 
   {{ images.management_form }}
@@ -26,7 +25,7 @@
   {% endif %}
 
   <div class="collapsible-bar collapsible-bar-show-input">
-    <input type="checkbox" value="false" name="{{ form.cover_image.html_name }}" id="id_{{ form.cover_image.html_name }}_0"{% if form.cover_image.value or images.0.image.value %} checked="true"{% endif %}>
+    <input type="checkbox" value="false" name="{{ form.cover_image.html_name }}" id="id_{{ form.cover_image.html_name }}_0"{% if form.cover_image.value or images.0.image.value or images.0.image.errors %} checked="true"{% endif %}>
     <label class="collapsible-title" for="id_{{ form.cover_image.html_name }}_0">
       {% trans "Cover image" %}
     </label>
@@ -35,9 +34,9 @@
 
       {{ images.0.id }}
       <table>
-        {% include "calendar/includes/event_form_render_field_tr.html" with field=images.0.image %}
+        {% include "includes/forms/formfield_tr.html" with field=images.0.image %}
         {% if images.0.instance.pk %}
-          {% include "calendar/includes/event_form_render_field_tr.html" with field=images.0.DELETE %}
+          {% include "includes/forms/formfield_tr.html" with field=images.0.DELETE %}
         {% endif %}
 
       </table>
@@ -45,7 +44,7 @@
   </div>
 
   <div class="collapsible-bar collapsible-bar-show-input">
-    <input type="checkbox" value="false" name="{{ form.extra_images.html_name }}" id="id_{{ form.extra_images.html_name }}_0"{% if form.extra_images.value or images.1.image.value %} checked="true"{% endif %}>
+    <input type="checkbox" value="false" name="{{ form.extra_images.html_name }}" id="id_{{ form.extra_images.html_name }}_0"{% if form.extra_images.value or images.1.image.value or images.1.image.errors or images.2.image.errors or images.3.image.errors %} checked="true"{% endif %}>
     <label class="collapsible-title" for="id_{{ form.extra_images.html_name }}_0">
       {% trans "Extra images" %}
     </label>
@@ -57,9 +56,9 @@
       <div class="formset--element {% if not image.errors and not forloop.first %}hide{% endif %}">
       {{ image.id }}
       <table>
-        {% include "calendar/includes/event_form_render_field_tr.html" with field=image.image %}
+        {% include "includes/forms/formfield_tr.html" with field=image.image %}
         {% if image.instance.pk %}
-          {% include "calendar/includes/event_form_render_field_tr.html" with field=image.DELETE %}
+          {% include "includes/forms/formfield_tr.html" with field=image.DELETE %}
         {% endif %}
 
       </table>
@@ -109,9 +108,6 @@
   </table>
 
   </form>
-
-
-</div>
 
 
 {% addtoblock "js" %}

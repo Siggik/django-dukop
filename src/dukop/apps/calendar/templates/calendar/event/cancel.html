@@ -16,7 +16,7 @@
   <form method="POST" action="">
     {% csrf_token %}
     <table>
-      {% include "calendar/includes/event_form_render_field_tr.html" with field=form.is_cancelled %}
+      {% include "includes/forms/formfield_tr.html" with field=form.is_cancelled %}
     </table>
     <hr>
     <table>

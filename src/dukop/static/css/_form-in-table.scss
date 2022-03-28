@@ -1,27 +1,6 @@
 
 
-.create-event {
-  &__file {
-    cursor: pointer;
-    display: inline-block;
-    background-color: #42767F;
-    color: #fff;
-    border-radius: 3px;
-    padding: 3px 10px;
-    font-style: italic;
-    font-weight: 100;
-  }
-  &__info {
-    color: #aaa;
-    font-size: 80%;
-    margin-bottom: 10px;
-  }
-  &__input {
-    font-size: 1em;
-    padding: 10px 10px;
-    width: 100%;
-    border: 1px solid #ddd;
-  }
+.dukop-table-form {
   table
   {
       width: 100%;
@@ -61,13 +40,13 @@
   .event-recurrence-times-description {
       height: 100px;
   }
-}
 
-.spheres {
-    ul {list-style: none; padding: 0}
-}
+    .spheres {
+        ul {list-style: none; padding: 0}
+    }
 
-.formset-add-remove-buttons
-{
-    margin: 20px 0;
+    .formset-add-remove-buttons
+    {
+        margin: 20px 0;
+    }
 }

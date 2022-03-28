@@ -2,12 +2,12 @@
 
 <table>
 
-  {% include "calendar/includes/event_form_render_field_tr.html" with field=form.name %}
-  {% include "calendar/includes/event_form_render_field_tr.html" with field=form.description %}
+  {% include "includes/forms/formfield_tr.html" with field=form.name %}
+  {% include "includes/forms/formfield_tr.html" with field=form.description %}
 
-  {% include "calendar/includes/event_form_render_field_tr.html" with field=form.spheres %}
+  {% include "includes/forms/formfield_tr.html" with field=form.spheres %}
 
-  {% include "calendar/includes/event_form_render_field_tr.html" with field=form.online %}
+  {% include "includes/forms/formfield_tr.html" with field=form.online %}
 
 </table>
 
@@ -26,7 +26,7 @@
   </label>
   <div class="collapsible-content">
   <table>
-    {% include "calendar/includes/event_form_render_field_tr.html" with field=form.host %}
+    {% include "includes/forms/formfield_tr.html" with field=form.host %}
   </table>
   </div>
 </div>
@@ -38,7 +38,7 @@
   </label>
   <div class="collapsible-content">
   <table>
-    {% include "calendar/includes/event_form_render_field_tr.html" with field=form.new_host %}
+    {% include "includes/forms/formfield_tr.html" with field=form.new_host %}
   </table>
   </div>
 </div>
@@ -65,7 +65,7 @@
   </label>
   <div class="collapsible-content">
   <table>
-    {% include "calendar/includes/event_form_render_field_tr.html" with field=form.location %}
+    {% include "includes/forms/formfield_tr.html" with field=form.location %}
     <th></th>
     <td>
       {% if form.instance.pk and form.instance.location|location_can_edit:user %}
@@ -83,11 +83,11 @@
   </label>
   <div class="collapsible-content">
   <table>
-    {% include "calendar/includes/event_form_render_field_tr.html" with field=form.venue_name %}
-    {% include "calendar/includes/event_form_render_field_tr.html" with field=form.street %}
-    {% include "calendar/includes/event_form_render_field_tr.html" with field=form.zip_code %}
-    {% include "calendar/includes/event_form_render_field_tr.html" with field=form.city %}
-    {% include "calendar/includes/event_form_render_field_tr.html" with field=form.location_new %}
+    {% include "includes/forms/formfield_tr.html" with field=form.venue_name %}
+    {% include "includes/forms/formfield_tr.html" with field=form.street %}
+    {% include "includes/forms/formfield_tr.html" with field=form.zip_code %}
+    {% include "includes/forms/formfield_tr.html" with field=form.city %}
+    {% include "includes/forms/formfield_tr.html" with field=form.location_new %}
   </table>
   </div>
 </div>
@@ -133,11 +133,11 @@
 {{ time.id }}
     <table>
 
-        {% include "calendar/includes/event_form_render_field_tr.html" with field=time.start special_tr_field_class="event_form_datetime" %}
-        {% include "calendar/includes/event_form_render_field_tr.html" with field=time.end special_tr_field_class="event_form_datetime" %}
+        {% include "includes/forms/formfield_tr.html" with field=time.start special_tr_field_class="event_form_datetime" %}
+        {% include "includes/forms/formfield_tr.html" with field=time.end special_tr_field_class="event_form_datetime" %}
 
         {% if time.instance.pk %}
-            {% include "calendar/includes/event_form_render_field_tr.html" with field=time.DELETE %}
+            {% include "includes/forms/formfield_tr.html" with field=time.DELETE %}
         {% endif %}
 
     </table>
@@ -201,10 +201,10 @@
     <div class="formset--element {% if not recurrence.errors and not forloop.first %}hide{% endif %}">
     {{ recurrence.id }}
     <table>
-      {% include "calendar/includes/event_form_render_field_tr.html" with field=recurrence.interval_type %}
-      {% include "calendar/includes/event_form_render_field_tr.html" with field=recurrence.end special_tr_field_class="event_form_datetime" %}
+      {% include "includes/forms/formfield_tr.html" with field=recurrence.interval_type %}
+      {% include "includes/forms/formfield_tr.html" with field=recurrence.end special_tr_field_class="event_form_datetime" %}
       {% if recurrence.instance.pk %}
-        {% include "calendar/includes/event_form_render_field_tr.html" with field=recurrence.DELETE %}
+        {% include "includes/forms/formfield_tr.html" with field=recurrence.DELETE %}
       {% endif %}
     </table>
 
@@ -257,10 +257,10 @@
 </label>
 <div class="collapsible-content">
 <table>
-  {% include "calendar/includes/event_form_render_field_tr.html" with field=event_time.start special_tr_field_class="event_form_datetime" %}
-  {% include "calendar/includes/event_form_render_field_tr.html" with field=event_time.end special_tr_field_class="event_form_datetime" %}
-  {% include "calendar/includes/event_form_render_field_tr.html" with field=event_time.description %}
-  {% include "calendar/includes/event_form_render_field_tr.html" with field=event_time.is_cancelled %}
+  {% include "includes/forms/formfield_tr.html" with field=event_time.start special_tr_field_class="event_form_datetime" %}
+  {% include "includes/forms/formfield_tr.html" with field=event_time.end special_tr_field_class="event_form_datetime" %}
+  {% include "includes/forms/formfield_tr.html" with field=event_time.description %}
+  {% include "includes/forms/formfield_tr.html" with field=event_time.is_cancelled %}
 </table>
 </div>
 </div>
@@ -284,9 +284,9 @@
 {{ link.id }}
 <table>
 
-  {% include "calendar/includes/event_form_render_field_tr.html" with field=link.link %}
+  {% include "includes/forms/formfield_tr.html" with field=link.link %}
   {% if link.instance.pk %}
-    {% include "calendar/includes/event_form_render_field_tr.html" with field=link.DELETE %}
+    {% include "includes/forms/formfield_tr.html" with field=link.DELETE %}
   {% endif %}
 
 </table>

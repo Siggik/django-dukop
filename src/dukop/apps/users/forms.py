@@ -105,6 +105,9 @@ class SignupForm(forms.Form):
 
 
 class UpdateForm(SetPasswordForm, forms.ModelForm):
+
+    change_password = forms.BooleanField(required=False, initial=False)
+
     def clean_new_password2(self):
         password1 = self.cleaned_data.get("new_password1")
         password2 = self.cleaned_data.get("new_password2")
@@ -125,7 +128,7 @@ class UpdateForm(SetPasswordForm, forms.ModelForm):
 
     def save(self, commit=True):
         password = self.cleaned_data["new_password1"]
-        if password:
+        if password and self.cleaned_data.get("change_password"):
             self.user.set_password(password)
         if commit:
             self.user.save()

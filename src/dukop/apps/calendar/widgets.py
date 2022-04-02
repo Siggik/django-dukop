@@ -9,12 +9,18 @@ from django.forms.widgets import MultiWidget
 from django.forms.widgets import Select
 from django.forms.widgets import Widget
 from django.utils.formats import get_format
+from django.utils.translation import get_language
 from django.utils.translation import gettext_lazy as _
 
 
 class DateWidget(DateInput):
     input_type = "date"
     template_name = "django/forms/widgets/text.html"
+
+    def __init__(self, *args, **kwargs):
+        locale_format = get_format("DATE_INPUT_FORMATS", lang=get_language())[-1]
+        kwargs.setdefault("format", locale_format)
+        super().__init__(*args, **kwargs)
 
 
 class SelectTimeWidget(Widget):

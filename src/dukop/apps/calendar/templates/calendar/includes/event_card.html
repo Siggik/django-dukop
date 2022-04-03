@@ -68,8 +68,12 @@
             {% endif %}
           </div>
           <div class="card__place card__link">
-            {% if event.host %}
+            {% if event.location %}
+                <a href="{% url "calendar:location_detail" pk=event.location.pk %}">{{ event.location }}</a>
+            {% elif event.host %}
                 <a href="{% url "calendar:group_detail" pk=event.host.pk %}">{{ event.host }}</a>
+            {% elif event.venue_name %}
+                {{ event.venue_name }}
             {% endif %}
           </div>
         </div>

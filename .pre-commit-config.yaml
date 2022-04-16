@@ -1,5 +1,5 @@
 repos:
--   repo: git://github.com/pre-commit/pre-commit-hooks
+-   repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v3.2.0
     hooks:
     - id: trailing-whitespace
@@ -14,7 +14,7 @@ repos:
         exclude: "^(.*/migrations/)"
 
 -   repo: https://github.com/asottile/reorder_python_imports
-    rev: master
+    rev: v3.0.1
     hooks:
     - id: reorder-python-imports
       language_version: python3
@@ -24,7 +24,7 @@ repos:
           )$
 
 -   repo: https://github.com/psf/black
-    rev: 20.8b1
+    rev: 22.3.0
     hooks:
     - id: black
       language_version: python3

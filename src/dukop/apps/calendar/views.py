@@ -106,6 +106,18 @@ class EventDetailView(DetailView):
                 qs = qs.filter(published=True)
         return qs
 
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset=queryset)
+        print(self.request.dukop_visit)
+        if hasattr(self.request, "dukop_visit"):
+            from dukop.apps.analytics.models import EventVisit
+
+            EventVisit.objects.get_or_create(
+                event=obj,
+                visit=self.request.dukop_visit,
+            )
+        return obj
+
     def get_context_data(self, **kwargs):
         c = super().get_context_data(**kwargs)
         if self.kwargs.get("time_pk", None):

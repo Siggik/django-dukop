@@ -8,7 +8,6 @@ from . import models
 
 def analytics_middleware(get_response):
     def middleware(request):
-        response = get_response(request)
 
         # Currently, ignore DNT headers as we are not tracking stuff in these
         # analytics, we just record an anonymous visit no more explicit than
@@ -71,6 +70,8 @@ def analytics_middleware(get_response):
 
         else:
             pass  # DNT
+
+        response = get_response(request)
 
         return response
 

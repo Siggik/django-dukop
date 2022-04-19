@@ -56,11 +56,13 @@ class UserConfirm(BaseEmail):
 
     def __init__(self, *args, **kwargs):
         self.next = kwargs.pop("next", None)
+        self.passphrase = kwargs.pop("passphrase")
         super().__init__(*args, **kwargs)
 
     def get_context_data(self):
         c = super().get_context_data()
         c["next"] = self.next
+        c["token_passphrase"] = self.passphrase
         return c
 
 
@@ -71,11 +73,13 @@ class UserToken(BaseEmail):
 
     def __init__(self, *args, **kwargs):
         self.next = kwargs.pop("next", None)
+        self.passphrase = kwargs.pop("passphrase")
         super().__init__(*args, **kwargs)
 
     def get_context_data(self):
         c = super().get_context_data()
         c["next"] = self.next
+        c["token_passphrase"] = self.passphrase
         return c
 
 

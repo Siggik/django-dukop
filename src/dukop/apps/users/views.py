@@ -230,8 +230,10 @@ class SignupView(FormView):
         next_url = self.request.POST.get("next", "")
         try:
             user = models.User.objects.get(email=form.cleaned_data["email"])
-            user.set_token()
-            mail = email.UserToken(self.request, user=user, next=next_url)
+            passphrase = user.set_token()
+            mail = email.UserToken(
+                self.request, passphrase=passphrase, user=user, next=next_url
+            )
             mail.send_with_feedback(success_msg=_("Check your inbox"))
             messages.success(
                 self.request,

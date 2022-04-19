@@ -11,7 +11,7 @@
 <script type="text/javascript" src="{% static 'calendar/js/calendar.js' %}"></script>
 {% endaddtoblock %}
 
-{% get_event_times from_date="future" max_count=8 has_image=True days=14 sphere=SPHERE hide_recurring=True or_featured=True as event_times %}
+{% get_event_times from_date="future" max_count=8 has_image=True sphere=SPHERE hide_recurring=True or_featured=True as event_times %}
 
 <div class="page-container">
   <h1 class="title title-center no-margin-top">

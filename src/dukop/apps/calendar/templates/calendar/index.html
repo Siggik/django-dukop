@@ -48,7 +48,7 @@
 
 <div class="table">
 {% for recurrence in event_recurrences %}
-<div class="table__day  table__event__recurrence">
+<div class="table__day">
 
       {% ifchanged recurrence.event__pk %}
       <div class="table__recurrence__title table__header">
@@ -56,7 +56,7 @@
       </div>
       {% endifchanged %}
 
-      <a href="{% url "calendar:event_detail" pk=recurrence.event__pk %}" class="table__event">
+      <a href="{% url "calendar:event_detail" pk=recurrence.event__pk %}" class="table__event__recurrence">
         <div class="table__recurrence__next">
           {% trans "Next:" %} {{ recurrence.next|date }}
         </div>

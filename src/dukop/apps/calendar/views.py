@@ -36,8 +36,9 @@ class IndexView(TemplateView):
         c = super().get_context_data(**kwargs)
         c["event_recurrences"] = (
             models.EventRecurrence.objects.filter(
+                Q(event__spheres=self.request.sphere)
+                | Q(event__spheres__metaspheres=self.request.sphere),
                 event__published=True,
-                event__spheres=self.request.sphere,
                 times__start__gte=get_now(),
                 times__start__lte=get_now() + timedelta(days=30),
                 end__gte=get_now(),
@@ -56,7 +57,7 @@ class IndexView(TemplateView):
                 "last_week_of_month",
                 next=Min("times__start"),
             )
-            .order_by("-next")
+            .order_by("next")
             .distinct()
         )
 

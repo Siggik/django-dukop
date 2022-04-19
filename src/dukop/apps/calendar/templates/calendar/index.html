@@ -47,36 +47,34 @@
 <div class="page-container">
 
 <div class="table">
-
 {% for recurrence in event_recurrences %}
+<div class="table__day">
 
-    <div class="table__day">
       {% ifchanged recurrence.event__pk %}
-      <div class="table__header">
+      <div class="table__recurrence__title table__header">
         {{ recurrence.event__name }}
       </div>
       {% endifchanged %}
 
-      <a href="{% url "calendar:event_detail" pk=recurrence.event__pk %}" class="table__event">
-        <div class="table__time">
+      <a href="{% url "calendar:event_detail" pk=recurrence.event__pk %}" class="table__event__recurrence">
+        <div class="table__recurrence__next">
           {% trans "Next:" %} {{ recurrence.next|date }}
         </div>
-        <div class="table__title">
+        <div class="table__recurrence__time">
           {{ recurrence|recurrence_interval }}, {{ recurrence.next|date:"l" }} {{ recurrence.next|time:"H:i" }}
         </div>
-        <div class="table__place">
+        <div class="table__recurrence__place">
           {{ recurrence.event__venue_name }}
         </div>
       </a>
 
-    </div>
-
+</div>
 {% empty %}
     <p><em>{% trans "No recurring events found in this period." %}</em></p>
 
 {% endfor %}
-
 </div>
+
 </div>
 
 

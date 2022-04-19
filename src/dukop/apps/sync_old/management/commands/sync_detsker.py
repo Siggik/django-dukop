@@ -136,6 +136,8 @@ def create_location(old_event):
     if created and old_event.location.link:
         GroupLink.objects.create(group=location, link=old_event.location.link)
 
+    return location
+
 
 def create_event_link(old_event, attach_to_event):
     return EventLink.objects.create(

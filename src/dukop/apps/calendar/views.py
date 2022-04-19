@@ -63,6 +63,8 @@ class IndexView(TemplateView):
 
         c["locations"] = (
             Location.objects.filter(
+                Q(events_here__spheres=self.request.sphere)
+                | Q(events_here__spheres__metaspheres=self.request.sphere),
                 deactivated=False,
                 events_here__times__start__gte=get_now() - timedelta(days=1),
                 events_here__published=True,

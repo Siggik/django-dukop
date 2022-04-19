@@ -37,6 +37,7 @@ class IndexView(TemplateView):
         c["event_recurrences"] = (
             models.EventRecurrence.objects.filter(
                 event__published=True,
+                event__spheres=self.request.sphere,
                 times__start__gte=get_now(),
                 times__start__lte=get_now() + timedelta(days=30),
                 end__gte=get_now(),

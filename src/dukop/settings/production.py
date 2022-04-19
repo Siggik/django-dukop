@@ -14,3 +14,10 @@ EMAIL_HOST_PASSWORD = config.get('mail', 'password')
 EMAIL_USE_TLS = config.getboolean('mail', 'tls')
 EMAIL_USE_SSL = config.getboolean('mail', 'ssl')
 """
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.db.DatabaseCache",
+        "LOCATION": "cache_dukop_default",
+    }
+}

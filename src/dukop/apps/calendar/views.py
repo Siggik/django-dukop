@@ -78,6 +78,20 @@ class IndexView(TemplateView):
             .order_by("-latest")
             .distinct()[:30]
         )
+        latest_event_time = (
+            models.EventTime.objects.all()
+            .order_by("-modified")
+            .values("modified")
+            .first()
+        )
+        latest_event = (
+            models.Event.objects.all().order_by("-modified").values("modified").first()
+        )
+        some_old_time = timezone.now() - timedelta(days=100)
+        c["latest_event_modified"] = max(
+            latest_event_time.get("modified") if latest_event_time else some_old_time,
+            latest_event.get("modified") if latest_event else some_old_time,
+        )
         return c
 
 

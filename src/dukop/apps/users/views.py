@@ -253,10 +253,22 @@ class SignupView(FormView):
 
         self.request.session["user_confirm_pending_id"] = user.id
 
-        return redirect("users:signup_confirm")
+        # Redirect straight to a valid token login page or a dummy one in case
+        # we allow for this...
+        if getattr(settings, "DUKOP_TOKEN_ALLOW_REDIRECT", False):
+            return redirect(
+                "users:login_token", token=user.token_uuid if user else uuid.uuid4()
+            )
+        else:
+            return redirect("users:signup_confirm")
 
 
 class SignupConfirmView(TemplateView):
+    """
+    This confirms signup is taking place, but without giving feedback on a
+    registered email, so we don't inform anyone about users currently in the
+    system.
+    """
 
     template_name = "users/signup_confirm.html"
 

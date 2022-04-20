@@ -1,10 +1,16 @@
 {% extends "base.html" %}
+{% load static %}
+{% load sekizai_tags %}
 {% load i18n %}
 {% load dukop_utils %}
 
 {% block dukop_title %}{% trans "Final login step" %}{% endblock %}
 
 {% block content %}
+
+{% addtoblock "js" %}
+<script type="text/javascript" src="{% static 'users/js/login.js' %}"></script>
+{% endaddtoblock %}
 
 <h1>{% trans "Final login step" %}</h1>
 

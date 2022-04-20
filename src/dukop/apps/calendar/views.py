@@ -128,7 +128,9 @@ class EventDetailView(DetailView):
             else:
                 qs = qs.filter(q_visible_to_all)
 
-        return qs
+        # distinct() is necessary, otherwise get() will fail with
+        # MultipleObjectsReturned
+        return qs.distinct()
 
     def get_object(self, queryset=None):
         obj = super().get_object(queryset=queryset)

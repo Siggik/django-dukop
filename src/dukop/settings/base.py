@@ -231,3 +231,6 @@ CSP_EXCLUDE_URL_PREFIXES = ("/en/admin",)
 
 # We can have quite long forms when people submit event recurrences
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 2000  # higher than the count of fields
+
+# Allows a redirect straight to the "secret" URL where the one-time token can be entered
+DUKOP_TOKEN_ALLOW_REDIRECT = True

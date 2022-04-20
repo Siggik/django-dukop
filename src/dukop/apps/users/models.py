@@ -1,7 +1,9 @@
+import hashlib
 import random
 import uuid
 from datetime import timedelta
 
+from django.conf import settings
 from django.contrib.auth.base_user import BaseUserManager
 from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
@@ -17,8 +19,8 @@ class UserManager(BaseUserManager):
         return (
             self.filter(token_expiry__gte=timezone.now())
             .exclude(token_uuid=None)
-            .exclude(token_passphrase=None)
-            .exclude(token_passphrase="")
+            .exclude(token_uuid_hashed_with_passphrase=None)
+            .exclude(token_uuid_hashed_with_passphrase="")
         )
 
     def create_user(self, password: str = None, **kwargs):
@@ -71,7 +73,7 @@ class User(PermissionsMixin, AbstractBaseUser):
     # Used for confirmations and password reminders to NOT disclose email in URL
     token_uuid = models.UUIDField(default=uuid.uuid4, editable=False, null=True)
     token_expiry = models.DateTimeField(null=True, editable=False)
-    token_passphrase = models.CharField(
+    token_uuid_hashed_with_passphrase = models.CharField(
         null=True,
         blank=True,
         help_text=_("One time passphrase"),
@@ -90,17 +92,32 @@ class User(PermissionsMixin, AbstractBaseUser):
         A caution: A user can be inactive or banned, do not expect that calling
         this function should change state/permissions of a user.
         """
+        # Set this only in memory
+        token_passphrase = str(random.randint(0, 100000000)).zfill(8)
         self.token_uuid = uuid.uuid4()
         self.token_expiry = timezone.now() + timedelta(minutes=60)
-        self.token_passphrase = str(random.randint(0, 100000000)).zfill(8)
+        self.token_uuid_hashed_with_passphrase = (
+            self.get_token_uuid_hashed_with_passphrase(
+                str(self.token_uuid), token_passphrase
+            )
+        )
         self.save()
+        return token_passphrase
+
+    @classmethod
+    def get_token_uuid_hashed_with_passphrase(cls, token_uuid, passphrase):
+        # The entire database cannot be stolen and then used for logging in,
+        # attacker needs SECRET_KEY too.
+        return hashlib.sha512(
+            (settings.SECRET_KEY + passphrase + token_uuid).encode("UTF-8")
+        ).hexdigest()
 
     def use_token(self):
         """
         When logging in, mark a token as used
         """
         self.token_uuid = None
-        self.token_passphrase = None
+        self.token_uuid_hashed_with_passphrase
         self.save()
 
     class Meta:

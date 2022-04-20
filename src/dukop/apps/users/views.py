@@ -1,3 +1,5 @@
+import uuid
+
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import authenticate
@@ -69,11 +71,13 @@ class LoginView(FormView, SuccessURLAllowedHostsMixin):
 
     def form_valid(self, form):
         messages.success(self.request, "Check your inbox")
+        user = None
         try:
             user = models.User.objects.get(email=form.cleaned_data["email"])
-            user.set_token()
+            passphrase = user.set_token()
             mail = email.UserToken(
                 self.request,
+                passphrase=passphrase,
                 user=user,
                 next=self.request.POST.get(self.redirect_field_name, ""),
             )
@@ -83,7 +87,15 @@ class LoginView(FormView, SuccessURLAllowedHostsMixin):
             # The email did not exist, but we are not going to do anything differently because of this.
             pass
         self.request.session["email_token"] = form.cleaned_data["email"]
-        return redirect("users:login_token_sent")
+
+        # Redirect straight to a valid token login page or a dummy one in case
+        # we allow for this...
+        if getattr(settings, "DUKOP_TOKEN_ALLOW_REDIRECT", False):
+            return redirect(
+                "users:login_token", token=user.token_uuid if user else uuid.uuid4()
+            )
+        else:
+            return redirect("users:login_token_sent")
 
 
 class LoginPasswordView(FormView, SuccessURLAllowedHostsMixin):
@@ -161,6 +173,9 @@ class LoginTokenView(FormView, SuccessURLAllowedHostsMixin):
         c["next"] = self.request.POST.get(
             self.redirect_field_name, self.request.GET.get(self.redirect_field_name, "")
         )
+        c["DUKOP_TOKEN_ALLOW_REDIRECT"] = getattr(
+            settings, "DUKOP_TOKEN_ALLOW_REDIRECT", False
+        )
         return c
 
     def form_valid(self, form):
@@ -215,8 +230,10 @@ class SignupView(FormView):
         next_url = self.request.POST.get("next", "")
         try:
             user = models.User.objects.get(email=form.cleaned_data["email"])
-            user.set_token()
-            mail = email.UserToken(self.request, user=user, next=next_url)
+            passphrase = user.set_token()
+            mail = email.UserToken(
+                self.request, passphrase=passphrase, user=user, next=next_url
+            )
             mail.send_with_feedback(success_msg=_("Check your inbox"))
             messages.success(
                 self.request,

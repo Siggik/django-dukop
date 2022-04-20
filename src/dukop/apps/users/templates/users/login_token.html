@@ -8,12 +8,21 @@
 
 <h1>{% trans "Final login step" %}</h1>
 
-{% if next %}
-    {% if user.is_authenticated %}
-      <div class="message message__error">
-        {% trans "Your account doesn't have access to this page. To proceed, please login with an account that has access." %}
-      </div>
-    {% endif %}
+{% if DUKOP_TOKEN_ALLOW_REDIRECT %}
+<p>
+    {% blocktrans trimmed %}
+        If your email is registered, you will have received a one-time login by
+        email now. Click the link sent to {{ email_token }} and enter the token,
+        using the link that is found in the email.
+    {% endblocktrans %}
+</p>
+
+<p>
+    {% blocktrans trimmed %}
+        Remember to check your spam folder 🗑️
+    {% endblocktrans %}
+</p>
+<hr>
 {% endif %}
 
 <form method="post" autocomplete="off">

@@ -34,15 +34,21 @@ class TokenLogin(forms.Form):
 
     token_passphrase = forms.CharField(
         label=_("1-time code"),
-        help_text=_("The code appears in the email you just received."),
+        help_text=_(
+            "The code appears in the email you may have just received IF your email is registered."
+        ),
         required=True,
     )
 
     def clean_token_passphrase(self):
         token_passphrase = self.cleaned_data.get("token_passphrase")
+        hashed_passphrase = models.User.get_token_uuid_hashed_with_passphrase(
+            self.token_uuid, token_passphrase
+        )
         try:
             self.user = models.User.objects.token_eligible().get(
-                token_uuid=self.token_uuid, token_passphrase=token_passphrase
+                token_uuid=self.token_uuid,
+                token_uuid_hashed_with_passphrase=hashed_passphrase,
             )
             return token_passphrase
         except models.User.DoesNotExist:

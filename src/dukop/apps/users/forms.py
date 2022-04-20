@@ -35,7 +35,7 @@ class TokenLogin(forms.Form):
     token_passphrase = forms.CharField(
         label=_("1-time code"),
         help_text=_(
-            "The code appears in the email you may have just received IF your email is registered."
+            "The code appears in an email just sent. Enter/copy-paste it here."
         ),
         required=True,
     )

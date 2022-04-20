@@ -243,18 +243,32 @@ class SignupView(FormView):
             user = models.User.objects.create_user(email=form.cleaned_data["email"])
             user.is_active = True  # The user is active by default
             user.save()
-            user.set_token()
-            mail = email.UserConfirm(self.request, user=user, next=next_url)
+            passphrase = user.set_token()
+            mail = email.UserConfirm(
+                self.request, passphrase=passphrase, user=user, next=next_url
+            )
             # Give the same feedback regardless so this isn't used to lookup
             # email addresses
             mail.send_with_feedback(success_msg=_("Check your inbox"))
 
         self.request.session["user_confirm_pending_id"] = user.id
 
-        return redirect("users:signup_confirm")
+        # Redirect straight to a valid token login page or a dummy one in case
+        # we allow for this...
+        if getattr(settings, "DUKOP_TOKEN_ALLOW_REDIRECT", False):
+            return redirect(
+                "users:login_token", token=user.token_uuid if user else uuid.uuid4()
+            )
+        else:
+            return redirect("users:signup_confirm")
 
 
 class SignupConfirmView(TemplateView):
+    """
+    This confirms signup is taking place, but without giving feedback on a
+    registered email, so we don't inform anyone about users currently in the
+    system.
+    """
 
     template_name = "users/signup_confirm.html"
 

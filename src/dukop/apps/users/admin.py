@@ -1,6 +1,15 @@
 from django.contrib import admin
+from dukop.apps.calendar.models import OpeningHours
+from dukop.apps.calendar.models import Recurrence
 
 from . import models
+
+
+class OpeningHoursInline(admin.TabularInline):
+    model = OpeningHours
+    fields = ["weekday", "opens", "closes"] + [
+        x[0] for x in Recurrence.RECURRENCE_TYPES
+    ]
 
 
 @admin.register(models.Group)
@@ -24,6 +33,7 @@ class LocationAdmin(admin.ModelAdmin):
         "deactivated",
     )
     search_fields = ("name",)
+    inlines = [OpeningHoursInline]
 
     def event_count(self, instance):
         return instance.events.all().count()

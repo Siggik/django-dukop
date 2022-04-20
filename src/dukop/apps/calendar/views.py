@@ -109,24 +109,28 @@ class EventDetailView(DetailView):
     template_name = "calendar/event/detail.html"
     model = models.Event
     context_object_name = "event"
+    max_days_lookback = 30
 
     def get_queryset(self):
         qs = super().get_queryset().filter(deleted=False)
 
         if not self.request.user or not self.request.user.is_staff:
+            q_visible_to_all = Q(event__published=True) & Q(
+                start__gte=timezone.now() - timedelta(days=self.max_days_lookback)
+            )
             if self.request.user.is_authenticated:
                 qs = qs.filter(
-                    Q(published=True)
-                    | Q(owner_user=self.request.user)
-                    | Q(owner_group__members=self.request.user)
+                    q_visible_to_all
+                    | Q(event__owner_user=self.request.user)
+                    | Q(event__owner_group__members=self.request.user)
                 )
             else:
-                qs = qs.filter(published=True)
+                qs = qs.filter(q_visible_to_all)
+
         return qs
 
     def get_object(self, queryset=None):
         obj = super().get_object(queryset=queryset)
-        print(self.request.dukop_visit)
         if hasattr(self.request, "dukop_visit"):
             from dukop.apps.analytics.models import EventVisit
 
@@ -395,7 +399,6 @@ class EventImagesUpdateView(UpdateView):
     def form_valid(self, form):
         self.images_form.save(commit=True)
         for obj in getattr(self.images_form, "deleted_objects", []):
-            print("deleting")
             if obj.pk:
                 obj.delete()
 
@@ -696,6 +699,7 @@ class LocationUpdateView(UpdateView):
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
+        self.object = self.get_object()
         return super().dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
@@ -712,4 +716,40 @@ class LocationUpdateView(UpdateView):
                 location_name=location.name
             ),
         )
+        self.opening_hours_form.save(commit=True)
+        for obj in getattr(self.opening_hours_form, "deleted_objects", []):
+            if obj.pk:
+                obj.delete()
+
         return redirect("calendar:location_dashboard")
+
+    def get(self, request, *args, **kwargs):
+        """Handle GET requests: instantiate a blank version of the form."""
+        self.opening_hours_form = forms.OpeningHoursFormSet(
+            prefix="opening_hours", instance=self.object
+        )
+        return self.render_to_response(self.get_context_data())
+
+    @method_decorator(ratelimit(key="ip", rate="10/d", method="POST"))
+    @method_decorator(ratelimit(key="ip", rate="5/h", method="POST"))
+    def post(self, request, *args, **kwargs):
+        """
+        Handle POST requests: instantiate a form instance with the passed
+        POST variables and then check if it's valid.
+        """
+        form = self.get_form()
+        self.opening_hours_form = forms.OpeningHoursFormSet(
+            prefix="opening_hours",
+            data=request.POST,
+            instance=self.object,
+        )
+        if form.is_valid() and self.opening_hours_form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def get_context_data(self, **kwargs):
+        c = super().get_context_data(**kwargs)
+        c["opening_hours"] = self.opening_hours_form
+        c["forms_had_errors"] = getattr(self, "forms_had_errors", False)
+        return c

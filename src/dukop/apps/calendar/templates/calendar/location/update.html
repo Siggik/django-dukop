@@ -5,22 +5,95 @@
 
 {% block content %}
 
+{% addtoblock "js" %}
+    <script type="text/javascript" src="{% url "calendar:javascript-catalog" %}"></script>
+    <script type="text/javascript" src="{% static 'calendar/js/form_processing.js' %}"></script>
+{% endaddtoblock %}
+
 <div class="create-event">
 
   <h1 class="card__title">{{ location.name }}</h1>
 
-  <form method="POST" action="">
+  <form method="POST" action="" class="dukop-table-form">
     {% csrf_token %}
 
-    {% dukop_form form %}
+<table>
 
-    <hr>
+  {% include "includes/forms/formfield_tr.html" with field=form.name %}
+  {% include "includes/forms/formfield_tr.html" with field=form.description %}
+  {% include "includes/forms/formfield_tr.html" with field=form.street %}
+  {% include "includes/forms/formfield_tr.html" with field=form.city %}
+  {% include "includes/forms/formfield_tr.html" with field=form.zip_code %}
+  {% include "includes/forms/formfield_tr.html" with field=form.update_events %}
+
+</table>
+
+  {{ opening_hours.management_form }}
+
+  {% if opening_hours.non_form_errors %}
+    {{ opening_hours.non_form_errors }}
+  {% endif %}
+
+  <div class="collapsible-bar collapsible-bar-show-input">
+    <input type="checkbox" value="false" name="{{ form.opening_hours.html_name }}" id="id_{{ form.opening_hours.html_name }}_0"{% if form.opening_hours.value or opening_hours.0.weekday.value or opening_hours.errors %} checked="true"{% endif %}>
+    <label class="collapsible-title" for="id_{{ form.opening_hours.html_name }}_0">
+      {% trans "Opening hours" %}
+    </label>
+
+    <div class="collapsible-content">
+
+      <div>
+      {% for opening_hour in opening_hours %}
+      <div class="formset--element {% if not opening_hour.errors and not forloop.first %}hide{% endif %}">
+      {{ opening_hour.id }}
+      <table>
+        {% include "includes/forms/formfield_tr.html" with field=opening_hour.weekday %}
+        {% include "includes/forms/formfield_tr.html" with field=opening_hour.opens special_tr_field_class="event_form_datetime" %}
+        {% include "includes/forms/formfield_tr.html" with field=opening_hour.closes special_tr_field_class="event_form_datetime" %}
+        {% include "includes/forms/formfield_tr.html" with field=opening_hour.interval_type %}
+        {% if opening_hour.instance.pk %}
+          {% include "includes/forms/formfield_tr.html" with field=opening_hour.DELETE %}
+        {% endif %}
+
+      </table>
+
+      <div class="formset-add-remove-buttons">
+        <table>
+          <tr>
+            <th><br></th>
+            <td>
+              {% if not forloop.last %}
+              <button type="button" class="formset-add-link">
+                {% trans "Add one more..." %}
+              </button>
+              {% endif %}
+              {% if not forloop.first %}
+              <button type="button" class="formset-remove-link">
+                {% trans "Have one less..." %}
+              </button>
+              {% endif %}
+            </td>
+          </tr>
+        </table>
+      </div>
+
+      </div>
+
+      {% endfor %}
+
+
+
+      </div>
+
+    </div>
+
+  </div>
 
 <div class="row">
     <div class="col-md-4"></div>
     <div class="col-md-8">
-        <p><strong>{% trans "Upcoming feature:" %}</strong> {% trans "In the future, you will be able to add other members with access to manage and add events to a location." %}</p>
         <input type="submit" value="{% trans "Save changes" %}">
+        <p><strong>{% trans "Upcoming feature:" %}</strong> {% trans "In the future, you will be able to add other members with access to manage and add events to a location." %}</p>
     </div>
 </div>
 

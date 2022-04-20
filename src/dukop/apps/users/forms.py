@@ -35,7 +35,7 @@ class TokenLogin(forms.Form):
     token_passphrase = forms.CharField(
         label=_("1-time code"),
         help_text=_(
-            "The code appears in an email just sent. Enter/copy-paste it here."
+            "The code appears in an email just sent. Type or copy-paste it here."
         ),
         required=True,
     )
@@ -153,6 +153,11 @@ class LocationForm(forms.ModelForm):
         help_text=_(
             "Update future events with new location details. If you change the name or address of the location, you should also choose to update future events. If you leave this unchecked, you can change events individually afterwards."
         ),
+    )
+
+    opening_hours = forms.BooleanField(
+        initial=False,
+        required=False,
     )
 
     def save(self, commit=True):

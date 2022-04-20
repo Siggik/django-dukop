@@ -389,6 +389,39 @@ class EventRecurrenceTimesForm(forms.ModelForm):
         fields = ["start", "end", "description", "is_cancelled"]
 
 
+class OpeningHoursForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        if self.instance:
+            self.fields["interval_type"].initial = (
+                self.instance.recurrence_type
+                or models.Recurrence.RECURRENCE_TYPES[0][0]
+            )
+
+    interval_type = forms.ChoiceField(
+        choices=[("", "----")] + models.Recurrence.RECURRENCE_TYPES,
+        required=True,
+        initial=models.Recurrence.RECURRENCE_TYPES[0][0],
+    )
+
+    def save(self, commit=True):
+        recurrence = super().save(commit=commit)
+        for field_name, __ in models.Recurrence.RECURRENCE_TYPES:
+            setattr(recurrence, field_name, False)
+        setattr(recurrence, self.cleaned_data["interval_type"], True)
+        recurrence.save()
+        return recurrence
+
+    class Meta:
+        model = models.OpeningHours
+        fields = ["weekday", "opens", "closes"]
+        widgets = {
+            "opens": forms.TimeInput(attrs={"type": "time"}),
+            "closes": forms.TimeInput(attrs={"type": "time"}),
+        }
+
+
 EventTimeFormSet = inlineformset_factory(
     models.Event,
     models.EventTime,
@@ -424,4 +457,12 @@ EventRecurrenceTimesFormSet = inlineformset_factory(
     EventRecurrenceTimesForm,
     extra=0,
     can_delete=False,
+)
+
+OpeningHoursFormSet = inlineformset_factory(
+    Location,
+    models.OpeningHours,
+    OpeningHoursForm,
+    extra=7,
+    can_delete=True,
 )

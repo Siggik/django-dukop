@@ -16,6 +16,29 @@
 
     {{ location.description|default:"No description written"|linebreaks }}
 
+    {% with location.opening_hours.all as opening_hours %}
+
+    {% if opening_hours.exists %}
+
+    <h2>{% trans "Opening hours" %}</h2>
+
+
+    <table class="table table-condensed">
+    {% for opening_hour in opening_hours %}
+
+    <tr>
+      <th>{{ opening_hour.weekday }}</th>
+      <td>{{ opening_hour.opens }}-{{ opening_hour.closes }}</td>
+      <td>{{ opening_hour.recurrence_name }}</td>
+    </tr>
+
+    {% endfor %}
+    </table>
+
+    {% endif %}
+
+    {% endwith %}
+
 
     <h2>{% trans "Links" %}</h2>
 

@@ -18,17 +18,9 @@
 <p>
     {% blocktrans trimmed %}
         If your email is registered, you will have received a one-time login by
-        email now. Click the link sent to {{ email_token }} and enter the token,
-        using the link that is found in the email.
+        email now. Remember to check your spam folder 🗑️
     {% endblocktrans %}
 </p>
-
-<p>
-    {% blocktrans trimmed %}
-        Remember to check your spam folder 🗑️
-    {% endblocktrans %}
-</p>
-<hr>
 {% endif %}
 
 <form method="post" autocomplete="off">

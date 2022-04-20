@@ -12,7 +12,9 @@
 <script type="text/javascript" src="{% static 'calendar/js/calendar.js' %}"></script>
 {% endaddtoblock %}
 
-{% cache 5000 calendar_index latest_event_modified SPHERE %}
+{% now "H" as current_hour %}
+
+{% cache 300 calendar_index latest_event_modified SPHERE current_hour %}
 
 {% get_event_times from_date="future" max_count=8 has_image=True sphere=SPHERE hide_recurring=True or_featured=True as event_times %}
 

@@ -115,14 +115,14 @@ class EventDetailView(DetailView):
         qs = super().get_queryset().filter(deleted=False)
 
         if not self.request.user or not self.request.user.is_staff:
-            q_visible_to_all = Q(event__published=True) & Q(
+            q_visible_to_all = Q(published=True) & Q(
                 start__gte=timezone.now() - timedelta(days=self.max_days_lookback)
             )
             if self.request.user.is_authenticated:
                 qs = qs.filter(
                     q_visible_to_all
-                    | Q(event__owner_user=self.request.user)
-                    | Q(event__owner_group__members=self.request.user)
+                    | Q(owner_user=self.request.user)
+                    | Q(owner_group__members=self.request.user)
                 )
             else:
                 qs = qs.filter(q_visible_to_all)

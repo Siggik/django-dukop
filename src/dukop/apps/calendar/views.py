@@ -116,7 +116,8 @@ class EventDetailView(DetailView):
 
         if not self.request.user or not self.request.user.is_staff:
             q_visible_to_all = Q(published=True) & Q(
-                start__gte=timezone.now() - timedelta(days=self.max_days_lookback)
+                times__start__gte=timezone.now()
+                - timedelta(days=self.max_days_lookback)
             )
             if self.request.user.is_authenticated:
                 qs = qs.filter(

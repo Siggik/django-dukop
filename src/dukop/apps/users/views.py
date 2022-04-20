@@ -243,8 +243,10 @@ class SignupView(FormView):
             user = models.User.objects.create_user(email=form.cleaned_data["email"])
             user.is_active = True  # The user is active by default
             user.save()
-            user.set_token()
-            mail = email.UserConfirm(self.request, user=user, next=next_url)
+            passphrase = user.set_token()
+            mail = email.UserConfirm(
+                self.request, passphrase=passphrase, user=user, next=next_url
+            )
             # Give the same feedback regardless so this isn't used to lookup
             # email addresses
             mail.send_with_feedback(success_msg=_("Check your inbox"))

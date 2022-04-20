@@ -25,11 +25,11 @@ $(document).ready(function() {
 var isSubmitting = false;
 
 $(document).ready(function () {
-    $('.event__form').submit(function(){
+    $('form').submit(function(){
         isSubmitting = true;
     });
 
-    $('form').data('initial-state', $('.event__form').serialize());
+    $('form').data('initial-state', $('form').serialize());
 
     $(window).on('beforeunload', function() {
         if (!isSubmitting && $('form').serialize() != $('form').data('initial-state')){

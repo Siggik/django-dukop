@@ -6,7 +6,6 @@ from django.utils.translation import gettext_lazy as _
 from dukop.apps.calendar import widgets
 from dukop.apps.calendar.utils import get_now
 from dukop.apps.calendar.widgets import ImageInput
-from dukop.apps.calendar.widgets import SelectTimeWidget
 from dukop.apps.users.models import Group
 from dukop.apps.users.models import Location
 
@@ -411,16 +410,15 @@ class OpeningHoursForm(forms.ModelForm):
         for field_name, __ in models.Recurrence.RECURRENCE_TYPES:
             setattr(recurrence, field_name, False)
         setattr(recurrence, self.cleaned_data["interval_type"], True)
+        recurrence.save()
         return recurrence
 
     class Meta:
         model = models.OpeningHours
-        fields = ["weekday", "opens", "closes"] + [
-            x[0] for x in models.Recurrence.RECURRENCE_TYPES
-        ]
+        fields = ["weekday", "opens", "closes"]
         widgets = {
-            "opens": SelectTimeWidget,
-            "closes": SelectTimeWidget,
+            "opens": forms.TimeInput(attrs={"type": "time"}),
+            "closes": forms.TimeInput(attrs={"type": "time"}),
         }
 
 

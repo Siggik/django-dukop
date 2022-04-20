@@ -717,7 +717,7 @@ class LocationUpdateView(UpdateView):
             ),
         )
         self.opening_hours_form.save(commit=True)
-        for obj in getattr(self.images_form, "deleted_objects", []):
+        for obj in getattr(self.opening_hours_form, "deleted_objects", []):
             if obj.pk:
                 obj.delete()
 

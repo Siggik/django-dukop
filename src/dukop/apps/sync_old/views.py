@@ -16,6 +16,8 @@ class RedirectOld(RedirectView):
             event_sync = OldEventSync.objects.get(old_fk=pk)
         except OldEventSync.DoesNotExist:
             raise Http404()
+        except OldEventSync.MultipleObjectsReturned:
+            event_sync = OldEventSync.objects.filter(old_fk=pk).last()
 
         cur_language = get_language()
 

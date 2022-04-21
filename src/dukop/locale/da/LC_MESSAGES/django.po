@@ -70,7 +70,7 @@ msgid "Location"
 msgstr ""
 
 #: src/dukop/apps/calendar/forms.py:61
-"Choose an existing location and add this event to the location's list of "
+msgid "Choose an existing location and add this event to the location's list of "
 "events"
 msgstr "Vælg en eksisterende lokation og tilføj denne begivenhed til lokationens liste over begivenheder"
 
@@ -201,7 +201,7 @@ msgstr "navn"
 #: src/dukop/apps/calendar/models.py:280
 msgid "A special short version of the event description, leave blank to auto-"
 "generate."
-msgstr ""En kort version af event beskrivelsen. lad den være blank for at den bliver "
+msgstr "En kort version af event beskrivelsen. Lad den være blank for at den bliver "
 "autogenereret."
 
 #: src/dukop/apps/calendar/models.py:285 src/dukop/apps/calendar/models.py:496
@@ -211,15 +211,15 @@ msgstr "beskrivelse"
 
 #: src/dukop/apps/calendar/models.py:286
 msgid "Enter details, which will be displayed on the event's own page."
-msgstr ""Skriv detaljer som vil blive vist på begivenhedens egen side."
+msgstr "Skriv detaljer som vil blive vist på begivenhedens egen side."
 
 #: src/dukop/apps/calendar/models.py:293
 msgid "The part of a URL that is displayed in dukop.dk/event/<slug>/"
 msgstr "Den del af af URL der bliver vist på dukop.dk/sphere/<slug>/"
 
 #: src/dukop/apps/calendar/models.py:303
-msgid ""A group may host an event and be displayed as the author of the event text."
-msgstr ""En gruppe kan eje en begivenhed og blive vist som forfattere til en event "
+msgid "A group may host an event and be displayed as the author of the event text."
+msgstr "En gruppe kan eje en begivenhed og blive vist som forfattere til en event "
 "tekst."
 
 #: src/dukop/apps/calendar/models.py:313
@@ -312,18 +312,20 @@ msgid "automatic recurrence"
 msgstr "automatisk gentagelse"
 
 #: src/dukop/apps/calendar/models.py:485
-msgid ""If true, this recurrence is currently maintained automatically and has not "
+msgid "If true, this recurrence is currently maintained automatically and has not "
 "been rescheduled. If the recurrence is edited, it may be changed "
 "automatically"
-msgstr ""Hvis markeret, bliver denne gentagelse bibeholdt automatisk og er ikke "
+msgstr "Hvis markeret, bliver denne gentagelse bibeholdt automatisk og er ikke "
 "blevet manuelt ændret. Hvis gentagelsen er ændret, vil dette tidspunkt+dao "
 "ændres automatisk"
 
 #: src/dukop/apps/calendar/models.py:498
-msgid ""Leave blank to use the general event's description. If filled in, will be "
+msgid "Leave blank to use the general event's description. If filled in, will be "
 "displayed together when a user navigates to this specific occurrence of the "
 "event."
-msgstr "Lad den være blank for at benytte den generalle begivenhedsbeskrivelse."
+msgstr "Lad feltet forblive blankt for at benytte den generelle begivenheds "
+"beskrivelse. Hvis dette felt udfyldes, bliver beskrivelsen vist, når læseren "
+"navigerer til denne forekomst."
 
 #: src/dukop/apps/calendar/models.py:503
 msgid "Event time"
@@ -338,9 +340,9 @@ msgid "image"
 msgstr "billede"
 
 #: src/dukop/apps/calendar/models.py:543
-msgid ""Allowed formats: JPEG, PNG, GIF. Please upload high resolution (>1000 pixels "
+msgid "Allowed formats: JPEG, PNG, GIF. Please upload high resolution (>1000 pixels "
 "wide)."
-msgstr ""Tilladte formater: JPEG; PNG; GIF. Upload gerne i høj opløsning.(>1000 "
+msgstr "Tilladte formater: JPEG; PNG; GIF. Upload gerne i høj opløsning.(>1000 "
 "pixels bred). "
 
 #: src/dukop/apps/calendar/models.py:548 src/dukop/apps/calendar/models.py:591
@@ -531,22 +533,20 @@ msgid "View your event below as it appears to everyone else. Once you think it's
 msgstr "Se din begivenhed nedenfor, som det ser ud for alle ande. Når du synes det er færdigt, bør du publicere det."
 
 #: src/dukop/apps/calendar/templates/calendar/event/detail.html:38
-msgid ""<strong>Your event doesn't have any images.</strong> You can skip this, but "
+msgid "<strong>Your event doesn't have any images.</strong> You can skip this, but "
 "we really recommend adding an illustration to improve appearance on Dup Op "
 "and other sites where it's shared."
-msgstr "strong>Din begivenhed har ikke noget billede.</strong> Du kan droppe at have et billlede, men vi anbefaler kraftigt at tilføje en illustration til forbedre udseendet på Duk Op og andres steder du vil dele begivenheden."  
+msgstr "<strong>Din begivenhed har ikke noget billede.</strong> Du kan droppe at have et billede, men vi anbefaler kraftigt at tilføje en illustration til forbedre udseendet på Duk Op og andres steder du vil dele begivenheden."
 
 #: src/dukop/apps/calendar/templates/calendar/event/detail.html:40
-#, fuzzy
-#| msgid "image"
 msgid "Add images"
-msgstr "billede"
+msgstr "Tilføj billeder"
 
 #: src/dukop/apps/calendar/templates/calendar/event/detail.html:45
 msgid ""
 "<strong>Your event isn't published.</strong> As long as it isn't published, "
 "other users cannot see it."
-msgstr "<strong>Din begivenhed er ikke publiceret</strong> Så længe den ikke er publiceret, kan andre brugere ikke se den."
+msgstr "<strong>Din begivenhed er ikke publiceret.</strong> Så længe den ikke er publiceret, kan andre brugere ikke se den."
 
 #: src/dukop/apps/calendar/templates/calendar/event/detail.html:47
 msgid "Publish this event"

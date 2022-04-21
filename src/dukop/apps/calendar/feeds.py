@@ -152,7 +152,9 @@ class RssFeed(Feed):
                 background = Image.new(img.mode[:-1], img.size, fill_color)
                 background.paste(img, img.split()[-1])
                 img = background
-            thumbnail = get_thumbnail(img, "800x800", quality=90)
+                thumbnail = get_thumbnail(img, "800x800", quality=90, format="JPEG")
+            else:
+                thumbnail = get_thumbnail(img, "800x800", quality=90)
             images.append(
                 feedgenerator.Enclosure(
                     self.get_image_url(thumbnail.url),

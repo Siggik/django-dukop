@@ -70,12 +70,9 @@ msgid "Location"
 msgstr ""
 
 #: src/dukop/apps/calendar/forms.py:61
-#, fuzzy
-#| msgid "Choose an existing location or create a new one"
-msgid ""
 "Choose an existing location and add this event to the location's list of "
 "events"
-msgstr "Vælg en eksisterende lokation eller opret en ny"
+msgstr "Vælg en eksisterende lokation og tilføj denne begivenhed til lokationens liste over begivenheder"
 
 #: src/dukop/apps/calendar/forms.py:78
 msgid "Save location"
@@ -100,15 +97,13 @@ msgstr "Ny gruppe"
 
 #: src/dukop/apps/calendar/forms.py:194
 msgid "Name of the new group, for instance 'Marxist Book Reading Circle'"
-msgstr ""
+msgstr "Navn på den nye gruppe, f.eks. 'Marxist Book Reading Circle'"
 
 #: src/dukop/apps/calendar/forms.py:217
-msgid ""
-"A group may host an event and be displayed as the author of the event text. "
+msgid "A group may host an event and be displayed as the author of the event text. "
 "You can only choose an existing group if you have been allowed membership of "
 "that group."
-msgstr ""
-"En gruppe kan være vært eller \"eje\" et event og blive vist som forfattere "
+msgstr "En gruppe kan være vært eller \"eje\" et event og blive vist som forfattere "
 "af en event-tekst. Du kan kun vælge en \"ejer\" hvis du er medlem af en "
 "gruppe."
 
@@ -118,22 +113,20 @@ msgstr "Bekræft permanent sletning af denne event."
 
 #: src/dukop/apps/calendar/forms.py:284
 msgid "Start cannot be in the past."
-msgstr ""
+msgstr "Starten kan ikke være i fortiden"
 
 #: src/dukop/apps/calendar/forms.py:291 src/dukop/apps/calendar/forms.py:384
 msgid "End time has to be after start time."
-msgstr ""
+msgstr "Slut tid skal være efter start tiden."
 
 #: src/dukop/apps/calendar/forms.py:321
 msgid "Image file"
 msgstr "Billedfil"
 
 #: src/dukop/apps/calendar/forms.py:323
-msgid ""
-"Allowed formats: JPEG, PNG, GIF. Please upload high resolution (>1000 pixels "
+msgid "Allowed formats: JPEG, PNG, GIF. Please upload high resolution (>1000 pixels "
 "wide). "
-msgstr ""
-"Tilladte formater: JPEG; PNG; GIF. Upload gerne i høj opløsning (>1000 "
+msgstr "Tilladte formater: JPEG; PNG; GIF. Upload gerne i høj opløsning (>1000 "
 "pixels bred). "
 
 #: src/dukop/apps/calendar/forms.py:369
@@ -187,8 +180,7 @@ msgid "Related spheres"
 msgstr "Relaterede sfærer"
 
 #: src/dukop/apps/calendar/models.py:170
-msgid ""
-"Other spheres intersecting or contained within this sphere. This can only "
+msgid "Other spheres intersecting or contained within this sphere. This can only "
 "have one level of 'nested' spheres - you can only choose spheres that aren't "
 "also containing other spheres."
 msgstr ""
@@ -207,16 +199,10 @@ msgid "name"
 msgstr "navn"
 
 #: src/dukop/apps/calendar/models.py:280
-#, fuzzy
-#| msgid ""
-#| "A special short version of the event description, leave blank to auto-"
-#| "generate. Text-only, no Markdown."
-msgid ""
-"A special short version of the event description, leave blank to auto-"
+msgid "A special short version of the event description, leave blank to auto-"
 "generate."
-msgstr ""
-"En kort version af event beskrivelsen. lad den være blank for at den bliver "
-"autogenereret. Kun ren tekst. "
+msgstr ""En kort version af event beskrivelsen. lad den være blank for at den bliver "
+"autogenereret."
 
 #: src/dukop/apps/calendar/models.py:285 src/dukop/apps/calendar/models.py:496
 #: src/dukop/apps/calendar/models.py:526 src/dukop/apps/users/models.py:148
@@ -224,41 +210,33 @@ msgid "description"
 msgstr "beskrivelse"
 
 #: src/dukop/apps/calendar/models.py:286
-#, fuzzy
-#| msgid ""
-#| "Enter details, which will be displayed on the event's own page. You can "
-#| "use Markdown."
 msgid "Enter details, which will be displayed on the event's own page."
-msgstr ""
-"Skriv detaljer som vil blive vist på begivenhedens egen side. Formatering af "
-"teksten er mulig."
+msgstr ""Skriv detaljer som vil blive vist på begivenhedens egen side."
 
 #: src/dukop/apps/calendar/models.py:293
 msgid "The part of a URL that is displayed in dukop.dk/event/<slug>/"
 msgstr "Den del af af URL der bliver vist på dukop.dk/sphere/<slug>/"
 
 #: src/dukop/apps/calendar/models.py:303
-msgid ""
-"A group may host an event and be displayed as the author of the event text."
-msgstr ""
-"En gruppe kan eje en begivenhed og blive vist som forfattere til en event "
+msgid ""A group may host an event and be displayed as the author of the event text."
+msgstr ""En gruppe kan eje en begivenhed og blive vist som forfattere til en event "
 "tekst."
 
 #: src/dukop/apps/calendar/models.py:313
 msgid "The location (venue) of the event."
-msgstr ""
+msgstr "Lokationen for begivenheden"
 
 #: src/dukop/apps/calendar/models.py:322
 msgid "Online event"
-msgstr ""
+msgstr "Online begivenhed"
 
 #: src/dukop/apps/calendar/models.py:323
 msgid "Use the Description field to tell users how to join or sign up."
-msgstr ""
+msgstr "Brug beskrivelses feltet til at beskrive hvordan man deltager."
 
 #: src/dukop/apps/calendar/models.py:325
 msgid "TBA"
-msgstr ""
+msgstr "TBA"
 
 #: src/dukop/apps/calendar/models.py:331
 msgid "venue name"
@@ -298,12 +276,12 @@ msgstr "Begivenhed"
 
 #: src/dukop/apps/calendar/models.py:418
 msgid "Unspecified host"
-msgstr ""
+msgstr "Uspecificeret vært"
 
 #: src/dukop/apps/calendar/models.py:434
 #: src/dukop/apps/calendar/templates/calendar/includes/event_form.html:49
 msgid "Unspecified"
-msgstr ""
+msgstr "Uspecificeret"
 
 #: src/dukop/apps/calendar/models.py:451
 msgid "start"
@@ -334,21 +312,18 @@ msgid "automatic recurrence"
 msgstr "automatisk gentagelse"
 
 #: src/dukop/apps/calendar/models.py:485
-msgid ""
-"If true, this recurrence is currently maintained automatically and has not "
+msgid ""If true, this recurrence is currently maintained automatically and has not "
 "been rescheduled. If the recurrence is edited, it may be changed "
 "automatically"
-msgstr ""
-"Hvis markeret, bliver denne gentagelse bibeholdt automatisk og er ikke "
+msgstr ""Hvis markeret, bliver denne gentagelse bibeholdt automatisk og er ikke "
 "blevet manuelt ændret. Hvis gentagelsen er ændret, vil dette tidspunkt+dao "
 "ændres automatisk"
 
 #: src/dukop/apps/calendar/models.py:498
-msgid ""
-"Leave blank to use the general event's description. If filled in, will be "
+msgid ""Leave blank to use the general event's description. If filled in, will be "
 "displayed together when a user navigates to this specific occurrence of the "
 "event."
-msgstr ""
+msgstr "Lad den være blank for at benytte den generalle begivenhedsbeskrivelse."
 
 #: src/dukop/apps/calendar/models.py:503
 msgid "Event time"
@@ -363,11 +338,9 @@ msgid "image"
 msgstr "billede"
 
 #: src/dukop/apps/calendar/models.py:543
-msgid ""
-"Allowed formats: JPEG, PNG, GIF. Please upload high resolution (>1000 pixels "
+msgid ""Allowed formats: JPEG, PNG, GIF. Please upload high resolution (>1000 pixels "
 "wide)."
-msgstr ""
-"Tilladte formater: JPEG; PNG; GIF. Upload gerne i høj opløsning.(>1000 "
+msgstr ""Tilladte formater: JPEG; PNG; GIF. Upload gerne i høj opløsning.(>1000 "
 "pixels bred). "
 
 #: src/dukop/apps/calendar/models.py:548 src/dukop/apps/calendar/models.py:591
@@ -377,11 +350,11 @@ msgstr "0=først, 1=anden etc."
 
 #: src/dukop/apps/calendar/models.py:588
 msgid "Must begin with 'https://' or 'http://'"
-msgstr ""
+msgstr "Skal indeholde 'https://' eller 'http:// "
 
 #: src/dukop/apps/calendar/models.py:609
 msgid "Weekly"
-msgstr ""
+msgstr "Hver uge"
 
 #: src/dukop/apps/calendar/models.py:610
 msgid "Even weeks"
@@ -425,14 +398,14 @@ msgid ""
 "When you cancel an event, it will still be visible. People may need to know "
 "that then event has been cancelled. If you want to completely remove the "
 "event, you can also delete and unpublish it."
-msgstr ""
+msgstr "Når du aflyser en begivenheden, vil det stadig være synligt. Folk kan have brug for at vide at det er aflyst. Hvis du vil fjerne det helt, kan du slette det eller afpublicér det."
 
 #: src/dukop/apps/calendar/templates/calendar/event/cancel.html:26
 #: src/dukop/apps/calendar/templates/calendar/event/publish.html:26
 #: src/dukop/apps/calendar/templates/calendar/event/update.html:31
 #: src/dukop/apps/calendar/templates/calendar/location/update.html:95
 msgid "Save changes"
-msgstr ""
+msgstr "Gem ændringer"
 
 #: src/dukop/apps/calendar/templates/calendar/event/create.html:4
 #: src/dukop/apps/calendar/templates/calendar/event/create.html:13
@@ -454,7 +427,7 @@ msgstr "Opret din første begivenhed"
 
 #: src/dukop/apps/calendar/templates/calendar/event/create.html:16
 msgid "Read about using the site, creating events and more in "
-msgstr ""
+msgstr "Læs om denne side, oprettelse af begivnheder og mere"
 
 #: src/dukop/apps/calendar/templates/calendar/event/create.html:16
 #: src/dukop/apps/news/templates/news/about.html:4
@@ -472,7 +445,7 @@ msgstr ""
 
 #: src/dukop/apps/calendar/templates/calendar/event/create.html:33
 msgid "Create event and go to next step"
-msgstr ""
+msgstr "Opret begivenhedet og gå til næste skridt"
 
 #: src/dukop/apps/calendar/templates/calendar/event/dashboard.html:6
 #: src/dukop/apps/calendar/templates/calendar/event/list.html:6
@@ -541,35 +514,27 @@ msgid ""
 msgstr ""
 
 #: src/dukop/apps/calendar/templates/calendar/event/delete.html:18
-#, fuzzy
-#| msgid "Published"
 msgid "Unpublish event"
-msgstr "Offentliggjort"
+msgstr "Afpublicér begivenhed"
 
 #: src/dukop/apps/calendar/templates/calendar/event/delete.html:31
-#, fuzzy
-#| msgid "Confirm password:"
 msgid "Confirm changes"
-msgstr "Bekræft Kodeord:"
+msgstr "Bekræft ændringer"
 
 #: src/dukop/apps/calendar/templates/calendar/event/detail.html:31
-#, fuzzy
-#| msgid "Create event"
 msgid "Finalize your event"
-msgstr "Dine begivenheder"
+msgstr "Færdiggør din begivenhed"
 
 #: src/dukop/apps/calendar/templates/calendar/event/detail.html:33
-msgid ""
-"View your event below as it appears to everyone else. Once you think it's "
+msgid "View your event below as it appears to everyone else. Once you think it's "
 "ready, you should publish it and share it with your audience."
-msgstr ""
+msgstr "Se din begivenhed nedenfor, som det ser ud for alle ande. Når du synes det er færdigt, bør du publicere det."
 
 #: src/dukop/apps/calendar/templates/calendar/event/detail.html:38
-msgid ""
-"<strong>Your event doesn't have any images.</strong> You can skip this, but "
+msgid ""<strong>Your event doesn't have any images.</strong> You can skip this, but "
 "we really recommend adding an illustration to improve appearance on Dup Op "
 "and other sites where it's shared."
-msgstr ""
+msgstr "strong>Din begivenhed har ikke noget billede.</strong> Du kan droppe at have et billlede, men vi anbefaler kraftigt at tilføje en illustration til forbedre udseendet på Duk Op og andres steder du vil dele begivenheden."  
 
 #: src/dukop/apps/calendar/templates/calendar/event/detail.html:40
 #, fuzzy
@@ -581,13 +546,11 @@ msgstr "billede"
 msgid ""
 "<strong>Your event isn't published.</strong> As long as it isn't published, "
 "other users cannot see it."
-msgstr ""
+msgstr "<strong>Din begivenhed er ikke publiceret</strong> Så længe den ikke er publiceret, kan andre brugere ikke se den."
 
 #: src/dukop/apps/calendar/templates/calendar/event/detail.html:47
-#, fuzzy
-#| msgid "Published"
 msgid "Publish this event"
-msgstr "Offentliggjort"
+msgstr "Publicér denne begivenhed"
 
 #: src/dukop/apps/calendar/templates/calendar/event/list.html:13
 msgid "All events from"
@@ -604,20 +567,15 @@ msgid "Nothing to see in this period."
 msgstr "Intet at vise i denne periode"
 
 #: src/dukop/apps/calendar/templates/calendar/event/publish.html:4
-#, fuzzy
-#| msgid "Published"
 msgid "Publish event"
-msgstr "Offentliggjort"
+msgstr "Publicér begivenhed"
 
 #: src/dukop/apps/calendar/templates/calendar/event/publish.html:10
-#, fuzzy
-#| msgid "Published"
 msgid "Publish:"
-msgstr "Offentliggjort"
+msgstr "Publicér"
 
 #: src/dukop/apps/calendar/templates/calendar/event/publish.html:13
-msgid ""
-"You can publish and unpublish an event. You can keep the event unpublished "
+msgid "You can publish and unpublish an event. You can keep the event unpublished "
 "while you work on its contents and then finally publish it."
 msgstr ""
 
@@ -1281,76 +1239,6 @@ msgid "News stories"
 msgstr "Nyheder"
 
 #: src/dukop/apps/news/templates/news/about.html:12
-#, fuzzy
-#| msgid ""
-#| "\n"
-#| "<p>Duk Op is your guide to what happens in and around Copenhagen, whether "
-#| "you are looking for demonstrations, concerts, parties, meetings, soup "
-#| "kitchens, gardening days, workshops, art exhibitions, film screenings and "
-#| "much more.</p>\n"
-#| "\n"
-#| "<p>Jump to:</p>\n"
-#| "\n"
-#| " <ul>\n"
-#| "     <li><a href=\"#contact\">Contact</a></li>\n"
-#| "     <li><a href=\"#guidelines\">Event Guidelines</a></li>\n"
-#| "     <li><a href=\"#policy\">Our security policy</a></li>\n"
-#| "     <li><a href=\"#users\">Duk Op's different user types</a></li>\n"
-#| "     <li><a href=\"#why\">Why should I think about internet security?</"
-#| "a></li>\n"
-#| "     <li><a href=\"#protect\">How should I protect myself when on Duk Op?"
-#| "</a></li>\n"
-#| "     <li><a href=\"#read\">Further readings about internet security</a></"
-#| "li>\n"
-#| " </ul>\n"
-#| "\n"
-#| "<p>The idea behind the calendar is that there is a need for a simple and "
-#| "accessible way to get involved and involve others in these cool "
-#| "activities. Money shouldn't be an issue, as you should not be dependent "
-#| "on having the \"right\" friends on Facebook or on checking ten different "
-#| "online calendars to get an overview of what's happening. Duk Op is a "
-#| "possibility to open up, gather and discover new and exciting projects.</"
-#| "p>\n"
-#| "\n"
-#| "<p>The crew behind the homepage does not upload events to the calendar, "
-#| "so Duk Op is entirely dependent on you and your group contributing with "
-#| "your events and activities!</p>\n"
-#| "\n"
-#| "<p>Duk Op is a political project. We dream of a different and better "
-#| "world. A world based on principles of freedom, equality and autonomy and "
-#| "without discrimination and oppression in all its forms. We get excited "
-#| "about activism, self-organisation and about initiatives and cultural "
-#| "projects that are more than something you can write on your CV or that "
-#| "you can earn money from. We wish to support places, groups and "
-#| "individuals who share these values. For this reason, events that for "
-#| "instance have a parlamentarian goal or that aim at commercial profit are "
-#| "not welcome on the calendar.</p>\n"
-#| "\n"
-#| "<p>Generally, Duk Op aims at hosting open events. However, we do see "
-#| "exceptions, for example in the case of separatistic events that focus on "
-#| "gender. On the other hand, closed member-meetings and the like do not "
-#| "belong on the calendar, but belong to the organisation or group's own "
-#| "communication channels (e.g. mailing-list).</p>\n"
-#| "\n"
-#| "<p>We hope that Duk Op can function as a mobilising platform, can make it "
-#| "easier to get involved and involve others and can inspire and motivate by "
-#| "showing all the great activities that are happening out there.</p>\n"
-#| "\n"
-#| "<h2 id=\"contact\">Contact Duk Op</h2>\n"
-#| "\n"
-#| "<p>If you have questions regarding what you have just read, or about "
-#| "anything else, write an email to <a href=\"mailto:dukop@riseup.net"
-#| "\">dukop@riseup.net</a></p>\n"
-#| "\n"
-#| "<p>To the security conscious: We have <a href=\"https://pgp.mit.edu/pks/"
-#| "lookup?op=get&search=0xE74B09BA26CE1DD7\">a PGP key</a>.</p>\n"
-#| "\n"
-#| "<p>The key ID is <code>0x26CE1DD7</code>. The full key fingerprint is:</"
-#| "p>\n"
-#| "\n"
-#| "<pre>\n"
-#| "Key fingerprint = 5832 0CBF 30E8 8572 F8A4 1943 E74B 09BA 26CE 1DD7\n"
-#| "</pre>\n"
 msgid ""
 "\n"
 "<p>Duk Op is your guide to what happens in and around Copenhagen, whether "
@@ -1420,7 +1308,7 @@ msgid ""
 "</pre>\n"
 msgstr ""
 "\n"
-"<p>Københavns nye kooperative webkalender</p><p>DukOp er vores fælles guide "
+"<p>En kooperative webkalender</p><p>DukOp er vores fælles guide "
 "til, hvad der sker i København og omegn, hvad enten du leder efter "
 "demonstrationer, koncerter, fester, møder, folkekøkkener, havedage, "
 "workshops, kunst- og filmfremvisninger, mv..</p>\n"
@@ -1559,34 +1447,6 @@ msgid ""
 "the data you exchange with the application will always be encrypted to "
 "prevent interception by people eavesdropping on your connection.</p>\n"
 "\n"
-" <h2 id=\"users\">Duk Op's different user types</h2>\n"
-" <p>\n"
-" There are two different possibilities to create events here on dukop.dk. "
-"Events can either be created by registered users or by anonymous users.\n"
-" </p>\n"
-" <h4>Registered user</h4>\n"
-" <p>\n"
-" To log in as a user you need to register with a username and password, and "
-"need to write your email in order to get a confirmation. This allows you to "
-"access more functions, like editing or deleting events you have created or "
-"commenting on your and others' events with your visible username.\n"
-" </p>\n"
-" <h4>Anonymous user</h4>\n"
-" <p>\n"
-"  Alternatively, you can choose to create events anonymously. A username is "
-"generated for you, and you do not need to provide a password or a valid "
-"email address. The event is created by the user \"Anonymous\". Keep in mind "
-"that you cannot edit or delete your event after your session expires or you "
-"log out.\n"
-" </p>\n"
-" <p>\n"
-"  Cool, right? Yes, but there are still some things you need to be aware of, "
-"if you need to make sure that no one else (for instance your internet "
-"provider) eavesdrops when you use dukop.dk and if you want to make use of "
-"all the features on the website. Read on to find out why should protect "
-"yourself on the internet, or jump directly to how you can do it.\n"
-" </p>\n"
-"\n"
 " <h2 id=\"why\">Why should I think about internet security?</h2>\n"
 " <p>\n"
 "  Despite the fact that we do not register your IP address when you visit "
@@ -1638,18 +1498,10 @@ msgid ""
 "homepage, but we can give you a couple of ideas on how you can use TOR on "
 "Duk Op.\n"
 " </p>\n"
-" <p>You can use TOR on Duk Op in two different ways:</p>\n"
-" <ol>\n"
-"     <li>\n"
-"          You can use it when you create anonmyous events (highly "
-"recommended!). Only in this way you can be sure that there is no one else "
-"reading the communication between your computer and our server, when you "
-"create an event. In practice it means that you open TOR, write dukop.dk in "
-"the address field of the TOR browser and create your anonymous events from "
-"there.\n"
+" <p>You can use TOR on Duk Op</p>\n"
 "     </li>\n"
 "     <li>\n"
-"          The other way to use TOR is to create a new email account, which "
+"          Start creating a new email account while usin tor, which "
 "you can use to create a user on Duk Op. By creating a new email address and "
 "by NEVER logging into it without using TOR, no one can see who the person "
 "that sits behind the email address is. After you have created an email "

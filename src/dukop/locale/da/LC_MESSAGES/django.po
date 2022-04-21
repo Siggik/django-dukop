@@ -2157,17 +2157,11 @@ msgstr ""
 "Du måske klikket på et link til et event, som er udløbet eller blevet slettet"
 
 #: src/dukop/templates/404.html:8
-#, fuzzy
-#| msgid ""
-#| "In September 2021, we changed our website, so if you have followed an old "
-#| "URL, that can also be the issue"
 msgid ""
 "On April 8th 2022, we launched Duk Op 2.0. If you have followed an old URL, "
 "that can also be the issue."
 msgstr ""
-"I september 2021 fik vi et nyt website, så måske du har fulgt en gammel URL. "
-"Måske eventet findes her på siden. Gå til forsiden og tjek efter, ved at "
-"klikke på logoet oven for. "
+"Den 8. april 2022 startede Duk Op 2.0, så måske har du brugt en gammel URL?"
 
 #: src/dukop/templates/500.html:4
 msgid "500 - Server error"

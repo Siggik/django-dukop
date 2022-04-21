@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-19 21:22+0200\n"
+"POT-Creation-Date: 2022-04-21 19:08+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,15 +26,15 @@ msgstr "kort beskrivelse"
 msgid "time(s)"
 msgstr "gang(e)"
 
-#: src/dukop/apps/calendar/feeds.py:43
+#: src/dukop/apps/calendar/feeds.py:44
 msgid "Duk Op calendar for {}"
 msgstr "Duk Op kalender for {}"
 
-#: src/dukop/apps/calendar/feeds.py:45
+#: src/dukop/apps/calendar/feeds.py:46
 msgid "Duk Op future events"
 msgstr "Fremtidige begivenheder på Duk Op"
 
-#: src/dukop/apps/calendar/feeds.py:60
+#: src/dukop/apps/calendar/feeds.py:61
 msgid ""
 "\n"
 "\n"
@@ -44,11 +44,11 @@ msgstr ""
 "\n"
 "Læs mere: {}"
 
-#: src/dukop/apps/calendar/feeds.py:159
+#: src/dukop/apps/calendar/feeds.py:168
 msgid "Duk Op's next 30 events"
 msgstr "Duk Op næste 30 begivenheder"
 
-#: src/dukop/apps/calendar/feeds.py:165
+#: src/dukop/apps/calendar/feeds.py:174
 msgid "RSS feed of the latest events on Duk Op"
 msgstr "RSS feed for de seneste begivenheder på Duk Op"
 
@@ -64,8 +64,8 @@ msgstr "Vælg hvilken version af kalenders-sfærer er eventet relevent for."
 #: src/dukop/apps/calendar/templates/calendar/group/detail.html:27
 #: src/dukop/apps/calendar/templates/calendar/includes/event_card.html:116
 #: src/dukop/apps/calendar/templates/calendar/includes/event_form.html:57
-#: src/dukop/apps/calendar/templates/calendar/location/detail.html:32
-#: src/dukop/apps/users/models.py:178
+#: src/dukop/apps/calendar/templates/calendar/location/detail.html:55
+#: src/dukop/apps/users/models.py:195
 msgid "Location"
 msgstr ""
 
@@ -201,8 +201,8 @@ msgstr "Sfære"
 msgid "Spheres"
 msgstr "Sfærer"
 
-#: src/dukop/apps/calendar/models.py:274 src/dukop/apps/calendar/models.py:921
-#: src/dukop/apps/users/models.py:115
+#: src/dukop/apps/calendar/models.py:274 src/dukop/apps/calendar/models.py:927
+#: src/dukop/apps/users/models.py:132
 msgid "name"
 msgstr "navn"
 
@@ -219,7 +219,7 @@ msgstr ""
 "autogenereret. Kun ren tekst. "
 
 #: src/dukop/apps/calendar/models.py:285 src/dukop/apps/calendar/models.py:496
-#: src/dukop/apps/calendar/models.py:526 src/dukop/apps/users/models.py:131
+#: src/dukop/apps/calendar/models.py:526 src/dukop/apps/users/models.py:148
 msgid "description"
 msgstr "beskrivelse"
 
@@ -264,15 +264,15 @@ msgstr ""
 msgid "venue name"
 msgstr "venue navn"
 
-#: src/dukop/apps/calendar/models.py:337 src/dukop/apps/users/models.py:139
+#: src/dukop/apps/calendar/models.py:337 src/dukop/apps/users/models.py:156
 msgid "street"
 msgstr "gade"
 
-#: src/dukop/apps/calendar/models.py:343 src/dukop/apps/users/models.py:145
+#: src/dukop/apps/calendar/models.py:343 src/dukop/apps/users/models.py:162
 msgid "city"
 msgstr "by"
 
-#: src/dukop/apps/calendar/models.py:348 src/dukop/apps/users/models.py:150
+#: src/dukop/apps/calendar/models.py:348 src/dukop/apps/users/models.py:167
 msgid "zip code"
 msgstr "post nr"
 
@@ -371,7 +371,7 @@ msgstr ""
 "pixels bred). "
 
 #: src/dukop/apps/calendar/models.py:548 src/dukop/apps/calendar/models.py:591
-#: src/dukop/apps/users/models.py:186
+#: src/dukop/apps/users/models.py:203
 msgid "0=first, 1=second etc."
 msgstr "0=først, 1=anden etc."
 
@@ -379,35 +379,35 @@ msgstr "0=først, 1=anden etc."
 msgid "Must begin with 'https://' or 'http://'"
 msgstr ""
 
-#: src/dukop/apps/calendar/models.py:628
+#: src/dukop/apps/calendar/models.py:609
 msgid "Weekly"
 msgstr ""
 
-#: src/dukop/apps/calendar/models.py:629
+#: src/dukop/apps/calendar/models.py:610
 msgid "Even weeks"
 msgstr "Lige uger"
 
-#: src/dukop/apps/calendar/models.py:630
+#: src/dukop/apps/calendar/models.py:611
 msgid "Odd weeks"
 msgstr "Ulige uger"
 
-#: src/dukop/apps/calendar/models.py:631
+#: src/dukop/apps/calendar/models.py:612
 msgid "First week of month"
 msgstr "Første uge i måneden"
 
-#: src/dukop/apps/calendar/models.py:632
+#: src/dukop/apps/calendar/models.py:613
 msgid "Second week of month"
 msgstr "Anden uge i måneden"
 
-#: src/dukop/apps/calendar/models.py:633
+#: src/dukop/apps/calendar/models.py:614
 msgid "Third week of month"
 msgstr "Tredje uge i måneden"
 
-#: src/dukop/apps/calendar/models.py:634
+#: src/dukop/apps/calendar/models.py:615
 msgid "Last week of month"
 msgstr "Sidste uge i måneden"
 
-#: src/dukop/apps/calendar/models.py:654
+#: src/dukop/apps/calendar/models.py:772
 msgid "End of series"
 msgstr "Slutningen af serien"
 
@@ -430,7 +430,7 @@ msgstr ""
 #: src/dukop/apps/calendar/templates/calendar/event/cancel.html:26
 #: src/dukop/apps/calendar/templates/calendar/event/publish.html:26
 #: src/dukop/apps/calendar/templates/calendar/event/update.html:31
-#: src/dukop/apps/calendar/templates/calendar/location/update.html:23
+#: src/dukop/apps/calendar/templates/calendar/location/update.html:95
 msgid "Save changes"
 msgstr ""
 
@@ -599,7 +599,7 @@ msgstr "til"
 
 #: src/dukop/apps/calendar/templates/calendar/event/list.html:47
 #: src/dukop/apps/calendar/templates/calendar/group/detail.html:64
-#: src/dukop/apps/calendar/templates/calendar/location/detail.html:73
+#: src/dukop/apps/calendar/templates/calendar/location/detail.html:96
 msgid "Nothing to see in this period."
 msgstr "Intet at vise i denne periode"
 
@@ -690,6 +690,7 @@ msgstr "billede"
 #: src/dukop/apps/calendar/templates/calendar/includes/event_form.html:148
 #: src/dukop/apps/calendar/templates/calendar/includes/event_form.html:214
 #: src/dukop/apps/calendar/templates/calendar/includes/event_form.html:297
+#: src/dukop/apps/calendar/templates/calendar/location/update.html:67
 msgid "Add one more..."
 msgstr ""
 
@@ -697,6 +698,7 @@ msgstr ""
 #: src/dukop/apps/calendar/templates/calendar/includes/event_form.html:153
 #: src/dukop/apps/calendar/templates/calendar/includes/event_form.html:219
 #: src/dukop/apps/calendar/templates/calendar/includes/event_form.html:302
+#: src/dukop/apps/calendar/templates/calendar/location/update.html:72
 msgid "Have one less..."
 msgstr ""
 
@@ -791,19 +793,19 @@ msgstr ""
 
 #: src/dukop/apps/calendar/templates/calendar/group/detail.html:15
 #: src/dukop/apps/calendar/templates/calendar/includes/event_form.html:272
-#: src/dukop/apps/calendar/templates/calendar/location/detail.html:20
+#: src/dukop/apps/calendar/templates/calendar/location/detail.html:43
 msgid "Links"
 msgstr "Links"
 
 #: src/dukop/apps/calendar/templates/calendar/group/detail.html:23
-#: src/dukop/apps/calendar/templates/calendar/location/detail.html:28
+#: src/dukop/apps/calendar/templates/calendar/location/detail.html:51
 #, fuzzy
 #| msgid "Event links"
 msgid "No links"
 msgstr "Begivenheden link"
 
 #: src/dukop/apps/calendar/templates/calendar/group/detail.html:34
-#: src/dukop/apps/calendar/templates/calendar/location/detail.html:43
+#: src/dukop/apps/calendar/templates/calendar/location/detail.html:66
 #, fuzzy
 #| msgid "Create event"
 msgid "Upcoming events"
@@ -1061,53 +1063,53 @@ msgstr "Forrige"
 msgid "Next"
 msgstr "Næste"
 
-#: src/dukop/apps/calendar/templates/calendar/index.html:6
+#: src/dukop/apps/calendar/templates/calendar/index.html:7
 msgid "Start"
 msgstr "Start"
 
-#: src/dukop/apps/calendar/templates/calendar/index.html:34
+#: src/dukop/apps/calendar/templates/calendar/index.html:39
 msgid "No events found in this period."
 msgstr ""
 
-#: src/dukop/apps/calendar/templates/calendar/index.html:43
+#: src/dukop/apps/calendar/templates/calendar/index.html:48
 msgid "<strong>Recurring</strong> events"
 msgstr ""
 
-#: src/dukop/apps/calendar/templates/calendar/index.html:61
+#: src/dukop/apps/calendar/templates/calendar/index.html:66
 msgid "Next:"
 msgstr "Næste:"
 
-#: src/dukop/apps/calendar/templates/calendar/index.html:73
+#: src/dukop/apps/calendar/templates/calendar/index.html:78
 #, fuzzy
 #| msgid "Nothing to see in this period."
 msgid "No recurring events found in this period."
 msgstr "Intet at vise i denne periode"
 
-#: src/dukop/apps/calendar/templates/calendar/index.html:84
+#: src/dukop/apps/calendar/templates/calendar/index.html:89
 msgid "Happening"
 msgstr "Sker"
 
-#: src/dukop/apps/calendar/templates/calendar/index.html:84
+#: src/dukop/apps/calendar/templates/calendar/index.html:89
 msgid "today"
 msgstr "i dag"
 
-#: src/dukop/apps/calendar/templates/calendar/index.html:96
+#: src/dukop/apps/calendar/templates/calendar/index.html:101
 msgid ""
 "Nothing planned today, this is your chance to do something! Gather your "
 "people!"
 msgstr "Det sker ikke ikke en skid i dag"
 
-#: src/dukop/apps/calendar/templates/calendar/index.html:149
+#: src/dukop/apps/calendar/templates/calendar/index.html:154
 #, fuzzy
 #| msgid "Existing venue"
 msgid "Active locations"
 msgstr "Eksisterende lokation"
 
-#: src/dukop/apps/calendar/templates/calendar/index.html:163
+#: src/dukop/apps/calendar/templates/calendar/index.html:168
 msgid "All events next 30 days"
 msgstr ""
 
-#: src/dukop/apps/calendar/templates/calendar/index.html:193
+#: src/dukop/apps/calendar/templates/calendar/index.html:198
 msgid "Browse more events..."
 msgstr "Vis flere begivenheder..."
 
@@ -1162,7 +1164,12 @@ msgstr "Ingen begivenheder funder"
 msgid "Edit"
 msgstr ""
 
-#: src/dukop/apps/calendar/templates/calendar/location/detail.html:39
+#: src/dukop/apps/calendar/templates/calendar/location/detail.html:23
+#: src/dukop/apps/calendar/templates/calendar/location/update.html:40
+msgid "Opening hours"
+msgstr ""
+
+#: src/dukop/apps/calendar/templates/calendar/location/detail.html:62
 msgid "Address missing"
 msgstr ""
 
@@ -1172,13 +1179,13 @@ msgstr ""
 msgid "Update location"
 msgstr "Gem lokation"
 
-#: src/dukop/apps/calendar/templates/calendar/location/update.html:22
+#: src/dukop/apps/calendar/templates/calendar/location/update.html:96
 #, fuzzy
 #| msgid "Create event"
 msgid "Upcoming feature:"
 msgstr "Opret begivenhed"
 
-#: src/dukop/apps/calendar/templates/calendar/location/update.html:22
+#: src/dukop/apps/calendar/templates/calendar/location/update.html:96
 msgid ""
 "In the future, you will be able to add other members with access to manage "
 "and add events to a location."
@@ -1204,59 +1211,59 @@ msgstr "{start_date} kl. {start_time} - {end_time}"
 msgid "{start_date} at {start_time}{br} to {end_date} at {end_time}"
 msgstr "{start_date} kl. {start_time}{br} til {end_date} kl. {end_time}"
 
-#: src/dukop/apps/calendar/views.py:292
+#: src/dukop/apps/calendar/views.py:315
 #, python-brace-format
 msgid ""
 "Event '{event_name}' was created but not yet published. The next step is to "
 "add images."
 msgstr ""
 
-#: src/dukop/apps/calendar/views.py:317
+#: src/dukop/apps/calendar/views.py:340
 #, python-brace-format
 msgid "Event '{event_name}' was updated"
 msgstr ""
 
-#: src/dukop/apps/calendar/views.py:392
+#: src/dukop/apps/calendar/views.py:414
 #, python-brace-format
 msgid "Images for '{event_name}' were updated"
 msgstr ""
 
-#: src/dukop/apps/calendar/views.py:400
+#: src/dukop/apps/calendar/views.py:422
 #, python-brace-format
 msgid "You have created '{event_name}', please have a look below."
 msgstr ""
 
-#: src/dukop/apps/calendar/views.py:429
+#: src/dukop/apps/calendar/views.py:451
 #, python-brace-format
 msgid "Event '{event_name}' was cancelled."
 msgstr ""
 
-#: src/dukop/apps/calendar/views.py:436
+#: src/dukop/apps/calendar/views.py:458
 #, python-brace-format
 msgid "Event '{event_name}' was un-cancelled."
 msgstr ""
 
-#: src/dukop/apps/calendar/views.py:473
+#: src/dukop/apps/calendar/views.py:495
 #, python-brace-format
 msgid "Event '{event_name}' was published."
 msgstr ""
 
-#: src/dukop/apps/calendar/views.py:480
+#: src/dukop/apps/calendar/views.py:502
 #, python-brace-format
 msgid "Event '{event_name}' was unpublished."
 msgstr ""
 
-#: src/dukop/apps/calendar/views.py:517
+#: src/dukop/apps/calendar/views.py:539
 #, python-brace-format
 msgid "Event '{event_name}' was deleted."
 msgstr ""
 
-#: src/dukop/apps/calendar/views.py:525
+#: src/dukop/apps/calendar/views.py:547
 #, python-brace-format
 msgid "Event '{event_name}' was kept, you did not confirm to delete it."
 msgstr ""
 
-#: src/dukop/apps/calendar/views.py:695
+#: src/dukop/apps/calendar/views.py:718
 #, python-brace-format
 msgid "Location '{location_name}' was updated."
 msgstr ""
@@ -1678,15 +1685,15 @@ msgstr "Emailen blev ikke sendt, noget gik galt med mailserveren."
 msgid "Duk Op: New account"
 msgstr "Duk Op: Ny konto"
 
-#: src/dukop/apps/users/email.py:70
+#: src/dukop/apps/users/email.py:72
 msgid "Duk Op: 1-time login"
 msgstr "Duk Op: Engangs-login"
 
-#: src/dukop/apps/users/email.py:85
+#: src/dukop/apps/users/email.py:89
 msgid "Duk Op: New event"
 msgstr "Duk Op: Ny begivenhed"
 
-#: src/dukop/apps/users/forms.py:20 src/dukop/apps/users/forms.py:78
+#: src/dukop/apps/users/forms.py:20 src/dukop/apps/users/forms.py:84
 msgid "Email"
 msgstr "Email"
 
@@ -1694,52 +1701,54 @@ msgstr "Email"
 msgid "1-time code"
 msgstr "Engangs-kode"
 
-#: src/dukop/apps/users/forms.py:37
-msgid "The code appears in the email you just received."
+#: src/dukop/apps/users/forms.py:38
+#, fuzzy
+#| msgid "The code appears in the email you just received."
+msgid "The code appears in an email just sent. Type or copy-paste it here."
 msgstr "Koden fremgår af den email, du netop modtog."
 
-#: src/dukop/apps/users/forms.py:55
+#: src/dukop/apps/users/forms.py:61
 msgid "Are you a 'bot' or a 'human'?"
 msgstr "Er du en robot eller menneske?"
 
-#: src/dukop/apps/users/forms.py:55
+#: src/dukop/apps/users/forms.py:61
 msgid "human"
 msgstr "Menneske"
 
-#: src/dukop/apps/users/forms.py:57
+#: src/dukop/apps/users/forms.py:63
 msgid "What do you do when you are not awake? Starts with S, ends with P."
 msgstr "Hvad laver du når du ikke er vågen? Starter med S og slutter med R"
 
-#: src/dukop/apps/users/forms.py:58
+#: src/dukop/apps/users/forms.py:64
 msgid "sleep"
 msgstr "sover"
 
-#: src/dukop/apps/users/forms.py:62
+#: src/dukop/apps/users/forms.py:68
 msgid ""
 "Toilets. We all use them. After which we... [fl*sh]. Just write that word "
 "here."
 msgstr "Vi bruger alle toiletter. Hvad gør vi bagefter? [sk*ller] ud."
 
-#: src/dukop/apps/users/forms.py:64
+#: src/dukop/apps/users/forms.py:70
 msgid "flush"
 msgstr "skyller"
 
-#: src/dukop/apps/users/forms.py:80
+#: src/dukop/apps/users/forms.py:86
 msgid "Are you a bot?"
 msgstr "Er du en robot?"
 
-#: src/dukop/apps/users/forms.py:148
+#: src/dukop/apps/users/forms.py:154
 msgid ""
 "Update future events with new location details. If you change the name or "
 "address of the location, you should also choose to update future events. If "
 "you leave this unchecked, you can change events individually afterwards."
 msgstr ""
 
-#: src/dukop/apps/users/models.py:52
+#: src/dukop/apps/users/models.py:54
 msgid "Nickname"
 msgstr "Kaldenavn"
 
-#: src/dukop/apps/users/models.py:54
+#: src/dukop/apps/users/models.py:56
 msgid ""
 "This name is displayed at events that you host or to other members of groups "
 "that you are in."
@@ -1747,11 +1756,11 @@ msgstr ""
 "Dette navn bliver vist på events du arrangerer og til andre medlemmer af de "
 "grupper, du er en del af."
 
-#: src/dukop/apps/users/models.py:59
+#: src/dukop/apps/users/models.py:61
 msgid "email"
 msgstr "email"
 
-#: src/dukop/apps/users/models.py:61
+#: src/dukop/apps/users/models.py:63
 msgid ""
 "Your email address will be used for password resets and notification about "
 "your event/submissions."
@@ -1759,37 +1768,37 @@ msgstr ""
 "Din email vil blive brugt til kodeords gendannelse og notifaktioner om dine "
 "begivenheder"
 
-#: src/dukop/apps/users/models.py:77
+#: src/dukop/apps/users/models.py:79
 msgid "One time passphrase"
 msgstr "engang passphrase"
 
-#: src/dukop/apps/users/models.py:86
+#: src/dukop/apps/users/models.py:88
 msgid "Unnamed user"
 msgstr "Unavngivet bruger"
 
-#: src/dukop/apps/users/models.py:107
+#: src/dukop/apps/users/models.py:124
 msgid "User"
 msgstr "Bruger"
 
-#: src/dukop/apps/users/models.py:108
+#: src/dukop/apps/users/models.py:125
 msgid "Users"
 msgstr "Brugere"
 
-#: src/dukop/apps/users/models.py:121
+#: src/dukop/apps/users/models.py:138
 msgid "Do not allow others to add events to this group"
 msgstr "Tillad ikke at andre kan tilføje begivenheder til denne gruppe"
 
-#: src/dukop/apps/users/models.py:126
+#: src/dukop/apps/users/models.py:143
 msgid "Do not show this group"
 msgstr "Vis ikke denne gruppe"
 
-#: src/dukop/apps/users/models.py:132
+#: src/dukop/apps/users/models.py:149
 msgid "Enter details, which will be displayed on the group's own page."
 msgstr ""
 "Skriv detaljer som vil blive vist på gruppens egen side. Du kan bruge "
 "formatering. "
 
-#: src/dukop/apps/users/models.py:160
+#: src/dukop/apps/users/models.py:177
 msgid "Group"
 msgstr "Gruppe"
 
@@ -1808,7 +1817,7 @@ msgstr "Log ind igen"
 #: src/dukop/apps/users/templates/users/login.html:5
 #: src/dukop/apps/users/templates/users/login.html:67
 #: src/dukop/apps/users/templates/users/login_password.html:16
-#: src/dukop/apps/users/templates/users/login_token.html:27
+#: src/dukop/apps/users/templates/users/login_token.html:34
 #: src/dukop/apps/users/templates/users/password_reset_complete.html:11
 #: src/dukop/templates/base.html:69
 msgid "Log in"
@@ -1820,7 +1829,6 @@ msgid "Returning user login"
 msgstr "Login for eksisterende brugere"
 
 #: src/dukop/apps/users/templates/users/login.html:14
-#: src/dukop/apps/users/templates/users/login_token.html:14
 msgid ""
 "Your account doesn't have access to this page. To proceed, please login with "
 "an account that has access."
@@ -1882,18 +1890,32 @@ msgstr ""
 msgid "Login with password"
 msgstr "Login med kodeord"
 
-#: src/dukop/apps/users/templates/users/login_token.html:5
-#: src/dukop/apps/users/templates/users/login_token.html:9
+#: src/dukop/apps/users/templates/users/login_token.html:7
+#: src/dukop/apps/users/templates/users/login_token.html:15
 msgid "Final login step"
 msgstr "Næsten logget ind..."
 
-#: src/dukop/apps/users/templates/users/login_token.html:34
+#: src/dukop/apps/users/templates/users/login_token.html:19
+#, fuzzy
+#| msgid ""
+#| "If your email is registered, you will have received a one-time login by "
+#| "email now. Click the link sent to %(email_token)s and enter the token, "
+#| "using the link that is found in the email."
+msgid ""
+"If your email is registered, you will have received a one-time login by "
+"email now. Remember to check your spam folder 🗑️"
+msgstr ""
+"Hvis din email er registreret, har du modtaget en engangs-kode inden for de "
+"næste minutter. Klik på linket sendt til %(email_token)s og indtast engangs-"
+"koden."
+
+#: src/dukop/apps/users/templates/users/login_token.html:41
 msgid "Get a new 1-time code"
 msgstr "Få en ny engangs-kode"
 
 #: src/dukop/apps/users/templates/users/login_token_sent.html:5
 #: src/dukop/apps/users/templates/users/login_token_sent.html:9
-#: src/dukop/apps/users/views.py:220 src/dukop/apps/users/views.py:233
+#: src/dukop/apps/users/views.py:237 src/dukop/apps/users/views.py:252
 msgid "Check your inbox"
 msgstr "Tjek din indbakke"
 
@@ -2155,16 +2177,16 @@ msgstr "Ændr min adgangskode"
 msgid "Update profile"
 msgstr "Opdatér profil"
 
-#: src/dukop/apps/users/views.py:60
+#: src/dukop/apps/users/views.py:62
 msgid "Please log in before proceeding"
 msgstr "Vær venlig at logge ind før du fortsætter"
 
-#: src/dukop/apps/users/views.py:223
+#: src/dukop/apps/users/views.py:240
 msgid "If the email isn't there in 2 minutes, check your spam folder."
 msgstr ""
 "Hvis du ikke har modtaget mailen inden for 2 minutter, tjek i din spam mappe."
 
-#: src/dukop/apps/users/views.py:279
+#: src/dukop/apps/users/views.py:310
 msgid "Your profile updates were saved."
 msgstr "Din profil opdatering blev gemt."
 

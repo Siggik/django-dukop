@@ -6,6 +6,7 @@ from django.utils import feedgenerator
 from django.utils.feedgenerator import rfc2822_date
 from django.utils.translation import gettext as _
 from django_ical.views import ICalFeed
+from PIL import Image
 from sorl.thumbnail.shortcuts import get_thumbnail
 
 from . import models
@@ -145,7 +146,13 @@ class RssFeed(Feed):
         """
         images = []
         for image in item.event.images.all():
-            thumbnail = get_thumbnail(image.image, "800x800", quality=90)
+            img = Image.open(image.image.file)
+            fill_color = "#ffffff"
+            if img.mode in ("RGBA", "LA"):
+                background = Image.new(img.mode[:-1], img.size, fill_color)
+                background.paste(img, img.split()[-1])
+                img = background
+            thumbnail = get_thumbnail(img, "800x800", quality=90)
             images.append(
                 feedgenerator.Enclosure(
                     self.get_image_url(thumbnail.url),
